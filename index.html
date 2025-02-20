@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoKids Adventure</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            padding: 20px;
+        }
+        .story-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .coins {
+            color: gold;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CryptoKids Adventure</h1>
+    <div id="story" class="story-box"></div>
+    <div id="choices"></div>
+    <div id="wallet" class="coins">Your Coins: <span id="coin-count">0</span></div>
+
+    <script>
+        let coins = 0;
+        let currentScene = 0;
+
+        const scenes = [
+            {
+                text: "Welcome, young explorer! You’re in CryptoLand. A friendly miner says: 'Bitcoin is like digital gold! Want to learn how to mine it?'",
+                choices: [
+                    { text: "Yes, teach me!", nextScene: 1 },
+                    { text: "No, I’ll explore", nextScene: 2 }
+                ]
+            },
+            {
+                text: "Great! Mining is like solving puzzles to earn Bitcoin. You solve your first puzzle and earn 5 coins!",
+                choices: [
+                    { text: "Keep mining", nextScene: 3 },
+                    { text: "Learn about wallets", nextScene: 4 }
+                ],
+                reward: 5
+            },
+            {
+                text: "You wander into a market. A trader says: 'Crypto is money you can send anywhere without a bank!' Want to trade?",
+                choices: [
+                    { text: "Trade for 3 coins", nextScene: 5 },
+                    { text: "Keep exploring", nextScene: 6 }
+                ]
+            },
+            {
+                text: "You mined another puzzle! +5 coins. Mining helps keep Bitcoin safe.",
+                choices: [
+                    { text: "Learn about wallets", nextScene: 4 },
+                    { text: "End adventure", nextScene: 7 }
+                ],
+                reward: 5
+            },
+            {
+                text: "A wallet keeps your coins safe, like a piggy bank! You store your coins in one.",
+                choices: [
+                    { text: "Go trading", nextScene: 5 },
+                    { text: "End adventure", nextScene: 7 }
+                ]
+            },
+            {
+                text: "You trade and earn 3 coins! Trading is how people buy and sell crypto.",
+                choices: [
+                    { text: "Learn more", nextScene: 4 },
+                    { text: "End adventure", nextScene: 7 }
+                ],
+                reward: 3
+            },
+            {
+                text: "You find a quiet spot. Want to learn more later?",
+                choices: [
+                    { text: "Restart", nextScene: 0 },
+                    { text: "End adventure", nextScene: 7 }
+                ]
+            },
+            {
+                text: "Thanks for exploring CryptoLand! You collected " + coins + " coins. Play again?",
+                choices: [
+                    { text: "Yes", nextScene: 0 }
+                ]
+            }
+        ];
+
+        function updateScene() {
+            const scene = scenes[currentScene];
+            document.getElementById('story').innerText = scene.text.replace(" + coins", "");
+            document.getElementById('coin-count').innerText = coins;
+
+            const choicesDiv = document.getElementById('choices');
+            choicesDiv.innerHTML = '';
+            scene.choices.forEach(choice => {
+                const button = document.createElement('button');
+                button.innerText = choice.text;
+                button.onclick = () => {
+                    if (scene.reward) coins += scene.reward;
+                    currentScene = choice.nextScene;
+                    updateScene();
+                };
+                choicesDiv.appendChild(button);
+            });
+        }
+
+        // Start the game
+        updateScene();
+    </script>
+</body>
+</html>
