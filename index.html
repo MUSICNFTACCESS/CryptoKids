@@ -3,202 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoKids - Quiz Game</title>
+    <title>CryptoKids Quiz</title>
     <style>
-        body {
-            margin: 0;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #F7931A, #9945FF);
-            min-height: 100vh;
+        .wallet-button {
+            background: #ff9900;
             color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .game-container {
-            max-width: 600px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            backdrop-filter: blur(5px);
-        }
-
-        h1 {
-            text-align: center;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            margin-bottom: 10px;
-        }
-
-        #category {
-            text-align: center;
-            font-size: 16px;
-            font-style: italic;
-            margin-bottom: 20px;
-            color: #ffffffcc;
-        }
-
-        .question {
-            margin: 20px 0;
-            font-size: 18px;
-            text-align: center;
-        }
-
-        .options button {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            background: #F7931A;
             border: none;
-            border-radius: 5px;
-            color: white;
-            font-size: 16px;
+            padding: 10px 15px;
             cursor: pointer;
-            transition: background 0.3s;
+            border-radius: 5px;
         }
-
-        .options button:hover {
-            background: #9945FF;
-        }
-
-        #score {
-            text-align: center;
-            font-size: 20px;
-            margin-top: 20px;
-        }
-
-        #progress {
-            text-align: center;
-            font-size: 14px;
-            color: #ffffffcc;
-            margin-top: 10px;
+        .wallet-button:hover {
+            background: #ffaa00;
         }
     </style>
 </head>
 <body>
-    <!-- Background Music -->
-    <audio autoplay loop>
-        <source src="background-music.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <!-- Connect Wallet Button -->
+    <button id="connect-wallet">Connect Wallet</button>
+    <p id="wallet-status">Not Connected</p>
 
-    <div class="game-container">
+    <div class="container">
         <h1>CryptoKids Quiz</h1>
-        <div id="category"></div>
-        <div id="question" class="question">Loading question...</div>
-        <div id="options" class="options"></div>
-        <div id="score">Score: 0</div>
-        <div id="progress"></div>
+        <p class="question">Loading question...</p>
+        <div class="options"></div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+        <p class="result"></p>
     </div>
 
+    <!-- JavaScript Files -->
+    <script src="script.js"></script>
     <script>
+        let questions = [];
+        let currentQuestionIndex = 0;
         let score = 0;
-        let currentQuestion = 0;
 
-        const questions = [
-            {"category": "Crypto Basics & Blockchain", "question": "What is a smart contract?", "options": ["A self-executing contract with terms written in code", "A digital signature", "A private blockchain", "A type of token"], "answer": "A self-executing contract with terms written in code"},
-            {"category": "Crypto Basics & Blockchain", "question": "Which blockchain was the first to introduce smart contracts?", "options": ["Ethereum", "Bitcoin", "Solana", "Polkadot"], "answer": "Ethereum"},
-            {"category": "Bitcoin & Ethereum", "question": "What does mining do in Bitcoin?", "options": ["Validates transactions and creates new blocks", "Prints new Bitcoin", "Increases gas fees", "Creates smart contracts"], "answer": "Validates transactions and creates new blocks"},
-            {"category": "Bitcoin & Ethereum", "question": "What is Ethereum 2.0?", "options": ["An upgrade to Ethereum that introduces Proof of Stake", "A new cryptocurrency", "A fork of Ethereum Classic", "A DeFi platform"], "answer": "An upgrade to Ethereum that introduces Proof of Stake"},
-            {"category": "Solana & Layer 1s", "question": "What is the primary use case for Layer 2 scaling solutions?", "options": ["Reducing transaction fees and increasing speed", "Creating NFTs", "Replacing Layer 1 networks", "Storing private keys"], "answer": "Reducing transaction fees and increasing speed"},
-            {"category": "Solana & Layer 1s", "question": "What is the native token of the Solana blockchain?", "options": ["SOL", "ETH", "BTC", "ADA"], "answer": "SOL"},
-            {"category": "DeFi & Yield Farming", "question": "What is staking in crypto?", "options": ["Locking up tokens to support network operations and earn rewards", "Selling crypto at a loss", "Buying crypto with leverage", "Using a centralized exchange"], "answer": "Locking up tokens to support network operations and earn rewards"},
-            {"category": "DeFi & Yield Farming", "question": "What is the role of an Automated Market Maker (AMM) in DeFi?", "options": ["Providing liquidity without the need for traditional order books", "Managing centralized exchanges", "Creating NFTs", "Issuing fiat currency"], "answer": "Providing liquidity without the need for traditional order books"},
-            {"category": "NFTs & Tokenization", "question": "What is a metaverse?", "options": ["A virtual world powered by blockchain technology", "A new type of cryptocurrency", "A centralized financial system", "A programming language"], "answer": "A virtual world powered by blockchain technology"},
-            {"category": "NFTs & Tokenization", "question": "What is a fractional NFT?", "options": ["An NFT divided into smaller tradable pieces", "An NFT with fractionalized colors", "An NFT that represents a fraction of a Bitcoin", "An NFT with multiple owners"], "answer": "An NFT divided into smaller tradable pieces"},
-            {"category": "Security & Risk Management", "question": "What is 2FA in crypto security?", "options": ["Two-Factor Authentication", "Two Fiat Accounts", "Two Forked Assets", "Two Financial Authorities"], "answer": "Two-Factor Authentication"},
-            {"category": "Security & Risk Management", "question": "What is a cold wallet?", "options": ["A cryptocurrency wallet stored offline", "A wallet that only works in winter", "A software wallet connected to the internet", "A type of centralized exchange"], "answer": "A cryptocurrency wallet stored offline"},
-            {"category": "Trading & Technical Analysis", "question": "What is a stop-loss order?", "options": ["An order to sell an asset when it reaches a certain price", "A way to prevent losses in staking", "A type of NFT bid", "A limit on gas fees"], "answer": "An order to sell an asset when it reaches a certain price"},
-            {"category": "Trading & Technical Analysis", "question": "What is leverage trading?", "options": ["Borrowing funds to increase position size", "Holding crypto for a long time", "Selling crypto at a loss", "Buying NFTs"], "answer": "Borrowing funds to increase position size"},
-            {"category": "Estate Planning & Tax Strategies", "question": "How is crypto taxed in most countries?", "options": ["As capital gains", "As legal tender", "It is not taxed", "As a security deposit"], "answer": "As capital gains"},
-            {"category": "Estate Planning & Tax Strategies", "question": "Why is it important to include crypto in an estate plan?", "options": ["To ensure beneficiaries can access digital assets", "To avoid staking rewards", "To lower gas fees", "To get free airdrops"], "answer": "To ensure beneficiaries can access digital assets"},
-            {"category": "On-Chain Metrics & Alpha Hunting", "question": "What is a token burn?", "options": ["Permanently removing tokens from circulation", "Sending tokens to a DEX", "Storing tokens in a hardware wallet", "Mining new tokens"], "answer": "Permanently removing tokens from circulation"},
-            {"category": "On-Chain Metrics & Alpha Hunting", "question": "What is a governance token?", "options": ["A token that allows holders to vote on protocol changes", "A token used for staking", "A type of stablecoin", "A privacy-focused cryptocurrency"], "answer": "A token that allows holders to vote on protocol changes"},
-            {"category": "On-Chain Metrics & Alpha Hunting", "question": "What does APY stand for in DeFi?", "options": ["Annual Percentage Yield", "Automated Protocol Yield", "Asset Portfolio Year", "Advanced Pricing Yield"], "answer": "Annual Percentage Yield"},
-            {"category": "Crypto Basics & Blockchain", "question": "What problem does blockchain solve?", "options": ["Double spending", "Slow internet", "Centralized banking", "Quantum computing"], "answer": "Double spending"},
-            {"category": "Crypto Basics & Blockchain", "question": "Which consensus mechanism does Bitcoin use?", "options": ["Proof of Work", "Proof of Stake", "Delegated Proof of Stake", "Proof of Authority"], "answer": "Proof of Work"},
-            {"category": "Bitcoin & Ethereum", "question": "What is the smallest unit of Bitcoin?", "options": ["Satoshi", "Finney", "Ether", "Gwei"], "answer": "Satoshi"},
-            {"category": "Bitcoin & Ethereum", "question": "What is Ethereum's native currency?", "options": ["Ether (ETH)", "Bitcoin (BTC)", "Solana (SOL)", "Litecoin (LTC)"], "answer": "Ether (ETH)"},
-            {"category": "Bitcoin & Ethereum", "question": "Who is the co-founder of Ethereum?", "options": ["Vitalik Buterin", "Satoshi Nakamoto", "Elon Musk", "Changpeng Zhao"], "answer": "Vitalik Buterin"},
-            {"category": "Solana & Layer 1s", "question": "What makes Solana different from Ethereum?", "options": ["Uses Proof of History", "Uses Proof of Work", "No smart contracts", "Only supports NFTs"], "answer": "Uses Proof of History"},
-            {"category": "Solana & Layer 1s", "question": "Which blockchain is known for fast transactions and low fees?", "options": ["Solana", "Ethereum", "Bitcoin", "Cardano"], "answer": "Solana"},
-            {"category": "DeFi & Yield Farming", "question": "What is yield farming?", "options": ["Earning rewards by providing liquidity", "Growing crops using blockchain", "Buying and holding tokens", "Trading NFTs"], "answer": "Earning rewards by providing liquidity"},
-            {"category": "DeFi & Yield Farming", "question": "What is impermanent loss?", "options": ["Loss caused by price changes in a liquidity pool", "A type of scam", "When you lose your private keys", "When an NFT becomes worthless"], "answer": "Loss caused by price changes in a liquidity pool"},
-            {"category": "NFTs & Tokenization", "question": "What gives NFTs their value?", "options": ["Scarcity and demand", "Government backing", "Centralized servers", "Unlimited supply"], "answer": "Scarcity and demand"},
-            {"category": "NFTs & Tokenization", "question": "Which standard is commonly used for Ethereum NFTs?", "options": ["ERC-721", "ERC-20", "BEP-2", "TRC-10"], "answer": "ERC-721"},
-            {"category": "Security & Risk Management", "question": "What is a rug pull?", "options": ["A scam where developers abandon a project after taking funds", "A new DeFi strategy", "An NFT feature", "A staking method"], "answer": "A scam where developers abandon a project after taking funds"},
-            {"category": "Security & Risk Management", "question": "How can you protect yourself from phishing scams?", "options": ["Never share private keys", "Always click random links", "Use weak passwords", "Ignore security updates"], "answer": "Never share private keys"},
-            {"category": "Trading & Technical Analysis", "question": "What does MACD stand for?", "options": ["Moving Average Convergence Divergence", "Market Analysis and Crypto Development", "Multi-Asset Crypto Derivatives", "Maximum Average Coin Distribution"], "answer": "Moving Average Convergence Divergence"},
-            {"category": "Trading & Technical Analysis", "question": "What does support mean in trading?", "options": ["A price level where demand is strong enough to prevent further decline", "The highest price ever reached", "A place to ask for help", "The government regulating crypto"], "answer": "A price level where demand is strong enough to prevent further decline"},
-            {"category": "Estate Planning & Tax Strategies", "question": "What is a crypto will?", "options": ["A document outlining how digital assets should be distributed", "A new type of token", "A staking strategy", "A blockchain upgrade"], "answer": "A document outlining how digital assets should be distributed"},
-            {"category": "On-Chain Metrics & Alpha Hunting", "question": "What does gas refer to in Ethereum transactions?", "options": ["Transaction fees", "Smart contract speed", "A type of stablecoin", "A new blockchain"], "answer": "Transaction fees"},
-            {"category": "On-Chain Metrics & Alpha Hunting", "question": "What is a whale in crypto?", "options": ["An investor holding a large amount of a cryptocurrency", "A type of NFT", "A new blockchain project", "A hardware wallet"], "answer": "An investor holding a large amount of a cryptocurrency"},
-            {"category": "On-Chain Metrics & Alpha Hunting", "question": "What does DEX stand for?", "options": ["Decentralized Exchange", "Direct Exchange", "Digital Ethereum X", "Distributed External Token"], "answer": "Decentralized Exchange"},
-            {"category": "Crypto Basics & Blockchain", "question": "What is the main purpose of blockchain technology?", "options": ["Decentralized ledger", "Social media platform", "Video game", "Stock market"], "answer": "Decentralized ledger"},
-            {"category": "Crypto Basics & Blockchain", "question": "What is decentralization in crypto?", "options": ["No central authority", "A bank controlling transactions", "A single company managing funds", "Only large institutions using it"], "answer": "No central authority"},
-            {"category": "Crypto Basics & Blockchain", "question": "What is a public ledger in blockchain?", "options": ["A transparent record of transactions", "A private document", "A stock exchange", "A government database"], "answer": "A transparent record of transactions"},
-            {"category": "Bitcoin & Ethereum", "question": "Who created Bitcoin?", "options": ["Satoshi Nakamoto", "Elon Musk", "Vitalik Buterin", "Mark Zuckerberg"], "answer": "Satoshi Nakamoto"},
-            {"category": "Bitcoin & Ethereum", "question": "When was Bitcoin launched?", "options": ["2009", "2015", "2011", "2017"], "answer": "2009"},
-            {"category": "Bitcoin & Ethereum", "question": "What is the maximum supply of Bitcoin?", "options": ["21 million", "50 million", "100 million", "Unlimited"], "answer": "21 million"},
-            {"category": "Bitcoin & Ethereum", "question": "What is a Bitcoin halving event?", "options": ["Reduction of block rewards by half", "A drop in Bitcoin price", "A split in the Bitcoin blockchain", "When Bitcoin mining stops"], "answer": "Reduction of block rewards by half"},
-            {"category": "Solana & Layer 1s", "question": "Why is Solana known for its speed?", "options": ["Uses Proof of History", "Runs on Bitcoin", "Uses Ethereum's gas fees", "It’s not fast"], "answer": "Uses Proof of History"},
-            {"category": "Solana & Layer 1s", "question": "What is the consensus mechanism used by Solana?", "options": ["Proof of History", "Proof of Work", "Proof of Stake", "Delegated Proof of Stake"], "answer": "Proof of History"},
-            {"category": "DeFi & Yield Farming", "question": "What does DeFi stand for?", "options": ["Decentralized Finance", "Digital Funds", "Direct Financials", "Data Fidelity"], "answer": "Decentralized Finance"},
-            {"category": "DeFi & Yield Farming", "question": "What is a liquidity pool?", "options": ["A pool of funds used for decentralized trading", "A savings account", "A stock trading system", "A centralized banking tool"], "answer": "A pool of funds used for decentralized trading"},
-            {"category": "NFTs & Tokenization", "question": "What does NFT stand for?", "options": ["Non-Fungible Token", "New Financial Tool", "Network Fast Transaction", "No Fees Token"], "answer": "Non-Fungible Token"},
-            {"category": "NFTs & Tokenization", "question": "What blockchain is most commonly used for NFTs?", "options": ["Ethereum", "Bitcoin", "Solana", "Ripple"], "answer": "Ethereum"},
-            {"category": "Security & Risk Management", "question": "What is the best way to store crypto securely?", "options": ["Cold wallet", "Keeping it on an exchange", "Sending it to a friend", "Using public Wi-Fi"], "answer": "Cold wallet"},
-            {"category": "Security & Risk Management", "question": "What is phishing in crypto?", "options": ["A type of scam to steal private keys", "A way to mine crypto", "A decentralized exchange", "An NFT marketplace"], "answer": "A type of scam to steal private keys"},
-            {"category": "Trading & Technical Analysis", "question": "What is a candlestick chart used for?", "options": ["Visualizing price movement", "Checking gas fees", "Measuring blockchain speed", "Displaying NFT art"], "answer": "Visualizing price movement"},
-            {"category": "Trading & Technical Analysis", "question": "What does RSI stand for?", "options": ["Relative Strength Index", "Real Stock Indicator", "Reversible Support Indicator", "Risk Strength Index"], "answer": "Relative Strength Index"},
-            {"category": "Estate Planning & Tax Strategies", "question": "What is an important step in crypto estate planning?", "options": ["Having a seed phrase backup", "Keeping everything secret", "Only using DeFi", "Selling all crypto early"], "answer": "Having a seed phrase backup"},
-            {"category": "On-Chain Metrics & Alpha Hunting", "question": "What does TVL stand for in DeFi?", "options": ["Total Value Locked", "Token Volume Liquidity", "Transaction Volume Limit", "Trade Verification Ledger"], "answer": "Total Value Locked"}
-        ];
-
-        function loadQuestion() {
-            const q = questions[currentQuestion];
-            document.getElementById('category').textContent = q.category;
-            document.getElementById('question').textContent = q.question;
-            
-            const optionsDiv = document.getElementById('options');
-            optionsDiv.innerHTML = '';
-            
-            q.options.forEach(option => {
-                const button = document.createElement('button');
-                button.textContent = option;
-                button.onclick = () => checkAnswer(option);
-                optionsDiv.appendChild(button);
-            });
-
-            document.getElementById('progress').textContent = 
-                `Question ${currentQuestion + 1} of ${questions.length}`;
-        }
-
-        function checkAnswer(selected) {
-            const q = questions[currentQuestion];
-            if (selected === q.answer) {
-                score += 10;
-                document.getElementById('score').textContent = `Score: ${score}`;
-            }
-            
-            currentQuestion++;
-            if (currentQuestion < questions.length) {
-                loadQuestion();
-            } else {
-                document.getElementById('category').textContent = '';
-                document.getElementById('question').textContent = "Game Over!";
-                document.getElementById('options').innerHTML = '';
-                document.getElementById('progress').textContent = 
-                    `Final Score: ${score}/${questions.length * 10}`;
+        async function loadQuestions() {
+            try {
+                const response = await fetch('questions.json');
+                questions = await response.json();
+                displayQuestion();
+            } catch (error) {
+                console.error("Failed to load questions:", error);
             }
         }
-
-        // Start the game
-        loadQuestion();
     </script>
 </body>
 </html>
