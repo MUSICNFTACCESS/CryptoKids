@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const { Configuration, OpenAIApi } = require("openai");
+const { OpenAI } = require("openai");
 
 dotenv.config();
 
@@ -13,22 +13,20 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-const configuration = new Configuration({
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-
-const openai = new OpenAIApi(configuration);
 
 app.post("/api/chat", async (req, res) => {
   try {
     const userMessage = req.body.message;
 
-    const response = await openai.createChatCompletion({
+    const response = await openai.chat.completions.create({
       model: "gpt-4",
       messages: [
         {
           role: "system",
-          content: "You are CrimznBot, a helpful crypto advisor built by Crimzn. Always reply with accurate, helpful, and professional crypto insights using a casual tone.",
+          content: "You are CrimznBot, a helpful crypto advisor created by Crimzn. Give smart, accurate answers in a casual but professional tone.",
         },
         {
           role: "user",
@@ -37,14 +35,13 @@ app.post("/api/chat", async (req, res) => {
       ],
     });
 
-    const botMessage = response.data.choices[0].message.content;
-    res.json({ message: botMessage });
+    res.json({ message: response.choices[0].message.content });
   } catch (error) {
-    console.error("API Error:", error.message);
-    res.status(500).json({ message: "Error getting response from CrimznBot." });
+    console.error("Chat error:", error.message);
+    res.status(500).json({ message: "CrimznBot encountered an issue." });
   }
 });
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`CrimznBot running on port ${port}`);
 });
