@@ -1,20 +1,37 @@
-onst chatLog = document.getElementById("chat-log");
+// --- Live Price Fetch ---
+async function fetchPrices() {
+  try {
+    const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
+    const data = await res.json();
+    const btc = data.bitcoin.usd;
+    const eth = data.ethereum.usd;
+    const sol = data.solana.usd;
+
+    const pricesText = `BTC: $${btc.toLocaleString()} | ETH: $${eth.toLocaleString()} | SOL: $${sol.toLocaleString()}`;
+    document.getElementById("prices").innerText = pricesText;
+  } catch (err) {
+    document.getElementById("prices").innerText = "Failed to load prices";
+  }
+}
+fetchPrices();
+setInterval(fetchPrices, 60000);
+
+// --- CrimznBot Chat ---
+const chatLog = document.getElementById("chat-log");
 const userInput = document.getElementById("user-input");
 
 async function sendMessage() {
   const message = userInput.value.trim();
   if (!message) return;
 
-  // Clear chat for new question
   chatLog.innerHTML = "";
 
-  // Add user message
   const userMsg = document.createElement("div");
   userMsg.style.color = "orange";
   userMsg.textContent = "You: " + message;
   chatLog.appendChild(userMsg);
 
-  userInput.value = ""; // Clear input
+  userInput.value = "";
 
   try {
     const response = await fetch("https://crimznbot.onrender.com/api/chat", {
@@ -38,6 +55,6 @@ async function sendMessage() {
   }
 }
 
-userInput.addEventListener("keypress", function (e) {
+userInput?.addEventListener("keypress", function (e) {
   if (e.key === "Enter") sendMessage();
 });
