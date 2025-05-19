@@ -29,7 +29,7 @@ app.post("/api/chat", async (req, res) => {
     res.json({ reply: botReply });
   } catch (error) {
     console.error("OpenAI API error:", error.response?.data || error.message);
-    res.status(500).json({ reply: "Sorry, there was an error processing your request." });
+    res.status(500).json({ reply: "Error processing request" });
   }
 });
 
@@ -49,5 +49,5 @@ app.get("/api/prices", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
