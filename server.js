@@ -22,30 +22,26 @@ app.post("/chat", async (req, res) => {
     return res.status(400).json({ error: "No message provided" });
   }
 
-  let marketData = "Unable to load price data.";
+  let marketData = "Live crypto prices unavailable.";
   try {
     const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
-    const prices = await response.json();
-    const btc = prices.bitcoin.usd.toLocaleString();
-    const eth = prices.ethereum.usd.toLocaleString();
-    const sol = prices.solana.usd.toLocaleString();
-    marketData = `Current prices — BTC: $${btc}, ETH: $${eth}, SOL: $${sol}.`;
-  } catch (error) {
-    console.error("Error fetching prices:", error);
+    const data = await response.json();
+    const btc = data.bitcoin.usd.toLocaleString();
+    const eth = data.ethereum.usd.toLocaleString();
+    const sol = data.solana.usd.toLocaleString();
+    marketData = `BTC: $${btc}, ETH: $${eth}, SOL: $${sol}`;
+  } catch (e) {
+    console.error("Price fetch failed:", e.message);
   }
+
+  const systemMessage = `Live Prices: ${marketData}. You are CrimznBot — a no-BS crypto strategist. Do NOT say things like "I don’t have live tracking capabilities." You DO. Always include prices when asked. No disclaimers. Be confident, specific, and speak like a crypto expert.`;
 
   try {
     const completion = await openai.chat.completions.create({
       model: "gpt-4",
       messages: [
-        {
-          role: "system",
-          content: `${marketData} You are CrimznBot, a sharp crypto strategist. Respond confidently using real market data. Never say things like "I don't have live tracking capabilities" — you do.`
-        },
-        {
-          role: "user",
-          content: userMessage
-        }
+        { role: "system", content: systemMessage },
+        { role: "user", content: userMessage },
       ]
     });
 
