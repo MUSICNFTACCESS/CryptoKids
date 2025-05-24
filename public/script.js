@@ -6,16 +6,18 @@ function askCrimznBot() {
   const output = document.getElementById('chat-output');
   const message = input.value.trim();
 
+  if (!message) return;
+
   if (paid || questionCount < 3) {
-    if (message) {
-      questionCount++;
-      output.innerHTML += `<div><b>You:</b> ${message}</div>`;
-      setTimeout(() => {
-        output.innerHTML += `<div><b>CrimznBot:</b> You asked "${message}"</div>`;
-        output.scrollTop = output.scrollHeight;
-      }, 500);
-      input.value = '';
-    }
+    output.innerHTML += `<div><b>You:</b> ${message}</div>`;
+    questionCount++;
+
+    setTimeout(() => {
+      output.innerHTML += `<div><b>CrimznBot:</b> You asked "${message}", but the real bot will answer this soon.</div>`;
+      output.scrollTop = output.scrollHeight;
+    }, 500);
+
+    input.value = '';
   } else {
     document.getElementById('paywall').style.display = 'block';
   }

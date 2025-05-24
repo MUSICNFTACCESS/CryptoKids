@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CryptoConsult by Crimzn</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -27,11 +27,11 @@
   <button onclick="markAsPaid()">Pay with Solana</button>
 
   <h2>Talk to CrimznBot</h2>
-  <div id="chat-output" style="max-height:300px;overflow-y:auto;background:#000;border:1px solid #f7931a;margin-bottom:10px"></div>
+  <div id="chat-output" style="max-height:300px;overflow-y:auto;background:#111;color:#f7931a;padding:10px;border:1px solid orange;"></div>
   <input id="user-input" placeholder="Ask me anything crypto..." />
   <button onclick="askCrimznBot()">Send</button>
 
-  <div id="paywall" style="display:none;margin-top:10px">
+  <div id="paywall" style="display:none;margin-top:10px;">
     <p>You've used all free questions.</p>
     <ul>
       <li><a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8">Book a $99.99 Consultation</a></li>
@@ -46,13 +46,30 @@
 
   <h2>ETF Inflows (BTC & ETH)</h2>
   <p>Tap below to view real-time ETF inflow data:</p>
-  <button onclick="window.open('https://www.farside.co.uk/cryptoetf/')">View BTC ETF Flows (Farside)</button>
+  <button onclick="window.open('https://www.farside.co.uk/cryptofunds/')">View BTC ETF Flows (Farside)</button>
   <button onclick="window.open('https://pro.nansen.ai/etf-flows')">View ETH ETF Flows (Nansen)</button>
 
-  <audio autoplay loop>
-    <source src="autoplay.mp3" type="audio/mpeg">
+  <audio id="bg-music" autoplay loop>
+    <source src="autoplay.mp3" type="audio/mpeg" />
   </audio>
 
   <script src="script.js"></script>
+  <script>
+    document.body.addEventListener('click', () => {
+      const audio = document.getElementById('bg-music');
+      if (audio && audio.paused) audio.play();
+    }, { once: true });
+
+    async function updatePrices() {
+      const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd');
+      const data = await res.json();
+      const btc = data.bitcoin.usd.toLocaleString();
+      const eth = data.ethereum.usd.toLocaleString();
+      const sol = data.solana.usd.toLocaleString();
+      document.getElementById('prices').textContent = `BTC: $${btc} | ETH: $${eth} | SOL: $${sol}`;
+    }
+    updatePrices();
+    setInterval(updatePrices, 60000);
+  </script>
 </body>
 </html>
