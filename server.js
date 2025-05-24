@@ -22,20 +22,16 @@ app.post("/chat", async (req, res) => {
     return res.status(400).json({ error: "No message provided" });
   }
 
-  let marketData = "";
-
+  let marketData = "Unable to load price data.";
   try {
-    const priceRes = await fetch(
-      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd"
-    );
-    const priceJson = await priceRes.json();
-    const btc = priceJson.bitcoin.usd.toLocaleString();
-    const eth = priceJson.ethereum.usd.toLocaleString();
-    const sol = priceJson.solana.usd.toLocaleString();
-
+    const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
+    const prices = await response.json();
+    const btc = prices.bitcoin.usd.toLocaleString();
+    const eth = prices.ethereum.usd.toLocaleString();
+    const sol = prices.solana.usd.toLocaleString();
     marketData = `Current prices — BTC: $${btc}, ETH: $${eth}, SOL: $${sol}.`;
-  } catch (err) {
-    console.error("Failed to fetch market data:", err);
+  } catch (error) {
+    console.error("Error fetching prices:", error);
   }
 
   try {
@@ -44,19 +40,19 @@ app.post("/chat", async (req, res) => {
       messages: [
         {
           role: "system",
-          content: `${marketData} You are CrimznBot, a sharp crypto strategist. Respond confidently using deep market knowledge. Never include generic disclaimers like 'As an AI...' or 'I can't predict prices'. Be decisive, helpful, and consultative.`,
+          content: `${marketData} You are CrimznBot, a sharp crypto strategist. Respond confidently using real market data. Never say things like "I don't have live tracking capabilities" — you do.`
         },
         {
           role: "user",
-          content: userMessage,
-        },
-      ],
+          content: userMessage
+        }
+      ]
     });
 
     const reply = completion.choices[0].message.content;
     res.json({ reply });
-  } catch (error) {
-    console.error("OpenAI error:", error);
+  } catch (err) {
+    console.error("OpenAI error:", err);
     res.status(500).json({ error: "Failed to get response from CrimznBot" });
   }
 });
