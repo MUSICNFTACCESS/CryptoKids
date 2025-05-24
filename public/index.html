@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CryptoConsult by Crimzn</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h1>CryptoConsult by Crimzn</h1>
   <p id="prices">BTC: ... | ETH: ... | SOL: ...</p>
-  <p>Welcome to <strong>CryptoConsult</strong> – your personalized, AI-powered crypto advisory portal.</p>
+  <p>Welcome to <strong>CryptoConsult</strong> – your personalized, AI-powered crypto consultation hub.</p>
 
   <h2>Available Services</h2>
   <ul>
@@ -20,75 +20,38 @@
     <li>Consultation Calls</li>
   </ul>
 
+  <h2>Support & Payments</h2>
+  <button onclick="window.open('https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8')">Pay $99.99 for Services Rendered</button>
+  <button onclick="window.open('https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b')">Tip 1 USDC</button>
+  <button onclick="markAsPaid()">Pay with Solana</button>
+
   <h2>Talk to CrimznBot</h2>
-  <div id="chat-output" style="max-height:300px;overflow-y:auto;background:#111;padding:10px;border:1px solid orange;margin-bottom:10px;"></div>
+  <div id="chat-output" style="max-height:300px;overflow-y:auto;background:#000;padding:10px;color:#0f0;border-radius:8px;"></div>
   <input id="user-input" placeholder="Ask me anything crypto..." />
   <button onclick="askCrimznBot()">Send</button>
 
-  <div id="paywall" style="display:none;margin-top:15px;">
-    <p>You've used all 3 free questions. Unlock unlimited access below:</p>
-    <button onclick="window.open('https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8', '_blank')">Pay $99.99 for Services Rendered</button>
-    <button onclick="window.open('https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b', '_blank')">Send Tip (1 USDC)</button>
-    <button onclick="window.open('https://solana.com/pay?recipient=Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF&amount=1&reference=consult&label=CryptoConsult&message=Thanks%20for%20supporting%20Crimzn', '_blank')">Pay with Solana</button>
-    <a href="https://t.me/Crimznbot" target="_blank">Message me on Telegram</a>
+  <div id="paywall" style="display:none;margin-top:10px;">
+    <p>You've used all free questions.</p>
+    <ul>
+      <li><a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8">Pay $99.99 to Unlock Full Access</a></li>
+      <li><a href="https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b">Tip 1 USDC to Unlock 5 More</a></li>
+      <li><a href="https://t.me/Crimznbot">Message Me on Telegram</a></li>
+    </ul>
   </div>
+
+  <h2>Contact</h2>
+  <button onclick="window.location.href='mailto:crimzncipriano@gmail.com'">Contact Me via Email</button>
+  <button onclick="window.open('https://t.me/Crimznbot')">Contact Me via Telegram</button>
+
+  <h2>ETF Inflows (BTC & ETH)</h2>
+  <p>Tap below to view real-time ETF inflow data:</p>
+  <button onclick="window.open('https://www.farside.co.uk/cryptocurrency_etc')">View BTC ETF Flows (Farside)</button>
+  <button onclick="window.open('https://pro.nansen.ai/etf-flows')">View ETH ETF Flows (Nansen)</button>
 
   <audio id="bg-music" autoplay loop>
     <source src="autoplay.mp3" type="audio/mpeg" />
   </audio>
 
   <script src="script.js"></script>
-  <script>
-    document.body.addEventListener('click', () => {
-      const audio = document.getElementById('bg-music');
-      if (audio && audio.paused) audio.play();
-    }, { once: true });
-
-    async function updatePrices() {
-      const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd');
-      const data = await res.json();
-      const btc = data.bitcoin.usd.toLocaleString();
-      const eth = data.ethereum.usd.toLocaleString();
-      const sol = data.solana.usd.toLocaleString();
-      document.getElementById('prices').textContent = `BTC: $${btc} | ETH: $${eth} | SOL: $${sol}`;
-    }
-    updatePrices();
-    setInterval(updatePrices, 60000);
-
-    let questionCount = 0;
-
-    async function askCrimznBot() {
-      const input = document.getElementById('user-input');
-      const chatBox = document.getElementById('chat-output');
-      const paywall = document.getElementById('paywall');
-
-      const message = input.value;
-      if (!message) return;
-
-      if (questionCount >= 3) {
-        input.disabled = true;
-        paywall.style.display = 'block';
-        return;
-      }
-
-      chatBox.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
-      input.value = '';
-      questionCount++;
-
-      try {
-        const response = await fetch('/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message })
-        });
-        const data = await response.json();
-        chatBox.innerHTML += `<p><strong>CrimznBot:</strong> ${data.reply}</p>`;
-        chatBox.scrollTop = chatBox.scrollHeight;
-      } catch (e) {
-        chatBox.innerHTML += `<p><em>Failed to get response from CrimznBot.</em></p>`;
-      }
-    }
-  </script>
 </body>
 </html>
-<\!-- redeploy Sat May 24 18:05:45 EDT 2025 -->

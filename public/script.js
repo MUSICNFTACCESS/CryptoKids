@@ -1,44 +1,63 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("chat-form");
-  const input = document.querySelector("input[type='text']");
-  const chatbox = document.getElementById("chatbox");
-  let questionCount = 0;
+let questionCount = 0;
+const freeLimit = 3;
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const message = input.value.trim();
-    if (!message) return;
+async function askCrimznBot() {
+  const input = document.getElementById("user-input");
+  const chatOutput = document.getElementById("chat-output");
+  const paywall = document.getElementById("paywall");
+  const message = input.value.trim();
 
-    const userMsg = document.createElement("p");
-    userMsg.innerHTML = `<strong>You:</strong> ${message}`;
-    chatbox.appendChild(userMsg);
+  if (!message) return;
 
-    input.value = "";
+  if (questionCount >= freeLimit) {
+    paywall.style.display = "block";
+    return;
+  }
 
-    if (questionCount < 3) {
-      try {
-        const response = await fetch("https://crimznbot.onrender.com/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message }),
-        });
+  chatOutput.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
+  input.value = "";
+  input.disabled = true;
 
-        const data = await response.json();
-        const botMsg = document.createElement("p");
-        botMsg.innerHTML = `<strong>CrimznBot:</strong> ${data.reply || "Sorry, no response."}`;
-        chatbox.appendChild(botMsg);
-      } catch (err) {
-        const errorMsg = document.createElement("p");
-        errorMsg.innerHTML = `<strong>CrimznBot:</strong> You asked "${message}", but the real bot will answer this soon.`;
-        chatbox.appendChild(errorMsg);
-      }
+  try {
+    const response = await fetch("https://crimznbot.onrender.com/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message }),
+    });
 
-      questionCount++;
-    }
+    const data = await response.json();
+    chatOutput.innerHTML += `<p><strong>CrimznBot:</strong> ${data.reply}</p>`;
+  } catch (err) {
+    chatOutput.innerHTML += `<p style="color:red;">Failed to get response from CrimznBot.</p>`;
+  }
 
-    if (questionCount === 3) {
-      input.disabled = true;
-      document.getElementById("paywall").style.display = "block";
-    }
-  });
-});
+  questionCount++;
+  input.disabled = false;
+  chatOutput.scrollTop = chatOutput.scrollHeight;
+}
+
+function markAsPaid() {
+  document.getElementById("paywall").style.display = "none";
+  questionCount = 0;
+}
+
+async function updatePrices() {
+  try {
+    const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
+    const data = await res.json();
+    const btc = data.bitcoin.usd.toLocaleString();
+    const eth = data.ethereum.usd.toLocaleString();
+    const sol = data.solana.usd.toLocaleString();
+    document.getElementById("prices").textContent = `BTC: $${btc} | ETH: $${eth} | SOL: $${sol}`;
+  } catch {
+    document.getElementById("prices").textContent = `BTC: ... | ETH: ... | SOL: ...`;
+  }
+}
+
+document.body.addEventListener('click', () => {
+  const audio = document.getElementById('bg-music');
+  if (audio && audio.paused) audio.play();
+}, { once: true });
+
+updatePrices();
+setInterval(updatePrices, 60000);
