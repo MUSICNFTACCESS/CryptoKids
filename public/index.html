@@ -1,75 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CryptoConsult by Crimzn</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>CryptoConsult by Crimzn</h1>
-  <p id="prices">BTC: ... | ETH: ... | SOL: ...</p>
-  <p>Welcome to <strong>CryptoConsult</strong> – your personalized, AI-powered crypto guide.</p>
 
-  <h2>Available Services</h2>
-  <ul>
+  <div id="prices">Loading live prices...</div>
+
+  <ul class="services">
+    <li>Onboarding & Crypto Basics</li>
+    <li>Wallet Setup & Security</li>
     <li>Technical & Fundamental Analysis</li>
-    <li>Portfolio Strategy</li>
-    <li>Wallet Setup & Education</li>
-    <li>Crypto On-ramping / Off-ramping</li>
-    <li>Consultation Calls</li>
+    <li>Crypto Tax Guidance</li>
+    <li>Risk Management & Strategy</li>
   </ul>
 
-  <h2>Support & Payments</h2>
-  <button onclick="window.open('https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8')">Pay $99.99 for Services Rendered</button>
-  <button onclick="window.open('https://www.paypal.me/crimzn')">Pay with PayPal</button>
-  <button onclick="markAsPaid()">Send Tip (1 USDC)</button>
-  <button onclick="markAsPaid()">Pay with Solana</button>
-
-  <h2>Talk to CrimznBot</h2>
-  <div id="chat-output" style="max-height:300px;overflow-y:auto;background:#111;color:#f7931a;padding:10px;border:1px solid orange;"></div>
-  <input id="user-input" placeholder="Ask me anything crypto..." />
-  <button onclick="askCrimznBot()">Send</button>
-
-  <div id="paywall" style="display:none;margin-top:10px;">
-    <p>You've used all free questions.</p>
-    <ul>
-      <li><a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8">Book a $99.99 Consultation</a></li>
-      <li><a href="#" onclick="markAsPaid()">Tip 1 USDC to unlock 5 more</a></li>
-      <li><a href="https://t.me/Crimznbot">Message me on Telegram</a></li>
-    </ul>
+  <div class="buttons">
+    <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">Book via Coinbase</a>
+    <a href="https://paypal.me/crimzn" target="_blank">Pay with PayPal</a>
   </div>
 
-  <h2>Contact</h2>
-  <button onclick="window.location.href='mailto:crimzncipriano@gmail.com'">Contact Me via Email</button>
-  <button onclick="window.open('https://t.me/Crimznbot')">Contact Me via Telegram</button>
+  <div id="chatbox"></div>
+  <form id="chat-form">
+    <input type="text" placeholder="Ask CrimznBot about crypto..." required>
+    <button type="submit">Send</button>
+  </form>
 
-  <h2>ETF Inflows (BTC & ETH)</h2>
-  <p>Tap below to view real-time ETF inflow data:</p>
-  <button onclick="window.open('https://www.farside.co.uk/cryptofunds/')">View BTC ETF Flows (Farside)</button>
-  <button onclick="window.open('https://pro.nansen.ai/etf-flows')">View ETH ETF Flows (Nansen)</button>
-
-  <audio id="bg-music" autoplay loop>
-    <source src="autoplay.mp3" type="audio/mpeg" />
-  </audio>
-
+  <audio id="background-beat" src="philly2scranton.mp3"></audio>
   <script src="script.js"></script>
-  <script>
-    document.body.addEventListener('click', () => {
-      const audio = document.getElementById('bg-music');
-      if (audio && audio.paused) audio.play();
-    }, { once: true });
-
-    async function updatePrices() {
-      const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd');
-      const data = await res.json();
-      const btc = data.bitcoin.usd.toLocaleString();
-      const eth = data.ethereum.usd.toLocaleString();
-      const sol = data.solana.usd.toLocaleString();
-      document.getElementById('prices').textContent = `BTC: $${btc} | ETH: $${eth} | SOL: $${sol}`;
-    }
-    updatePrices();
-    setInterval(updatePrices, 60000);
-  </script>
 </body>
 </html>
