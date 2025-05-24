@@ -1,16 +1,31 @@
-<h1 style="color: #f7931a;">CryptoConsult by Crimzn</h1>
-<p>Ask CrimznBot up to 5 times for free.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CryptoConsult by Crimzn</title>
+</head>
+<body style="background:black; color:white; font-family:Courier, monospace; text-align:center; padding:20px;">
 
-<div id="chat-output" style="max-height: 300px; overflow-y: auto; background: #111; color: #fff; padding: 10px; margin: 10px auto; width: 90%; border: 1px solid #f7931a;"></div>
+  <h1 style="color: #f7931a;">CryptoConsult by Crimzn</h1>
+  <p id="prices" style="color: #ccc;">Loading prices...</p>
+  <button onclick="connectWallet()" style="background:#f7931a;border:none;padding:8px;margin-bottom:10px;font-weight:bold;">
+    Connect Wallet
+  </button>
+  <p>Ask CrimznBot up to 3 times for free.</p>
 
-<input id="user-input" placeholder="Ask a question..." style="width: 70%; padding: 8px;" />
-<button onclick="askCrimznBot()" style="padding: 8px 12px;">Send</button>
+  <div id="chat-output" style="max-height: 300px; overflow-y: auto; background: #111; color: #fff; padding: 10px; margin: 10px auto; width: 90%; border: 1px solid #f7931a;"></div>
 
-<div id="paywall" style="display:none; margin-top: 20px;">
-  <p style="color: #f7931a;">You've used all free questions.</p>
-  <button onclick="markAsPaid()">Pay with Coinbase (simulate)</button><br/>
-  <button onclick="markAsPaid()">Pay with PayPal (simulate)</button><br/>
-  <button onclick="markAsPaid()">Pay with Solana (simulate)</button>
-</div>
+  <input id="user-input" placeholder="Ask a question..." style="width: 70%; padding: 8px;" />
+  <button onclick="askCrimznBot()" style="padding: 8px 12px;">Send</button>
 
-<script src="script.js"></script>
+  <div id="paywall" style="display:none; margin-top: 20px;">
+    <p style="color: #f7931a;">You've used all free questions.</p>
+    <button onclick="markAsPaid()">Pay with Coinbase (simulate)</button><br/>
+    <button onclick="markAsPaid()">Pay with PayPal (simulate)</button><br/>
+    <button onclick="markAsPaid()">Pay with Solana (simulate)</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
