@@ -14,6 +14,9 @@ async function askCrimznBot() {
     return;
   }
 
+  // Clear chat before each new message
+  chatOutput.innerHTML = "";
+
   chatOutput.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
   input.value = "";
   input.disabled = true;
@@ -37,6 +40,8 @@ async function askCrimznBot() {
 }
 
 function markAsPaid() {
+  // Redirect to Solana Pay link (fallback for now)
+  window.open("https://solana.com/pay?recipient=Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF&amount=1&reference=CrimznConsult", "_blank");
   document.getElementById("paywall").style.display = "none";
   questionCount = 0;
 }
