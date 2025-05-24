@@ -1,30 +1,44 @@
-let questionCount = 0;
-let paid = localStorage.getItem('crimzn_paid') === 'true';
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("chat-form");
+  const input = document.querySelector("input[type='text']");
+  const chatbox = document.getElementById("chatbox");
+  let questionCount = 0;
 
-function askCrimznBot() {
-  const input = document.getElementById('user-input');
-  const output = document.getElementById('chat-output');
-  const message = input.value.trim();
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const message = input.value.trim();
+    if (!message) return;
 
-  if (!message) return;
+    const userMsg = document.createElement("p");
+    userMsg.innerHTML = `<strong>You:</strong> ${message}`;
+    chatbox.appendChild(userMsg);
 
-  if (paid || questionCount < 3) {
-    output.innerHTML += `<div><b>You:</b> ${message}</div>`;
-    questionCount++;
+    input.value = "";
 
-    setTimeout(() => {
-      output.innerHTML += `<div><b>CrimznBot:</b> You asked "${message}", but the real bot will answer this soon.</div>`;
-      output.scrollTop = output.scrollHeight;
-    }, 500);
+    if (questionCount < 3) {
+      try {
+        const response = await fetch("https://crimznbot.onrender.com/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message }),
+        });
 
-    input.value = '';
-  } else {
-    document.getElementById('paywall').style.display = 'block';
-  }
-}
+        const data = await response.json();
+        const botMsg = document.createElement("p");
+        botMsg.innerHTML = `<strong>CrimznBot:</strong> ${data.reply || "Sorry, no response."}`;
+        chatbox.appendChild(botMsg);
+      } catch (err) {
+        const errorMsg = document.createElement("p");
+        errorMsg.innerHTML = `<strong>CrimznBot:</strong> You asked "${message}", but the real bot will answer this soon.`;
+        chatbox.appendChild(errorMsg);
+      }
 
-function markAsPaid() {
-  localStorage.setItem('crimzn_paid', 'true');
-  paid = true;
-  document.getElementById('paywall').style.display = 'none';
-}
+      questionCount++;
+    }
+
+    if (questionCount === 3) {
+      input.disabled = true;
+      document.getElementById("paywall").style.display = "block";
+    }
+  });
+});
