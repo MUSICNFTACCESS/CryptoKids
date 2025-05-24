@@ -1,47 +1,53 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const cors = require("cors");
-const dotenv = require("dotenv");
-const { OpenAI } = require("openai");
-
-dotenv.config();
+const bodyParser = require("body-parser");
+const { Configuration, OpenAIApi } = require("openai");
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static("public"));
 
-const openai = new OpenAI({
+// OpenAI config
+const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
+const openai = new OpenAIApi(configuration);
 
-app.post("/api/chat", async (req, res) => {
+// Root route (to avoid "Cannot GET /" error)
+app.get("/", (req, res) => {
+  res.send("CrimznBot backend is live.");
+});
+
+// Chat route
+app.post("/chat", async (req, res) => {
+  const userMessage = req.body.message;
+
+  if (!userMessage) {
+    return res.status(400).json({ error: "Missing user message" });
+  }
+
   try {
-    const userMessage = req.body.message;
-
-    const response = await openai.chat.completions.create({
+    const completion = await openai.createChatCompletion({
       model: "gpt-4",
       messages: [
         {
           role: "system",
-          content: "You are CrimznBot, a helpful crypto advisor created by Crimzn. Give smart, accurate answers in a casual but professional tone.",
+          content: "You are CrimznBot, a professional crypto consultant. Respond in a calm, informative tone with deep knowledge of crypto market trends, portfolio strategy, DeFi, and on-chain tools. Be concise, thorough, and helpful. Avoid disclaimers.",
         },
-        {
-          role: "user",
-          content: userMessage,
-        },
+        { role: "user", content: userMessage },
       ],
     });
 
-    res.json({ message: response.choices[0].message.content });
+    const reply = completion.data.choices[0].message.content;
+    res.json({ reply });
   } catch (error) {
-    console.error("Chat error:", error.message);
-    res.status(500).json({ message: "CrimznBot encountered an issue." });
+    console.error("OpenAI error:", error);
+    res.status(500).json({ error: "Failed to get response from CrimznBot." });
   }
 });
 
 app.listen(port, () => {
-  console.log(`CrimznBot running on port ${port}`);
+  console.log(`CrimznBot backend running on port ${port}`);
 });
