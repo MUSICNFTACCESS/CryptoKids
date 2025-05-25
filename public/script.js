@@ -1,68 +1,25 @@
-let questionCount = 0;
-const freeLimit = 3;
+document.querySelector('form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const input = document.querySelector('input');
+  const userMessage = input.value.trim();
+  if (!userMessage) return;
 
-async function askCrimznBot() {
-  const input = document.getElementById("user-input");
-  const chatOutput = document.getElementById("chat-output");
-  const paywall = document.getElementById("paywall");
-  const message = input.value.trim();
-
-  if (!message) return;
-
-  if (questionCount >= freeLimit) {
-    paywall.style.display = "block";
-    return;
-  }
-
-  // Clear chat before each new message
-  chatOutput.innerHTML = "";
-
-  chatOutput.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
-  input.value = "";
-  input.disabled = true;
+  const chatBox = document.querySelector('#chatbox');
+  chatBox.innerHTML += `> You: ${userMessage}<br>`;
 
   try {
-    const response = await fetch("https://crimznbot.onrender.com/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message }),
+    const response = await fetch('https://crimznbot.onrender.com/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: userMessage })
     });
 
     const data = await response.json();
-    chatOutput.innerHTML += `<p><strong>CrimznBot:</strong> ${data.reply}</p>`;
+    chatBox.innerHTML += `> CrimznBot: ${data.reply}<br>`;
   } catch (err) {
-    chatOutput.innerHTML += `<p style="color:red;">Failed to get response from CrimznBot.</p>`;
+    chatBox.innerHTML += '> CrimznBot: Error reaching server.<br>';
   }
 
-  questionCount++;
-  input.disabled = false;
-  chatOutput.scrollTop = chatOutput.scrollHeight;
-}
-
-function markAsPaid() {
-  // Redirect to Solana Pay link (fallback for now)
-  window.open("https://solana.com/pay?recipient=Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF&amount=1&reference=CrimznConsult", "_blank");
-  document.getElementById("paywall").style.display = "none";
-  questionCount = 0;
-}
-
-async function updatePrices() {
-  try {
-    const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
-    const data = await res.json();
-    const btc = data.bitcoin.usd.toLocaleString();
-    const eth = data.ethereum.usd.toLocaleString();
-    const sol = data.solana.usd.toLocaleString();
-    document.getElementById("prices").textContent = `BTC: $${btc} | ETH: $${eth} | SOL: $${sol}`;
-  } catch {
-    document.getElementById("prices").textContent = `BTC: ... | ETH: ... | SOL: ...`;
-  }
-}
-
-document.body.addEventListener('click', () => {
-  const audio = document.getElementById('bg-music');
-  if (audio && audio.paused) audio.play();
-}, { once: true });
-
-updatePrices();
-setInterval(updatePrices, 60000);
+  input.value = '';
+});
+// trigger redeploy
