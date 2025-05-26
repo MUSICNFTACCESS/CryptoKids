@@ -3,7 +3,6 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
 const { OpenAI } = require("openai");
-require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -30,35 +29,35 @@ app.post("/api/chat", async (req, res) => {
     const btc = data.bitcoin.usd.toLocaleString();
     const eth = data.ethereum.usd.toLocaleString();
     const sol = data.solana.usd.toLocaleString();
-    marketData = `Latest prices — BTC: $${btc}, ETH: $${eth}, SOL: $${sol}`;
+    marketData = `Live prices — BTC: $${btc}, ETH: $${eth}, SOL: $${sol}`;
   } catch (e) {
-    console.error("Failed to fetch price data:", e.message);
+    marketData = "Live pricing failed. Respond using best knowledge.";
   }
 
   const messages = [
     {
       role: "system",
-      content: `You are CrimznBot — a sharp, confident crypto strategist. Never say you're an AI. Use the following data: ${marketData}.`
+      content: `${marketData} You are CrimznBot — a top-tier crypto strategist. Do not include generic disclaimers like 'As an AI...'. Always respond confidently with insight and clarity.`,
     },
     {
       role: "user",
-      content: userMessage
-    }
+      content: userMessage,
+    },
   ];
 
   try {
     const chat = await openai.chat.completions.create({
       model: "gpt-4o",
-      messages
+      messages,
     });
 
     res.json({ reply: chat.choices[0].message.content });
   } catch (error) {
-    console.error("OpenAI error:", error.message);
-    res.status(500).json({ error: "Something went wrong" });
+    console.error("OpenAI Error:", error);
+    res.status(500).json({ error: "Failed to get response from CrimznBot" });
   }
 });
 
 app.listen(port, "0.0.0.0", () => {
-  console.log(`CrimznBot server is running at http://0.0.0.0:${port}`);
+  console.log(`Server running on http://0.0.0.0:${port}`);
 });
