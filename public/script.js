@@ -1,48 +1,48 @@
 let questionCount = 0;
+const MAX_FREE_QUESTIONS = 3;
 
-document.addEventListener("DOMContentLoaded", () => {
-  const chatBox = document.getElementById("chat-box");
-  const userInput = document.getElementById("user-input");
-  const sendBtn = document.getElementById("send-btn");
-  const paywall = document.getElementById("paywall");
-
-  const autoplay = new Audio("autoplay.mp3");
-  document.body.addEventListener("click", () => {
-    autoplay.play().catch(() => {});
-  }, { once: true });
-
-  sendBtn.addEventListener("click", async () => {
-    const message = userInput.value.trim();
-    if (!message) return;
-
-    appendMessage("user", message);
-    userInput.value = "";
-
-    questionCount++;
-    if (questionCount > 3) {
-      paywall.style.display = "block";
-      return;
-    }
-
-    try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message }),
-      });
-
-      const data = await res.json();
-      appendMessage("bot", data.reply || "No response.");
-    } catch (error) {
-      appendMessage("bot", "Error getting response from CrimznBot.");
-    }
-  });
-
-  function appendMessage(sender, message) {
-    const div = document.createElement("div");
-    div.className = sender;
-    div.textContent = (sender === "user" ? "You: " : "CrimznBot: ") + message;
-    chatBox.appendChild(div);
-    chatBox.scrollTop = chatBox.scrollHeight;
+async function fetchPrice(id, symbol) {
+  try {
+    const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${id}&vs_currencies=usd`);
+    const data = await res.json();
+    document.getElementById(`${symbol}-price`).textContent = `$${data[id].usd}`;
+  } catch (err) {
+    document.getElementById(`${symbol}-price`).textContent = "Error";
   }
-});
+}
+
+function sendMessage() {
+  const input = document.getElementById("user-input");
+  const message = input.value.trim();
+  if (!message) return;
+
+  if (questionCount >= MAX_FREE_QUESTIONS) {
+    document.getElementById("limit-message").style.display = "block";
+    return;
+  }
+
+  fetch("https://cryptoconsult-1.onrender.com/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message })
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      const reply = document.createElement("p");
+      reply.innerHTML = `<span style="color: orange;">You:</span> ${message}<br><span style="color: lightgreen;">CrimznBot:</span> ${data.reply}`;
+      document.getElementById("chat-box").appendChild(reply);
+      input.value = "";
+      questionCount++;
+    })
+    .catch((err) => {
+      console.error(err);
+      alert("Error talking to CrimznBot.");
+    });
+}
+
+window.onload = () => {
+  ["bitcoin", "ethereum", "solana"].forEach((id) => {
+    const symbol = id === "bitcoin" ? "btc" : id === "ethereum" ? "eth" : "sol";
+    fetchPrice(id, symbol);
+  });
+};
