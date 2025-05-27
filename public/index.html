@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CryptoConsult by Crimzn</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <h1>CryptoConsult by Crimzn</h1>
 
   <div id="prices">Loading live prices...</div>
+
+  <p>Welcome to <strong>CryptoConsult</strong> – your personalized, AI-powered crypto strategist. You are now speaking to <strong>CrimznBot</strong>, a seasoned analyst trained in DeFi, NFTs, BTC/ETH/SOL market cycles, and on-chain strategy. Ask anything—CrimznBot provides sharp, confident answers, no fluff.</p>
+
+  <h2>Talk to CrimznBot</h2>
+  <div id="chatbox"></div>
+  <form id="chat-form">
+    <input type="text" id="user-input" placeholder="Ask CrimznBot about crypto..." required />
+    <button type="submit">Send</button>
+  </form>
+
+  <div id="paywall" style="display: none;">
+    <p><strong>You’ve used your 3 free questions.</strong> Unlock full access:</p>
+    <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">Pay $99.99 for Services Rendered</a><br>
+    <a href="https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b" target="_blank">Tip 1 USDC</a><br>
+    <a href="https://solana.com/pay" target="_blank">Pay with Solana</a><br>
+    <a href="https://t.me/Crimznbot" target="_blank">Contact via Telegram</a>
+  </div>
 
   <ul class="services">
     <li>Onboarding & Crypto Basics</li>
@@ -19,19 +36,7 @@
     <li>Risk Management & Strategy</li>
   </ul>
 
-  <div class="buttons">
-    <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">Book via Coinbase</a>
-    <a href="https://paypal.me/crimzn" target="_blank">Pay with PayPal</a>
-  </div>
-
-  <div id="chatbox"></div>
-  <form id="chat-form">
-    <input type="text" placeholder="Ask CrimznBot about crypto..." required>
-    <button type="submit">Send</button>
-  </form>
-
-  <audio id="background-beat" src="philly2scranton.mp3"></audio>
+  <audio id="background-beat" src="autoplay.mp3"></audio>
   <script src="script.js"></script>
 </body>
 </html>
-<!-- trigger redeploy: Tue May 27 00:37:56 EDT 2025 -->
