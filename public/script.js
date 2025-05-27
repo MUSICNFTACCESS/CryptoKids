@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd');
     const data = await response.json();
     priceDiv.innerHTML = `
-      Bitcoin: $${data.bitcoin.usd} | 
-      Ethereum: $${data.ethereum.usd} | 
-      Solana: $${data.solana.usd}
+      Bitcoin: $${data.bitcoin.usd.toLocaleString()} |
+      Ethereum: $${data.ethereum.usd.toLocaleString()} |
+      Solana: $${data.solana.usd.toLocaleString()}
     `;
   } catch (err) {
     priceDiv.innerHTML = 'Error loading prices';
@@ -24,15 +24,15 @@ document.addEventListener('click', () => {
   }
 });
 
-// Chat form submission
-document.querySelector('#chat-form').addEventListener('submit', async function(e) {
+// Chat logic with disappearing Q&A
+document.querySelector('#chat-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const input = document.querySelector('#chat-form input');
   const userMessage = input.value.trim();
   if (!userMessage) return;
 
   const chatBox = document.querySelector('#chatbox');
-  chatBox.innerHTML += `> You: ${userMessage}<br>`;
+  chatBox.innerHTML = `> You: ${userMessage}<br>`;
 
   try {
     const response = await fetch('/api/chat', {
@@ -43,7 +43,7 @@ document.querySelector('#chat-form').addEventListener('submit', async function(e
 
     const data = await response.json();
     chatBox.innerHTML += `> CrimznBot: ${data.reply}<br>`;
-    chatBox.scrollTop = chatBox.scrollHeight;
+    setTimeout(() => chatBox.innerHTML = '', 5000);
   } catch (err) {
     chatBox.innerHTML += `> CrimznBot: Error reaching server.<br>`;
   }
