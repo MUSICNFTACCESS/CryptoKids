@@ -8,16 +8,16 @@ document.getElementById("askBtn").addEventListener("click", async () => {
 
   if (!question) return;
 
-  // Clear chatbox before new question
+  // Clear chat before new Q&A
   chatbox.innerHTML = "";
 
-  // Display user question
+  // Show user message
   const userMsg = document.createElement("div");
   userMsg.className = "user-message";
   userMsg.innerText = question;
   chatbox.appendChild(userMsg);
 
-  // Disable button
+  // Disable send button
   const askBtn = document.getElementById("askBtn");
   askBtn.disabled = true;
   askBtn.innerText = "Thinking...";
@@ -39,18 +39,34 @@ document.getElementById("askBtn").addEventListener("click", async () => {
     if (questionCount >= 3) {
       paywall.innerHTML = `
         <p><strong>You've reached the 3-question limit.</strong></p>
-        <button onclick="window.open('https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8','_blank')">Pay $99.99 for Services Rendered</button>
-        <button onclick="window.open('https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b','_blank')">Send Tip (1 USDC)</button>
-        <button onclick="window.open('https://t.me/Crimznbot','_blank')">Contact on Telegram</button>
+        <button onclick="window.open('https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8')">Pay $99.99 for Services</button>
+        <button onclick="window.open('https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b')">Send Tip (1 USDC)</button>
+        <button onclick="window.open('https://t.me/Crimznbot', '_blank')">Contact on Telegram</button>
       `;
-      document.getElementById("question").disabled = true;
+      questionInput.disabled = true;
       askBtn.disabled = true;
     }
   } catch (err) {
-    chatbox.innerHTML = "<div class='bot-message'>CrimznBot is unavailable right now.</div>";
+    chatbox.innerHTML = "<div class='bot-message'>CrimznBot is unavailable.</div>";
   }
 
   questionInput.value = "";
   askBtn.disabled = false;
   askBtn.innerText = "Ask CrimznBot";
 });
+
+// Load prices
+async function loadPrices() {
+  try {
+    const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
+    const prices = await res.json();
+    document.getElementById("btc-price").innerText = `$${prices.bitcoin.usd}`;
+    document.getElementById("eth-price").innerText = `$${prices.ethereum.usd}`;
+    document.getElementById("sol-price").innerText = `$${prices.solana.usd}`;
+  } catch {
+    document.getElementById("btc-price").innerText = "N/A";
+    document.getElementById("eth-price").innerText = "N/A";
+    document.getElementById("sol-price").innerText = "N/A";
+  }
+}
+window.onload = loadPrices;
