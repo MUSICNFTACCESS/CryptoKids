@@ -1,52 +1,62 @@
-// Fetch live prices on page load
-document.addEventListener('DOMContentLoaded', async () => {
-  const priceDiv = document.querySelector('#prices');
-  try {
-    const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd');
-    const data = await response.json();
-    priceDiv.innerHTML = `
-      Bitcoin: $${data.bitcoin.usd.toLocaleString()} |
-      Ethereum: $${data.ethereum.usd.toLocaleString()} |
-      Solana: $${data.solana.usd.toLocaleString()}
-    `;
-  } catch (err) {
-    priceDiv.innerHTML = 'Error loading prices';
-  }
-});
+let questionCount = 0;
+const chatbox = document.getElementById("chatbox");
+const form = document.getElementById("chat-form");
+const input = document.getElementById("user-input");
+const paywall = document.getElementById("paywall");
 
-// Play beat on first click
-let isFirstClick = true;
-document.addEventListener('click', () => {
-  if (isFirstClick) {
-    const audio = document.querySelector('#background-beat');
-    audio.play().catch(err => console.error('Audio play error:', err));
-    isFirstClick = false;
-  }
-});
-
-// Chat logic with disappearing Q&A
-document.querySelector('#chat-form').addEventListener('submit', async (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const input = document.querySelector('#chat-form input');
-  const userMessage = input.value.trim();
-  if (!userMessage) return;
+  const userText = input.value.trim();
+  if (!userText) return;
 
-  const chatBox = document.querySelector('#chatbox');
-  chatBox.innerHTML = `> You: ${userMessage}<br>`;
+  chatbox.innerHTML = `<div class="user-msg">${userText}</div>`;
+  input.value = "";
 
-  try {
-    const response = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: userMessage })
-    });
-
-    const data = await response.json();
-    chatBox.innerHTML += `> CrimznBot: ${data.reply}<br>`;
-    setTimeout(() => chatBox.innerHTML = '', 5000);
-  } catch (err) {
-    chatBox.innerHTML += `> CrimznBot: Error reaching server.<br>`;
+  if (questionCount >= 3) {
+    paywall.style.display = "block";
+    return;
   }
 
-  input.value = '';
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userText }),
+    });
+    const data = await response.json();
+    chatbox.innerHTML = `<div class="bot-msg">${data.reply}</div>`;
+    questionCount++;
+  } catch {
+    chatbox.innerHTML = `<div class="bot-msg error">Failed to get response from CrimznBot</div>`;
+  }
 });
+
+document.body.addEventListener("click", () => {
+  const audio = document.getElementById("background-beat");
+  if (audio && audio.paused) {
+    audio.play().catch(() => {});
+  }
+});
+
+const solanaLink = document.getElementById("solana-pay-link");
+if (solanaLink) {
+  solanaLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.open("solana:https://solana-pay.vercel.app/pay?recipient=Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF&amount=1&reference=CrimznConsult", "_blank");
+  });
+}
+
+// Live prices
+async function updatePrices() {
+  try {
+    const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
+    const data = await res.json();
+    const pricesText = `BTC: $${data.bitcoin.usd.toLocaleString()} | ETH: $${data.ethereum.usd.toLocaleString()} | SOL: $${data.solana.usd.toLocaleString()}`;
+    document.getElementById("prices").innerText = pricesText;
+  } catch {
+    document.getElementById("prices").innerText = "Prices unavailable.";
+  }
+}
+
+updatePrices();
+setInterval(updatePrices, 60000);
