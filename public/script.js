@@ -18,7 +18,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   try {
-    const response = await fetch("/api/chat", {
+    const response = await fetch("https://crimznbot.onrender.com/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: userText }),
@@ -31,6 +31,7 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
+// Autoplay background audio on first click
 document.body.addEventListener("click", () => {
   const audio = document.getElementById("background-beat");
   if (audio && audio.paused) {
@@ -38,11 +39,12 @@ document.body.addEventListener("click", () => {
   }
 });
 
+// Solana Pay button
 const solanaLink = document.getElementById("solana-pay-link");
 if (solanaLink) {
   solanaLink.addEventListener("click", (e) => {
     e.preventDefault();
-    window.open("solana:https://solana-pay.vercel.app/pay?recipient=Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF&amount=1&reference=CrimznConsult", "_blank");
+    window.open("https://solana-pay.vercel.app/pay?recipient=Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF", "_blank");
   });
 }
 
@@ -51,7 +53,7 @@ async function updatePrices() {
   try {
     const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
     const data = await res.json();
-    const pricesText = `BTC: $${data.bitcoin.usd.toLocaleString()} | ETH: $${data.ethereum.usd.toLocaleString()} | SOL: $${data.solana.usd.toLocaleString()}`;
+    const pricesText = `BTC: $${data.bitcoin.usd.toLocaleString()} | ETH: $${data.ethereum.usd.toLocaleString()} | SOL: $${data.solana.usd.toFixed(2)}`;
     document.getElementById("prices").innerText = pricesText;
   } catch {
     document.getElementById("prices").innerText = "Prices unavailable.";
