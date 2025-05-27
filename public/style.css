@@ -6,14 +6,18 @@ body {
   line-height: 1.6;
 }
 
-h1, h2 {
+h1, h2, h3 {
   color: orange;
-  font-size: 2em;
+  font-size: 1.8em;
 }
 
 a {
   color: #72e0ff;
   text-decoration: underline;
+}
+
+ul {
+  margin-bottom: 20px;
 }
 
 button {
@@ -24,6 +28,7 @@ button {
   font-weight: bold;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 input {
@@ -31,13 +36,33 @@ input {
   width: 70%;
   border-radius: 5px;
   border: 1px solid #ccc;
+  margin-top: 10px;
 }
 
-#chatBox {
+#chat-box {
   border: 1px solid #555;
   padding: 10px;
-  margin-top: 20px;
-  max-height: 400px;
-  overflow-y: auto;
+  margin: 20px 0;
   background-color: #111;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.user-message {
+  color: orange;
+  margin-bottom: 5px;
+}
+
+.bot-message {
+  color: lightgreen;
+  margin-bottom: 10px;
+}
+
+.payments, .etf-section {
+  margin-top: 20px;
+}
+
+#limit-message {
+  margin-top: 20px;
+  color: red;
 }

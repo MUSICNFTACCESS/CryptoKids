@@ -1,72 +1,61 @@
 let questionCount = 0;
 
-document.getElementById("askBtn").addEventListener("click", async () => {
-  const questionInput = document.getElementById("question");
-  const chatbox = document.getElementById("chatbox");
-  const question = questionInput.value.trim();
-  const paywall = document.getElementById("paywall");
+document.querySelector("button").addEventListener("click", async () => {
+  const input = document.getElementById("user-input");
+  const message = input.value.trim();
+  const chatBox = document.getElementById("chat-box");
+  const limitMessage = document.getElementById("limit-message");
 
-  if (!question) return;
+  if (!message || questionCount >= 3) return;
 
-  // Clear chat before new Q&A
-  chatbox.innerHTML = "";
+  chatBox.innerHTML = ""; // clear previous messages
 
-  // Show user message
-  const userMsg = document.createElement("div");
-  userMsg.className = "user-message";
-  userMsg.innerText = question;
-  chatbox.appendChild(userMsg);
-
-  // Disable send button
-  const askBtn = document.getElementById("askBtn");
-  askBtn.disabled = true;
-  askBtn.innerText = "Thinking...";
+  const userDiv = document.createElement("div");
+  userDiv.style.color = "orange";
+  userDiv.textContent = "You: " + message;
+  chatBox.appendChild(userDiv);
 
   try {
-    const response = await fetch("https://cryptoconsult-1.onrender.com/api/chat", {
+    const res = await fetch("https://cryptoconsult-1.onrender.com/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: question }),
+      body: JSON.stringify({ message }),
     });
-    const data = await response.json();
 
-    const botMsg = document.createElement("div");
-    botMsg.className = "bot-message";
-    botMsg.innerText = data.reply;
-    chatbox.appendChild(botMsg);
+    const data = await res.json();
 
-    questionCount++;
-    if (questionCount >= 3) {
-      paywall.innerHTML = `
-        <p><strong>You've reached the 3-question limit.</strong></p>
-        <button onclick="window.open('https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8')">Pay $99.99 for Services</button>
-        <button onclick="window.open('https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b')">Send Tip (1 USDC)</button>
-        <button onclick="window.open('https://t.me/Crimznbot', '_blank')">Contact on Telegram</button>
-      `;
-      questionInput.disabled = true;
-      askBtn.disabled = true;
-    }
-  } catch (err) {
-    chatbox.innerHTML = "<div class='bot-message'>CrimznBot is unavailable.</div>";
+    const botDiv = document.createElement("div");
+    botDiv.style.color = "lightgreen";
+    botDiv.textContent = "CrimznBot: " + data.reply;
+    chatBox.appendChild(botDiv);
+  } catch {
+    const errorDiv = document.createElement("div");
+    errorDiv.style.color = "red";
+    errorDiv.textContent = "CrimznBot is temporarily unavailable.";
+    chatBox.appendChild(errorDiv);
   }
 
-  questionInput.value = "";
-  askBtn.disabled = false;
-  askBtn.innerText = "Ask CrimznBot";
+  input.value = "";
+  questionCount++;
+
+  if (questionCount >= 3) {
+    document.querySelector("input").disabled = true;
+    document.querySelector("button").disabled = true;
+    limitMessage.style.display = "block";
+  }
 });
 
-// Load prices
 async function loadPrices() {
   try {
     const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
-    const prices = await res.json();
-    document.getElementById("btc-price").innerText = `$${prices.bitcoin.usd}`;
-    document.getElementById("eth-price").innerText = `$${prices.ethereum.usd}`;
-    document.getElementById("sol-price").innerText = `$${prices.solana.usd}`;
+    const data = await res.json();
+    document.getElementById("btc-price").textContent = `$${data.bitcoin.usd}`;
+    document.getElementById("eth-price").textContent = `$${data.ethereum.usd}`;
+    document.getElementById("sol-price").textContent = `$${data.solana.usd}`;
   } catch {
-    document.getElementById("btc-price").innerText = "N/A";
-    document.getElementById("eth-price").innerText = "N/A";
-    document.getElementById("sol-price").innerText = "N/A";
+    document.getElementById("btc-price").textContent = "N/A";
+    document.getElementById("eth-price").textContent = "N/A";
+    document.getElementById("sol-price").textContent = "N/A";
   }
 }
 window.onload = loadPrices;
