@@ -6,9 +6,8 @@ body {
   line-height: 1.6;
 }
 
-h1, h2 {
+h1, h2, h3 {
   color: orange;
-  font-size: 2em;
 }
 
 a {
@@ -24,6 +23,7 @@ button {
   font-weight: bold;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 input {
@@ -31,6 +31,36 @@ input {
   width: 70%;
   border-radius: 5px;
   border: 1px solid #ccc;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+#live-prices-frame {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid orange;
+  padding: 10px;
+  margin: 10px 0 20px;
+  border-radius: 10px;
+  background-color: #111;
+}
+
+.price-box {
+  border: 1px solid #555;
+  padding: 10px;
+  margin: 5px;
+  background-color: #222;
+  border-radius: 8px;
+  flex: 1;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.price-box:last-child {
+  margin-right: 0;
 }
 
 #chatbox {
@@ -42,26 +72,16 @@ input {
   background-color: #111;
 }
 
-.framed {
-  border: 2px solid #444;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  background-color: #111;
+.user-message {
+  color: orange;
+  margin-bottom: 10px;
 }
 
-#live-prices {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
-  margin: 15px 0;
+.bot-message {
+  color: lightgreen;
+  margin-bottom: 10px;
 }
 
-.price-box {
-  border: 1px solid orange;
-  padding: 10px;
-  border-radius: 8px;
-  background-color: #111;
-  text-align: center;
-  font-weight: bold;
+.payments, .etf-section {
+  margin-top: 30px;
 }
