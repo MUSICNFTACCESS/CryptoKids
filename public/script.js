@@ -8,16 +8,12 @@ document.getElementById("askBtn").addEventListener("click", async () => {
 
   if (!question) return;
 
-  // Clear previous chat
-  chatbox.innerHTML = "";
-
-  // Display user message
+  // Show user message (append, don't clear chat)
   const userMsg = document.createElement("div");
   userMsg.className = "user-message";
   userMsg.innerText = question;
   chatbox.appendChild(userMsg);
 
-  // Disable button
   const askBtn = document.getElementById("askBtn");
   askBtn.disabled = true;
   askBtn.innerText = "Thinking...";
@@ -47,7 +43,10 @@ document.getElementById("askBtn").addEventListener("click", async () => {
       askBtn.disabled = true;
     }
   } catch (err) {
-    chatbox.innerHTML = "<div class='bot-message'>CrimznBot is unavailable.</div>";
+    const botMsg = document.createElement("div");
+    botMsg.className = "bot-message";
+    botMsg.innerText = "CrimznBot is unavailable.";
+    chatbox.appendChild(botMsg);
   }
 
   questionInput.value = "";
@@ -63,7 +62,7 @@ async function loadPrices() {
     document.getElementById("btc-price").innerText = `$${prices.bitcoin.usd}`;
     document.getElementById("eth-price").innerText = `$${prices.ethereum.usd}`;
     document.getElementById("sol-price").innerText = `$${prices.solana.usd}`;
-  } catch (err) {
+  } catch {
     document.getElementById("btc-price").innerText = "N/A";
     document.getElementById("eth-price").innerText = "N/A";
     document.getElementById("sol-price").innerText = "N/A";
