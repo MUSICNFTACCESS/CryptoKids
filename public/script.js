@@ -1,40 +1,35 @@
 let questionCount = 0;
 
-document.getElementById("user-input").addEventListener("keypress", function (e) {
-  if (e.key === "Enter") {
-    sendMessage();
-  }
-});
+document.getElementById("askBtn").addEventListener("click", async () => {
+  const questionInput = document.getElementById("question");
+  const chatbox = document.getElementById("chatbox");
+  const question = questionInput.value.trim();
+  const paywall = document.getElementById("paywall");
 
-async function sendMessage() {
-  const input = document.getElementById("user-input");
-  const chatbox = document.getElementById("chat-box");
-  const paywall = document.getElementById("limit-message");
+  if (!question) return;
 
-  const message = input.value.trim();
-  if (!message) return;
-
-  // Clear previous messages
+  // Clear previous chat
   chatbox.innerHTML = "";
 
+  // Display user message
   const userMsg = document.createElement("div");
   userMsg.className = "user-message";
-  userMsg.innerText = message;
+  userMsg.innerText = question;
   chatbox.appendChild(userMsg);
 
-  input.disabled = true;
-  const button = document.querySelector("button");
-  button.disabled = true;
-  button.innerText = "Thinking...";
+  // Disable button
+  const askBtn = document.getElementById("askBtn");
+  askBtn.disabled = true;
+  askBtn.innerText = "Thinking...";
 
   try {
-    const res = await fetch("https://cryptoconsult-1.onrender.com/api/chat", {
+    const response = await fetch("https://cryptoconsult-1.onrender.com/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message }),
+      body: JSON.stringify({ message: question }),
     });
+    const data = await response.json();
 
-    const data = await res.json();
     const botMsg = document.createElement("div");
     botMsg.className = "bot-message";
     botMsg.innerText = data.reply;
@@ -42,24 +37,25 @@ async function sendMessage() {
 
     questionCount++;
     if (questionCount >= 3) {
-      input.disabled = true;
-      button.disabled = true;
-      paywall.style.display = "block";
+      paywall.innerHTML = `
+        <p><strong>You've reached the 3-question limit.</strong></p>
+        <button onclick="window.open('https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8')">Pay $99.99 for Services</button>
+        <button onclick="window.open('https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b')">Send Tip (1 USDC)</button>
+        <button onclick="window.open('https://t.me/Crimznbot', '_blank')">Contact on Telegram</button>
+      `;
+      questionInput.disabled = true;
+      askBtn.disabled = true;
     }
   } catch (err) {
-    const errorMsg = document.createElement("div");
-    errorMsg.className = "bot-message";
-    errorMsg.innerText = "CrimznBot is unavailable right now.";
-    chatbox.appendChild(errorMsg);
+    chatbox.innerHTML = "<div class='bot-message'>CrimznBot is unavailable.</div>";
   }
 
-  input.value = "";
-  input.disabled = false;
-  button.disabled = false;
-  button.innerText = "Send";
-}
+  questionInput.value = "";
+  askBtn.disabled = false;
+  askBtn.innerText = "Ask CrimznBot";
+});
 
-// Load prices
+// === Live Price Fetch ===
 async function loadPrices() {
   try {
     const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
@@ -67,10 +63,11 @@ async function loadPrices() {
     document.getElementById("btc-price").innerText = `$${prices.bitcoin.usd}`;
     document.getElementById("eth-price").innerText = `$${prices.ethereum.usd}`;
     document.getElementById("sol-price").innerText = `$${prices.solana.usd}`;
-  } catch {
+  } catch (err) {
     document.getElementById("btc-price").innerText = "N/A";
     document.getElementById("eth-price").innerText = "N/A";
     document.getElementById("sol-price").innerText = "N/A";
   }
 }
+
 window.onload = loadPrices;
