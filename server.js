@@ -1,10 +1,9 @@
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
 const bodyParser = require("body-parser");
-const { Configuration, OpenAIApi } = require("openai");
-
+const fetch = require("node-fetch");
 require("dotenv").config();
+const OpenAI = require("openai");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -12,50 +11,76 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Serve static frontend files
-app.use(express.static(path.join(__dirname, "public")));
-
-// === CrimznBot Endpoint ===
-const configuration = new Configuration({
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-const openai = new OpenAIApi(configuration);
+
+async function getPrice(symbol) {
+  const ids = {
+    btc: "bitcoin",
+    eth: "ethereum",
+    sol: "solana",
+    bitcoin: "bitcoin",
+    ethereum: "ethereum",
+    solana: "solana",
+  };
+
+  const id = ids[symbol.toLowerCase()];
+  if (!id) return null;
+
+  try {
+    const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${id}&vs_currencies=usd`);
+    const data = await res.json();
+    return data[id]?.usd ? `$${data[id].usd}` : null;
+  } catch (err) {
+    return null;
+  }
+}
 
 app.post("/api/chat", async (req, res) => {
   const { message } = req.body;
+  const lowered = message.toLowerCase();
+  let priceResponse = "";
+
+  if (lowered.includes("price of btc") || lowered.includes("btc price")) {
+    const btc = await getPrice("btc");
+    if (btc) priceResponse = `Bitcoin is currently trading at ${btc}.`;
+  } else if (lowered.includes("price of eth") || lowered.includes("eth price")) {
+    const eth = await getPrice("eth");
+    if (eth) priceResponse = `Ethereum is currently trading at ${eth}.`;
+  } else if (lowered.includes("price of sol") || lowered.includes("sol price")) {
+    const sol = await getPrice("sol");
+    if (sol) priceResponse = `Solana is currently trading at ${sol}.`;
+  }
+
+  if (priceResponse) {
+    return res.json({ reply: priceResponse });
+  }
+
   try {
-    const response = await openai.createChatCompletion({
+    const chatCompletion = await openai.chat.completions.create({
       model: "gpt-4",
       messages: [
         {
           role: "system",
-          content: `
-You are CrimznBot, a professional crypto strategist and consultant speaking on behalf of Crimzn.
-
-Never say you're an AI. Never say you're a chatbot. Never disclaim like "as a language model..." or "I cannot provide financial advice."
-
-Speak clearly, confidently, and professionally — like a seasoned analyst explaining things to a client. Respond with real-time tone, market logic, and explain ideas as if you're Crimzn himself.
-
-If asked for a price, give the latest value from CoinGecko API. If asked for advice, give context and strategic insights as Crimzn would.
-          `.trim(),
+          content: `You are CrimznBot, a professional crypto strategist. Never say you're an AI or chatbot. Speak confidently and answer directly.`,
         },
         { role: "user", content: message },
       ],
       temperature: 0.7,
     });
 
-    res.json({ reply: response.data.choices[0].message.content });
+    res.json({ reply: chatCompletion.choices[0].message.content });
   } catch (err) {
-    console.error("OpenAI error:", err.response?.data || err.message);
-    res.status(500).json({ error: "Failed to get response from CrimznBot" });
+    console.error("OpenAI error:", err.message);
+    res.status(500).json({ error: "CrimznBot is unavailable" });
   }
 });
 
-// Fallback route for frontend
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/index.html"));
+app.get("/", (req, res) => {
+  res.send("CrimznBot backend is live.");
 });
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`CrimznBot backend running on port ${port}`);
 });
