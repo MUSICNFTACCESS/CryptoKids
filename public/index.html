@@ -9,13 +9,13 @@
 <body>
   <audio id="bg-music" src="autoplay.mp3"></audio>
 
-  <div class="container" onclick="document.getElementById('bg-music').play()">
+  <div class="container framed" onclick="document.getElementById('bg-music').play()">
     <h1>CryptoConsult by Crimzn</h1>
 
     <div id="live-prices">
-      <p><strong>BTC:</strong> <span id="btc-price">Loading...</span></p>
-      <p><strong>ETH:</strong> <span id="eth-price">Loading...</span></p>
-      <p><strong>SOL:</strong> <span id="sol-price">Loading...</span></p>
+      <div class="price-box"><strong>BTC:</strong> <span id="btc-price">Loading...</span></div>
+      <div class="price-box"><strong>ETH:</strong> <span id="eth-price">Loading...</span></div>
+      <div class="price-box"><strong>SOL:</strong> <span id="sol-price">Loading...</span></div>
     </div>
 
     <p>Get real-time crypto insights and strategy from CrimznBot—your cypherpunk crypto ally.</p>
@@ -40,15 +40,10 @@
 
     <div class="chat-section">
       <h2>Talk to CrimznBot</h2>
-      <div id="chat-box"></div>
-      <input type="text" id="user-input" placeholder="Ask CrimznBot anything crypto..."/>
-      <button onclick="sendMessage()">Send</button>
-      <div id="limit-message" style="display:none;">
-        <p>You've reached the free limit. Unlock full access:</p>
-        <a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8" target="_blank">Pay $99.99 for Unlimited Access</a><br>
-        <a href="https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b" target="_blank">Send Tip (1 USDC)</a><br>
-        <a href="https://t.me/Crimznbot" target="_blank">Contact on Telegram</a>
-      </div>
+      <div id="chatbox"></div>
+      <input type="text" id="question" placeholder="Ask CrimznBot anything crypto..."/>
+      <button id="askBtn">Ask CrimznBot</button>
+      <div id="paywall"></div>
     </div>
 
     <div class="etf-section">
