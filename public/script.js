@@ -8,9 +8,9 @@ document.getElementById("askBtn").addEventListener("click", async () => {
 
   if (!question) return;
 
-  // Show user message (append, don't clear chat)
   const userMsg = document.createElement("div");
   userMsg.className = "user-message";
+  userMsg.style.color = "orange"; // BTC orange
   userMsg.innerText = question;
   chatbox.appendChild(userMsg);
 
@@ -28,6 +28,7 @@ document.getElementById("askBtn").addEventListener("click", async () => {
 
     const botMsg = document.createElement("div");
     botMsg.className = "bot-message";
+    botMsg.style.color = "lightgreen"; // 💚 Green bot answers
     botMsg.innerText = data.reply;
     chatbox.appendChild(botMsg);
 
@@ -45,6 +46,7 @@ document.getElementById("askBtn").addEventListener("click", async () => {
   } catch (err) {
     const botMsg = document.createElement("div");
     botMsg.className = "bot-message";
+    botMsg.style.color = "red";
     botMsg.innerText = "CrimznBot is unavailable.";
     chatbox.appendChild(botMsg);
   }
