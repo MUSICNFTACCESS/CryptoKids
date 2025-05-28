@@ -6,18 +6,14 @@ body {
   line-height: 1.6;
 }
 
-h1, h2, h3 {
+h1, h2 {
   color: orange;
-  font-size: 1.8em;
+  font-size: 2em;
 }
 
 a {
   color: #72e0ff;
   text-decoration: underline;
-}
-
-ul {
-  margin-bottom: 20px;
 }
 
 button {
@@ -28,7 +24,6 @@ button {
   font-weight: bold;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
 }
 
 input {
@@ -36,33 +31,37 @@ input {
   width: 70%;
   border-radius: 5px;
   border: 1px solid #ccc;
-  margin-top: 10px;
 }
 
-#chat-box {
+#chatbox {
   border: 1px solid #555;
   padding: 10px;
-  margin: 20px 0;
-  background-color: #111;
-  max-height: 300px;
+  margin-top: 20px;
+  max-height: 400px;
   overflow-y: auto;
+  background-color: #111;
 }
 
-.user-message {
-  color: orange;
-  margin-bottom: 5px;
+.framed {
+  border: 2px solid #444;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  background-color: #111;
 }
 
-.bot-message {
-  color: lightgreen;
-  margin-bottom: 10px;
+#live-prices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin: 15px 0;
 }
 
-.payments, .etf-section {
-  margin-top: 20px;
-}
-
-#limit-message {
-  margin-top: 20px;
-  color: red;
+.price-box {
+  border: 1px solid orange;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #111;
+  text-align: center;
+  font-weight: bold;
 }
