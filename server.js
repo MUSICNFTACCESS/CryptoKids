@@ -1,24 +1,22 @@
-const http = require('http');
-const fs = require('fs');
-const port = 3000;
+const express = require('express');
+const app = express();
+const path = require('path');
+const PORT = 3000;
 
-const server = http.createServer((req, res) => {
-    if (req.url === '/' || req.url === '/index.html') {
-        fs.readFile('index.html', (err, data) => {
-            if (err) {
-                res.writeHead(500);
-                res.end('Error loading page');
-            } else {
-                res.writeHead(200, { 'Content-Type': 'text/html' });
-                res.end(data);
-            }
-        });
-    } else {
-        res.writeHead(404);
-        res.end('Not Found');
-    }
+// Serve static files from the public directory
+app.use(express.static('public'));
+
+// Route to serve index.html at root URL
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
-server.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+// Route to serve the quiz questions JSON
+app.get('/questions.json', (req, res) => {
+  res.sendFile(path.join(__dirname, 'questions.json'));
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
