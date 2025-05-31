@@ -8,11 +8,20 @@
 </head>
 <body>
 
-  <div id="splash-screen">
+  <div id="splash-screen" style="text-align: center;">
     <img src="file_00000000e8446243abe0c3108b52524e.png" alt="CryptoKids Logo" style="width: 200px; margin-bottom: 20px;" />
     <h1>CryptoKids 🟠</h1>
     <p>Ready to test your crypto knowledge?</p>
-    <button onclick="startQuiz()">Start Quiz</button>
+
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 30px;">
+      <button onclick="startQuiz()" style="padding: 12px 20px; background-color: orange; color: black; border-radius: 6px; font-weight: bold; font-family: monospace; width: 220px;">
+        Start Quiz
+      </button>
+
+      <a href="https://cryptoconsult.onrender.com" target="_blank" style="display: inline-block; padding: 12px 20px; background-color: orange; color: black; border-radius: 6px; text-decoration: none; font-weight: bold; font-family: monospace; width: 220px; text-align: center;">
+        💬 Ask CrimznBot on CryptoConsult
+      </a>
+    </div>
   </div>
 
   <div id="quiz-container" class="hidden">
@@ -33,12 +42,6 @@
       <h3>Your Score: <span id="score"></span></h3>
       <button onclick="location.reload()">Play Again</button>
     </div>
-  </div>
-
-  <div style="text-align: center; margin-top: 30px;">
-    <a href="https://cryptoconsult.onrender.com" target="_blank" style="padding: 12px 20px; background-color: orange; color: black; border-radius: 6px; text-decoration: none; font-weight: bold;">
-      💬 Ask CrimznBot on CryptoConsult
-    </a>
   </div>
 
   <footer>
