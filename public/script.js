@@ -1,74 +1,60 @@
-async function loadQuestions() {
-  try {
-    const response = await fetch('/questions.json');
-    const questions = await response.json();
-    let currentQuestion = 0;
-    let score = 0;
+let currentQuestionIndex = 0;
+let score = 0;
+let questions = [];
 
-    const questionEl = document.querySelector('.question');
-    const optionsEl = document.querySelector('.options');
-    const resultEl = document.querySelector('.result');
-    const progressEl = document.querySelector('.progress');
+fetch("questions.json")
+  .then((res) => res.json())
+  .then((data) => {
+    questions = shuffle(data);
+  });
 
-    function displayQuestion() {
-      const q = questions[currentQuestion];
-      questionEl.textContent = q.question;
-      optionsEl.innerHTML = '';
+function startQuiz() {
+  document.getElementById("splash-screen").classList.add("hidden");
+  document.getElementById("quiz-container").classList.remove("hidden");
+  showQuestion();
+}
 
-      // Prepare shuffled options with correct flag
-      const originalOptions = q.options.map((text, index) => ({
-        text,
-        isCorrect: index === Number(q.correct)
-      }));
+function showQuestion() {
+  const questionObj = questions[currentQuestionIndex];
+  document.getElementById("question").innerText = questionObj.question;
 
-      // Shuffle the options
-      const shuffled = originalOptions.sort(() => Math.random() - 0.5);
+  const optionsList = document.getElementById("options");
+  optionsList.innerHTML = "";
 
-      shuffled.forEach((option) => {
-        const btn = document.createElement('button');
-        btn.textContent = option.text;
-        btn.onclick = () => {
-          if (option.isCorrect) {
-            score++;
-            resultEl.textContent = '✅ Correct!';
-          } else {
-            resultEl.textContent = '❌ Wrong!';
-          }
-          currentQuestion++;
-          progressEl.style.width = `${(currentQuestion / questions.length) * 100}%`;
-          setTimeout(() => {
-            resultEl.textContent = '';
-            if (currentQuestion < questions.length) {
-              displayQuestion();
-            } else {
-              questionEl.textContent = `🎉 Quiz completed! Your score: ${score}/${questions.length}`;
-              optionsEl.innerHTML = '';
-            }
-          }, 1000);
-        };
-        optionsEl.appendChild(btn);
-      });
+  shuffle([...questionObj.options]).forEach((option, index) => {
+    const li = document.createElement("li");
+    li.textContent = option;
+    li.onclick = () => checkAnswer(option, questionObj);
+    optionsList.appendChild(li);
+  });
+}
+
+function checkAnswer(selected, questionObj) {
+  const correctAnswer = questionObj.options[questionObj.correct];
+  if (selected === correctAnswer) {
+    score++;
+  }
+  document.querySelectorAll("li").forEach((el) => {
+    el.onclick = null;
+    el.style.pointerEvents = "none";
+    if (el.textContent === correctAnswer) {
+      el.style.backgroundColor = "#28a745";
+    } else if (el.textContent === selected) {
+      el.style.backgroundColor = "#dc3545";
     }
+  });
+}
 
-    displayQuestion();
-  } catch (err) {
-    console.error('Failed to load questions:', err);
-    document.querySelector('.question').textContent = 'Failed to load quiz.';
+function nextQuestion() {
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    showQuestion();
+  } else {
+    document.getElementById("quiz-container").innerHTML =
+      "<h2>Quiz Completed!</h2><p>Your score: " + score + " / " + questions.length + "</p>";
   }
 }
 
-document.addEventListener('DOMContentLoaded', loadQuestions);
-
-// Phantom Wallet Connect
-document.getElementById("connect-wallet").addEventListener("click", async () => {
-  if (window.solana && window.solana.isPhantom) {
-    try {
-      const resp = await window.solana.connect();
-      document.getElementById("wallet-status").innerText = `Connected: ${resp.publicKey.toString()}`;
-    } catch (err) {
-      console.error("Wallet connection error:", err);
-    }
-  } else {
-    alert("Phantom Wallet not found. Please install it.");
-  }
-});
+function shuffle(arr) {
+  return arr.sort(() => Math.random() - 0.5);
+}
