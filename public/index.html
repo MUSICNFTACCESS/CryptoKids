@@ -7,8 +7,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <div id="splash-screen">
-    <img src="logo.png" alt="CryptoKids Logo" class="logo">
+    <img src="cryptokids-logo.png" alt="CryptoKids Logo" style="width: 200px; margin-bottom: 20px;" />
     <h1>CryptoKids 🟠</h1>
     <p>Ready to test your crypto knowledge?</p>
     <button onclick="startQuiz()">Start Quiz</button>
@@ -18,10 +19,14 @@
     <div id="progress-container">
       <div id="progress-bar"></div>
     </div>
+
     <h2 id="question"></h2>
-    <div id="timer">⏱️ <span id="time-left">15</span>s</div>
-    <ul id="options"></ul>
+    <ul id="answer-buttons" class="btn-grid"></ul>
+
+    <div id="timer"><span id="time-left">15</span>s</div>
+
     <button id="next-btn" onclick="nextQuestion()">Next</button>
+
     <div id="score-container" class="hidden">
       <h3>Your Score: <span id="score"></span></h3>
       <button onclick="location.reload()">Play Again</button>
@@ -34,4 +39,5 @@
 
   <script src="script.js"></script>
 </body>
-</html>
+</html>o
+
