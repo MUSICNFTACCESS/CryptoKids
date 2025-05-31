@@ -25,7 +25,7 @@ async function getPrice(symbol) {
     solana: "solana",
   };
 
-  const id = ids[symbol.toLowerCase()];
+    return data[id] && data[id].usd ? `$${data[id].usd}` : null;
   if (!id) return null;
 
   try {
