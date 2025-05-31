@@ -1,4 +1,4 @@
-let questionCount = 0;
+klet questionCount = 0;
 
 document.getElementById("askBtn").addEventListener("click", async () => {
   const questionInput = document.getElementById("question");
