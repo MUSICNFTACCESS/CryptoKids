@@ -1,1102 +1,310 @@
 [
-    {
-        "category": "Regulations & Compliance",
-        "question": "What does TVL stand for in DeFi?",
-        "options": [
-            "Total Value Locked",
-            "Token Volume Liquidity",
-            "Transaction Verified Ledger",
-            "Total Virtual Layer"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Security & Privacy",
-        "question": "Who is the creator of Ethereum?",
-        "options": [
-            "Vitalik Buterin",
-            "Satoshi Nakamoto",
-            "Elon Musk",
-            "Changpeng Zhao"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Trading",
-        "question": "What is the primary function of a cold wallet?",
-        "options": [
-            "Offline crypto storage",
-            "Faster transactions",
-            "Yield farming",
-            "NFT trading"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "DeFi & Yield Farming",
-        "question": "What is a gas fee in Ethereum?",
-        "options": [
-            "Transaction cost",
-            "Mining reward",
-            "Smart contract upgrade fee",
-            "Token listing fee"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Bitcoin",
-        "question": "What is a gas fee in Ethereum?",
-        "options": [
-            "Transaction cost",
-            "Mining reward",
-            "Smart contract upgrade fee",
-            "Token listing fee"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "DeFi & Yield Farming",
-        "question": "Who is the creator of Ethereum?",
-        "options": [
-            "Vitalik Buterin",
-            "Satoshi Nakamoto",
-            "Elon Musk",
-            "Changpeng Zhao"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Regulations & Compliance",
-        "question": "What is an NFT?",
-        "options": [
-            "Non-Fungible Token",
-            "Network File Transfer",
-            "New Finance Technology",
-            "Non-Fixed Transaction"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "NFTs & Digital Ownership",
-        "question": "What is the primary function of a cold wallet?",
-        "options": [
-            "Offline crypto storage",
-            "Faster transactions",
-            "Yield farming",
-            "NFT trading"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Trading",
-        "question": "What does TVL stand for in DeFi?",
-        "options": [
-            "Total Value Locked",
-            "Token Volume Liquidity",
-            "Transaction Verified Ledger",
-            "Total Virtual Layer"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "DeFi & Yield Farming",
-        "question": "What is the purpose of the Lightning Network?",
-        "options": [
-            "Fast Bitcoin transactions",
-            "Ethereum staking",
-            "NFT minting",
-            "DeFi lending"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Bitcoin",
-        "question": "What is an NFT?",
-        "options": [
-            "Non-Fungible Token",
-            "Network File Transfer",
-            "New Finance Technology",
-            "Non-Fixed Transaction"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "DeFi & Yield Farming",
-        "question": "What is a DAO?",
-        "options": [
-            "Decentralized Autonomous Organization",
-            "Digital Asset Ownership",
-            "DeFi Adoption Operation",
-            "Data Analysis Office"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Trading",
-        "question": "Which consensus mechanism does Bitcoin use?",
-        "options": [
-            "Proof of Work",
-            "Proof of Stake",
-            "Delegated Proof of Stake",
-            "Sharding"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Security",
-        "question": "What is a gas fee in Ethereum?",
-        "options": [
-            "Transaction cost",
-            "Mining reward",
-            "Smart contract upgrade fee",
-            "Token listing fee"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "DeFi & Yield Farming",
-        "question": "What is the purpose of a smart contract?",
-        "options": [
-            "Automate agreements on blockchain",
-            "Store private keys",
-            "Act as a trading bot",
-            "Reduce gas fees"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "DeFi & Yield Farming",
-        "question": "What is a stop-loss order in trading?",
-        "options": [
-            "An order to sell at a predefined price",
-            "An order to buy at a lower price",
-            "A signal to hold",
-            "A short-term strategy"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Wallets",
-        "question": "Which protocol is best known for decentralized lending?",
-        "options": [
-            "Aave",
-            "Uniswap",
-            "PancakeSwap",
-            "SushiSwap"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Trading",
-        "question": "Which blockchain introduced smart contracts?",
-        "options": [
-            "Ethereum",
-            "Bitcoin",
-            "Solana",
-            "Avalanche"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Security",
-        "question": "What is a stop-loss order in trading?",
-        "options": [
-            "An order to sell at a predefined price",
-            "An order to buy at a lower price",
-            "A signal to hold",
-            "A short-term strategy"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "DeFi & Yield Farming",
-        "question": "What is the purpose of the Lightning Network?",
-        "options": [
-            "Fast Bitcoin transactions",
-            "Ethereum staking",
-            "NFT minting",
-            "DeFi lending"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "DeFi & Yield Farming",
-        "question": "What is the primary function of a cold wallet?",
-        "options": [
-            "Offline crypto storage",
-            "Faster transactions",
-            "Yield farming",
-            "NFT trading"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Ethereum & Smart Contracts",
-        "question": "What is the primary function of a cold wallet?",
-        "options": [
-            "Offline crypto storage",
-            "Faster transactions",
-            "Yield farming",
-            "NFT trading"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "NFTs & Digital Ownership",
-        "question": "Which consensus mechanism does Bitcoin use?",
-        "options": [
-            "Proof of Work",
-            "Proof of Stake",
-            "Delegated Proof of Stake",
-            "Sharding"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Blockchain Basics",
-        "question": "Who is the creator of Ethereum?",
-        "options": [
-            "Vitalik Buterin",
-            "Satoshi Nakamoto",
-            "Elon Musk",
-            "Changpeng Zhao"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "NFTs & Digital Ownership",
-        "question": "What does a 'double top' pattern indicate?",
-        "options": [
-            "Bearish reversal",
-            "Bullish continuation",
-            "Neutral trend",
-            "Higher volatility"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "DeFi & Yield Farming",
-        "question": "Which consensus mechanism does Bitcoin use?",
-        "options": [
-            "Proof of Work",
-            "Proof of Stake",
-            "Delegated Proof of Stake",
-            "Sharding"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Trading",
-        "question": "What year was Bitcoin created?",
-        "options": [
-            "2008",
-            "2012",
-            "2015",
-            "2020"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Wallets",
-        "question": "Who is the creator of Ethereum?",
-        "options": [
-            "Vitalik Buterin",
-            "Satoshi Nakamoto",
-            "Elon Musk",
-            "Changpeng Zhao"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Security & Privacy",
-        "question": "What is a DAO?",
-        "options": [
-            "Decentralized Autonomous Organization",
-            "Digital Asset Ownership",
-            "DeFi Adoption Operation",
-            "Data Analysis Office"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Ethereum & Smart Contracts",
-        "question": "What is the purpose of the Lightning Network?",
-        "options": [
-            "Fast Bitcoin transactions",
-            "Ethereum staking",
-            "NFT minting",
-            "DeFi lending"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Blockchain Basics",
-        "question": "What is a stop-loss order in trading?",
-        "options": [
-            "An order to sell at a predefined price",
-            "An order to buy at a lower price",
-            "A signal to hold",
-            "A short-term strategy"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Wallets",
-        "question": "What year was Bitcoin created?",
-        "options": [
-            "2008",
-            "2012",
-            "2015",
-            "2020"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Blockchain Basics",
-        "question": "Which consensus mechanism does Bitcoin use?",
-        "options": [
-            "Proof of Work",
-            "Proof of Stake",
-            "Delegated Proof of Stake",
-            "Sharding"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Blockchain Basics",
-        "question": "What does 'staking' mean in crypto?",
-        "options": [
-            "Locking funds for network security",
-            "Selling assets at market peak",
-            "Buying tokens on leverage",
-            "NFT minting"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Security & Privacy",
-        "question": "What is a 'rug pull' in crypto?",
-        "options": [
-            "A scam where developers abandon a project",
-            "An exchange outage",
-            "A sudden rise in prices",
-            "A new token launch"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "On-Chain Metrics & Alpha Hunting",
-        "question": "What is the purpose of a smart contract?",
-        "options": [
-            "Automate agreements on blockchain",
-            "Store private keys",
-            "Act as a trading bot",
-            "Reduce gas fees"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Security",
-        "question": "What does 'staking' mean in crypto?",
-        "options": [
-            "Locking funds for network security",
-            "Selling assets at market peak",
-            "Buying tokens on leverage",
-            "NFT minting"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Trading",
-        "question": "What does 'staking' mean in crypto?",
-        "options": [
-            "Locking funds for network security",
-            "Selling assets at market peak",
-            "Buying tokens on leverage",
-            "NFT minting"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Bitcoin",
-        "question": "What does TVL stand for in DeFi?",
-        "options": [
-            "Total Value Locked",
-            "Token Volume Liquidity",
-            "Transaction Verified Ledger",
-            "Total Virtual Layer"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Security",
-        "question": "What is an NFT?",
-        "options": [
-            "Non-Fungible Token",
-            "Network File Transfer",
-            "New Finance Technology",
-            "Non-Fixed Transaction"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Ethereum & Smart Contracts",
-        "question": "What is the purpose of a smart contract?",
-        "options": [
-            "Automate agreements on blockchain",
-            "Store private keys",
-            "Act as a trading bot",
-            "Reduce gas fees"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Trading",
-        "question": "What does 'staking' mean in crypto?",
-        "options": [
-            "Locking funds for network security",
-            "Selling assets at market peak",
-            "Buying tokens on leverage",
-            "NFT minting"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "On-Chain Metrics & Alpha Hunting",
-        "question": "What year was Bitcoin created?",
-        "options": [
-            "2008",
-            "2012",
-            "2015",
-            "2020"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Bitcoin",
-        "question": "What is the primary function of a cold wallet?",
-        "options": [
-            "Offline crypto storage",
-            "Faster transactions",
-            "Yield farming",
-            "NFT trading"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Trading",
-        "question": "What is the purpose of the Lightning Network?",
-        "options": [
-            "Fast Bitcoin transactions",
-            "Ethereum staking",
-            "NFT minting",
-            "DeFi lending"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Regulations & Compliance",
-        "question": "What is the purpose of the Lightning Network?",
-        "options": [
-            "Fast Bitcoin transactions",
-            "Ethereum staking",
-            "NFT minting",
-            "DeFi lending"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "NFTs & Digital Ownership",
-        "question": "Which consensus mechanism does Bitcoin use?",
-        "options": [
-            "Proof of Work",
-            "Proof of Stake",
-            "Delegated Proof of Stake",
-            "Sharding"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Regulations & Compliance",
-        "question": "What is the primary use case of Chainlink?",
-        "options": [
-            "Decentralized oracles",
-            "Smart contract execution",
-            "NFT trading",
-            "Stablecoin issuance"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "On-Chain Metrics & Alpha Hunting",
-        "question": "What is the primary use case of Chainlink?",
-        "options": [
-            "Decentralized oracles",
-            "Smart contract execution",
-            "NFT trading",
-            "Stablecoin issuance"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "On-Chain Metrics & Alpha Hunting",
-        "question": "What is the primary use case of Chainlink?",
-        "options": [
-            "Decentralized oracles",
-            "Smart contract execution",
-            "NFT trading",
-            "Stablecoin issuance"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Regulations & Compliance",
-        "question": "What year was Bitcoin created?",
-        "options": [
-            "2008",
-            "2012",
-            "2015",
-            "2020"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "DeFi & Yield Farming",
-        "question": "What is the purpose of the Lightning Network?",
-        "options": [
-            "Fast Bitcoin transactions",
-            "Ethereum staking",
-            "NFT minting",
-            "DeFi lending"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Security & Privacy",
-        "question": "What is the purpose of the Lightning Network?",
-        "options": [
-            "Fast Bitcoin transactions",
-            "Ethereum staking",
-            "NFT minting",
-            "DeFi lending"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Regulations & Compliance",
-        "question": "What does EIP stand for in Ethereum?",
-        "options": [
-            "Ethereum Improvement Proposal",
-            "Ethereum Integrated Protocol",
-            "Encrypted Identity Protection",
-            "Ethereum Internal Process"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Wallets",
-        "question": "Which blockchain is known for low fees and fast transactions?",
-        "options": [
-            "Solana",
-            "Ethereum",
-            "Bitcoin",
-            "Litecoin"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Regulations & Compliance",
-        "question": "What does EIP stand for in Ethereum?",
-        "options": [
-            "Ethereum Improvement Proposal",
-            "Ethereum Integrated Protocol",
-            "Encrypted Identity Protection",
-            "Ethereum Internal Process"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Bitcoin",
-        "question": "What does EIP stand for in Ethereum?",
-        "options": [
-            "Ethereum Improvement Proposal",
-            "Ethereum Integrated Protocol",
-            "Encrypted Identity Protection",
-            "Ethereum Internal Process"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Security & Privacy",
-        "question": "Who is the creator of Ethereum?",
-        "options": [
-            "Vitalik Buterin",
-            "Satoshi Nakamoto",
-            "Elon Musk",
-            "Changpeng Zhao"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Security",
-        "question": "What is the purpose of the Lightning Network?",
-        "options": [
-            "Fast Bitcoin transactions",
-            "Ethereum staking",
-            "NFT minting",
-            "DeFi lending"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "NFTs & Digital Ownership",
-        "question": "What is a 'rug pull' in crypto?",
-        "options": [
-            "A scam where developers abandon a project",
-            "An exchange outage",
-            "A sudden rise in prices",
-            "A new token launch"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Security & Privacy",
-        "question": "Which protocol is best known for decentralized lending?",
-        "options": [
-            "Aave",
-            "Uniswap",
-            "PancakeSwap",
-            "SushiSwap"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Wallets",
-        "question": "Who is the creator of Ethereum?",
-        "options": [
-            "Vitalik Buterin",
-            "Satoshi Nakamoto",
-            "Elon Musk",
-            "Changpeng Zhao"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Wallets",
-        "question": "Which consensus mechanism does Bitcoin use?",
-        "options": [
-            "Proof of Work",
-            "Proof of Stake",
-            "Delegated Proof of Stake",
-            "Sharding"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "DeFi & Yield Farming",
-        "question": "What does TVL stand for in DeFi?",
-        "options": [
-            "Total Value Locked",
-            "Token Volume Liquidity",
-            "Transaction Verified Ledger",
-            "Total Virtual Layer"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "NFTs & Digital Ownership",
-        "question": "What does TVL stand for in DeFi?",
-        "options": [
-            "Total Value Locked",
-            "Token Volume Liquidity",
-            "Transaction Verified Ledger",
-            "Total Virtual Layer"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "NFTs & Digital Ownership",
-        "question": "What is the purpose of a smart contract?",
-        "options": [
-            "Automate agreements on blockchain",
-            "Store private keys",
-            "Act as a trading bot",
-            "Reduce gas fees"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Blockchain Basics",
-        "question": "What is the primary use case of Chainlink?",
-        "options": [
-            "Decentralized oracles",
-            "Smart contract execution",
-            "NFT trading",
-            "Stablecoin issuance"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Trading",
-        "question": "What does TVL stand for in DeFi?",
-        "options": [
-            "Total Value Locked",
-            "Token Volume Liquidity",
-            "Transaction Verified Ledger",
-            "Total Virtual Layer"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Bitcoin",
-        "question": "What is a 'rug pull' in crypto?",
-        "options": [
-            "A scam where developers abandon a project",
-            "An exchange outage",
-            "A sudden rise in prices",
-            "A new token launch"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Wallets",
-        "question": "What is the purpose of the Lightning Network?",
-        "options": [
-            "Fast Bitcoin transactions",
-            "Ethereum staking",
-            "NFT minting",
-            "DeFi lending"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Ethereum & Smart Contracts",
-        "question": "What is a stop-loss order in trading?",
-        "options": [
-            "An order to sell at a predefined price",
-            "An order to buy at a lower price",
-            "A signal to hold",
-            "A short-term strategy"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Security & Privacy",
-        "question": "What does TVL stand for in DeFi?",
-        "options": [
-            "Total Value Locked",
-            "Token Volume Liquidity",
-            "Transaction Verified Ledger",
-            "Total Virtual Layer"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Trading",
-        "question": "What is a stop-loss order in trading?",
-        "options": [
-            "An order to sell at a predefined price",
-            "An order to buy at a lower price",
-            "A signal to hold",
-            "A short-term strategy"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Bitcoin",
-        "question": "Which protocol is best known for decentralized lending?",
-        "options": [
-            "Aave",
-            "Uniswap",
-            "PancakeSwap",
-            "SushiSwap"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Security & Privacy",
-        "question": "Which blockchain introduced smart contracts?",
-        "options": [
-            "Ethereum",
-            "Bitcoin",
-            "Solana",
-            "Avalanche"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Blockchain Basics",
-        "question": "Which crypto wallet type gives users full custody?",
-        "options": [
-            "Non-custodial wallet",
-            "Exchange wallet",
-            "Hot wallet",
-            "Paper wallet"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Wallets",
-        "question": "Which blockchain is known for low fees and fast transactions?",
-        "options": [
-            "Solana",
-            "Ethereum",
-            "Bitcoin",
-            "Litecoin"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Ethereum & Smart Contracts",
-        "question": "What does EIP stand for in Ethereum?",
-        "options": [
-            "Ethereum Improvement Proposal",
-            "Ethereum Integrated Protocol",
-            "Encrypted Identity Protection",
-            "Ethereum Internal Process"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Trading",
-        "question": "What does TVL stand for in DeFi?",
-        "options": [
-            "Total Value Locked",
-            "Token Volume Liquidity",
-            "Transaction Verified Ledger",
-            "Total Virtual Layer"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "On-Chain Metrics & Alpha Hunting",
-        "question": "What is the purpose of the Lightning Network?",
-        "options": [
-            "Fast Bitcoin transactions",
-            "Ethereum staking",
-            "NFT minting",
-            "DeFi lending"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Technical Analysis",
-        "question": "Which consensus mechanism does Bitcoin use?",
-        "options": [
-            "Proof of Work",
-            "Proof of Stake",
-            "Delegated Proof of Stake",
-            "Sharding"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Technical Analysis",
-        "question": "Which protocol is best known for decentralized lending?",
-        "options": [
-            "Aave",
-            "Uniswap",
-            "PancakeSwap",
-            "SushiSwap"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Bitcoin",
-        "question": "What is the primary function of a cold wallet?",
-        "options": [
-            "Offline crypto storage",
-            "Faster transactions",
-            "Yield farming",
-            "NFT trading"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Security",
-        "question": "What year was Bitcoin created?",
-        "options": [
-            "2008",
-            "2012",
-            "2015",
-            "2020"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Regulations & Compliance",
-        "question": "What does 'staking' mean in crypto?",
-        "options": [
-            "Locking funds for network security",
-            "Selling assets at market peak",
-            "Buying tokens on leverage",
-            "NFT minting"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Bitcoin",
-        "question": "What is a stop-loss order in trading?",
-        "options": [
-            "An order to sell at a predefined price",
-            "An order to buy at a lower price",
-            "A signal to hold",
-            "A short-term strategy"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Bitcoin",
-        "question": "Which blockchain introduced smart contracts?",
-        "options": [
-            "Ethereum",
-            "Bitcoin",
-            "Solana",
-            "Avalanche"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "DeFi & Yield Farming",
-        "question": "Who is the creator of Ethereum?",
-        "options": [
-            "Vitalik Buterin",
-            "Satoshi Nakamoto",
-            "Elon Musk",
-            "Changpeng Zhao"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Regulations & Compliance",
-        "question": "What is a 'rug pull' in crypto?",
-        "options": [
-            "A scam where developers abandon a project",
-            "An exchange outage",
-            "A sudden rise in prices",
-            "A new token launch"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Bitcoin",
-        "question": "What year was Bitcoin created?",
-        "options": [
-            "2008",
-            "2012",
-            "2015",
-            "2020"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Regulations & Compliance",
-        "question": "Who is the creator of Ethereum?",
-        "options": [
-            "Vitalik Buterin",
-            "Satoshi Nakamoto",
-            "Elon Musk",
-            "Changpeng Zhao"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Bitcoin",
-        "question": "What is the primary function of a cold wallet?",
-        "options": [
-            "Offline crypto storage",
-            "Faster transactions",
-            "Yield farming",
-            "NFT trading"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "On-Chain Metrics & Alpha Hunting",
-        "question": "Which crypto wallet type gives users full custody?",
-        "options": [
-            "Non-custodial wallet",
-            "Exchange wallet",
-            "Hot wallet",
-            "Paper wallet"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "On-Chain Metrics & Alpha Hunting",
-        "question": "What is an NFT?",
-        "options": [
-            "Non-Fungible Token",
-            "Network File Transfer",
-            "New Finance Technology",
-            "Non-Fixed Transaction"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Blockchain Basics",
-        "question": "What is an NFT?",
-        "options": [
-            "Non-Fungible Token",
-            "Network File Transfer",
-            "New Finance Technology",
-            "Non-Fixed Transaction"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Blockchain Basics",
-        "question": "What is the primary function of a cold wallet?",
-        "options": [
-            "Offline crypto storage",
-            "Faster transactions",
-            "Yield farming",
-            "NFT trading"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "On-Chain Metrics & Alpha Hunting",
-        "question": "What year was Bitcoin created?",
-        "options": [
-            "2008",
-            "2012",
-            "2015",
-            "2020"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Crypto Security",
-        "question": "Which crypto wallet type gives users full custody?",
-        "options": [
-            "Non-custodial wallet",
-            "Exchange wallet",
-            "Hot wallet",
-            "Paper wallet"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "Regulations & Compliance",
-        "question": "What does a 'double top' pattern indicate?",
-        "options": [
-            "Bearish reversal",
-            "Bullish continuation",
-            "Neutral trend",
-            "Higher volatility"
-        ],
-        "correct": 0
-    },
-    {
-        "category": "DeFi & Yield Farming",
-        "question": "Which blockchain introduced smart contracts?",
-        "options": [
-            "Ethereum",
-            "Bitcoin",
-            "Solana",
-            "Avalanche"
-        ],
-        "correct": 0
-    }
+  {
+    "category": "Regulations & Compliance",
+    "question": "What does KYC stand for?",
+    "options": ["Know Your Customer", "Keep Your Crypto", "Know Your Coin", "Keep Your Code"],
+    "correct": 0
+  },
+  {
+    "category": "Security & Privacy",
+    "question": "What is a seed phrase?",
+    "options": ["A backup of your crypto wallet", "A type of encryption", "A smart contract", "A public key"],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Wallets",
+    "question": "Which wallet is best for long-term cold storage?",
+    "options": ["Hardware wallet", "Web wallet", "Exchange wallet", "Mobile wallet"],
+    "correct": 0
+  },
+  {
+    "category": "Bitcoin",
+    "question": "What is the maximum supply of Bitcoin?",
+    "options": ["21 million", "100 million", "Unlimited", "10 million"],
+    "correct": 0
+  },
+  {
+    "category": "Ethereum & Smart Contracts",
+    "question": "What is Ethereum gas used for?",
+    "options": ["Paying for transaction execution", "Mining Bitcoin", "Creating NFTs", "Voting on governance"],
+    "correct": 0
+  },
+  {
+    "category": "DeFi & Yield Farming",
+    "question": "What is yield farming?",
+    "options": ["Earning interest on crypto", "Creating yield crops", "Mining altcoins", "Trading NFTs"],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Trading",
+    "question": "What is a limit order?",
+    "options": ["An order to buy/sell at a set price", "An immediate market trade", "A futures trade", "A staking method"],
+    "correct": 0
+  },
+  {
+    "category": "Blockchain Basics",
+    "question": "What does a block contain?",
+    "options": ["Transaction data", "Gas prices", "Private keys", "Wallet addresses"],
+    "correct": 0
+  },
+  {
+    "category": "Crypto History",
+    "question": "What year did Bitcoin launch?",
+    "options": ["2009", "2005", "2011", "2007"],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Security",
+    "question": "What is a 51% attack?",
+    "options": ["Majority control of a blockchain", "Phishing scam", "NFT theft", "Wallet hack"],
+    "correct": 0
+  },
+  {
+    "category": "NFTs & Digital Ownership",
+    "question": "What does NFT stand for?",
+    "options": ["Non-Fungible Token", "New Finance Technology", "Network Financial Tracker", "Non-Fixed Term"],
+    "correct": 0
+  },
+  {
+    "category": "Ethereum & Smart Contracts",
+    "question": "What is Solidity?",
+    "options": ["Ethereum programming language", "A staking protocol", "A crypto wallet", "A blockchain explorer"],
+    "correct": 0
+  },
+  {
+    "category": "DeFi & Yield Farming",
+    "question": "What is impermanent loss?",
+    "options": ["Loss from liquidity providing", "Wallet hack", "Staking penalty", "Missed airdrop"],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Trading",
+    "question": "What is a stop-loss order?",
+    "options": ["Auto-sell below a price", "Auto-buy above a price", "Setting a limit", "Holding strategy"],
+    "correct": 0
+  },
+  {
+    "category": "Bitcoin",
+    "question": "Who created Bitcoin?",
+    "options": ["Satoshi Nakamoto", "Vitalik Buterin", "Elon Musk", "Charles Hoskinson"],
+    "correct": 0
+  },
+  {
+    "category": "Layer 2 Solutions",
+    "question": "What is the purpose of Arbitrum?",
+    "options": ["Scale Ethereum transactions", "Create new tokens", "Mine BTC", "Stake NFTs"],
+    "correct": 0
+  },
+  {
+    "category": "Staking",
+    "question": "What is staking?",
+    "options": ["Locking crypto to secure a network", "Shorting a token", "Minting NFTs", "Buying leverage"],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Wallets",
+    "question": "What is MetaMask?",
+    "options": ["Ethereum wallet", "Bitcoin explorer", "NFT platform", "Mining pool"],
+    "correct": 0
+  },
+  {
+    "category": "Blockchain Basics",
+    "question": "What is a smart contract?",
+    "options": ["Self-executing contract on blockchain", "Paper contract", "Crypto token", "Node validator"],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Security",
+    "question": "What is phishing?",
+    "options": ["Fake websites or links to steal info", "Whale trading", "Gas fee spike", "Yield farming reward"],
+    "correct": 0
+  },
+  {
+    "category": "Bitcoin",
+    "question": "What halving event reduces?",
+    "options": ["Bitcoin mining reward", "Gas fees", "Staking rate", "Token burn"],
+    "correct": 0
+  },
+  {
+    "category": "Solana Ecosystem",
+    "question": "Which wallet supports Solana?",
+    "options": ["Phantom", "MetaMask", "Trezor", "Electrum"],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Regulations",
+    "question": "What is the SEC?",
+    "options": ["Securities and Exchange Commission", "Smart Execution Channel", "System Error Code", "Security Exchange Coin"],
+    "correct": 0
+  },
+  {
+    "category": "Ethereum",
+    "question": "What upgrade introduced Proof of Stake to Ethereum?",
+    "options": ["The Merge", "The Split", "The Fork", "The Flippening"],
+    "correct": 0
+  },
+  {
+    "category": "Layer 1 Chains",
+    "question": "What is Avalanche?",
+    "options": ["Layer 1 blockchain", "Bitcoin fork", "Crypto wallet", "Ethereum tool"],
+    "correct": 0
+  },
+  {
+    "category": "DeFi Tools",
+    "question": "What is Uniswap?",
+    "options": ["Decentralized exchange", "NFT mint site", "Staking protocol", "Bridge to Solana"],
+    "correct": 0
+  },
+  {
+    "category": "Yield Aggregators",
+    "question": "What does Yearn.Finance offer?",
+    "options": ["Optimized yield strategies", "NFT loans", "Wallet insurance", "L1 validator service"],
+    "correct": 0
+  },
+  {
+    "category": "Bridges",
+    "question": "What is Wormhole?",
+    "options": ["Cross-chain bridge", "Solana NFT marketplace", "ETH explorer", "Cold storage device"],
+    "correct": 0
+  },
+  {
+    "category": "Stablecoins",
+    "question": "Which is a decentralized stablecoin?",
+    "options": ["DAI", "USDT", "USDC", "BUSD"],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Tools",
+    "question": "What does CoinGecko provide?",
+    "options": ["Price tracking & analytics", "Wallet services", "Smart contract deployment", "Mining software"],
+    "correct": 0
+  },
+  {
+    "category": "Solana",
+    "question": "What consensus mechanism does Solana use?",
+    "options": ["Proof of History", "Proof of Stake", "Proof of Work", "Delegated Proof"],
+    "correct": 0
+  }
+  // ⏳ Additional 70 questions will be appended next (split due to length limits)
+,
+{
+  "category": "Bitcoin",
+  "question": "What is the total supply limit of Bitcoin?",
+  "options": ["21 million", "100 million", "50 million", "Infinite"],
+  "correct": 0
+},
+{
+  "category": "Ethereum",
+  "question": "Which programming language is primarily used to write Ethereum smart contracts?",
+  "options": ["Solidity", "Python", "JavaScript", "C++"],
+  "correct": 0
+},
+{
+  "category": "Blockchain Basics",
+  "question": "What does 'blockchain' primarily ensure?",
+  "options": ["Data integrity", "Fast downloads", "Low latency", "Unlimited storage"],
+  "correct": 0
+},
+{
+  "category": "Crypto Wallets",
+  "question": "Which of the following is a hot wallet?",
+  "options": ["MetaMask", "Ledger", "Trezor", "Coldcard"],
+  "correct": 0
+},
+{
+  "category": "Security & Privacy",
+  "question": "What is a private key used for?",
+  "options": ["Authorizing transactions", "Mining crypto", "Viewing blockchain data", "Exchanging tokens"],
+  "correct": 0
+},
+{
+  "category": "Crypto Trading",
+  "question": "What is a market order?",
+  "options": ["An order to buy/sell immediately", "An order that executes at a set price", "A stop-loss", "An automated yield strategy"],
+  "correct": 0
+},
+{
+  "category": "DeFi & Yield Farming",
+  "question": "What is impermanent loss?",
+  "options": ["Loss caused by token price divergence in liquidity pools", "A wallet hack", "Unconfirmed transaction", "Failed staking"],
+  "correct": 0
+},
+{
+  "category": "Altcoins",
+  "question": "What is the main function of Chainlink (LINK)?",
+  "options": ["Provide decentralized oracles", "NFT minting", "Governance voting", "Wallet storage"],
+  "correct": 0
+},
+{
+  "category": "NFTs & Digital Ownership",
+  "question": "What is minting?",
+  "options": ["Creating a new NFT or token", "Burning tokens", "Staking assets", "Selling a token"],
+  "correct": 0
+},
+{
+  "category": "Regulations & Compliance",
+  "question": "Which agency regulates securities in the U.S.?",
+  "options": ["SEC", "CFTC", "IRS", "FBI"],
+  "correct": 0
+},
+{
+  "category": "Ethereum",
+  "question": "What major upgrade introduced staking to Ethereum?",
+  "options": ["The Merge", "EIP-1559", "Hard Fork", "Lightning"],
+  "correct": 0
+},
+{
+  "category": "Bitcoin",
+  "question": "What is the smallest unit of Bitcoin?",
+  "options": ["Satoshi", "Bit", "Wei", "Block"],
+  "correct": 0
+},
+{
+  "category": "Blockchain Basics",
+  "question": "What is a smart contract?",
+  "options": ["Self-executing code on a blockchain", "A wallet upgrade", "A miner's license", "A DeFi protocol"],
+  "correct": 0
+},
+{
+  "category": "Security & Privacy",
+  "question": "What is 2FA?",
+  "options": ["Two-Factor Authentication", "Token Funding Account", "Fast Algorithm", "Fungibility Access"],
+  "correct": 0
+},
+{
+  "category": "Crypto Wallets",
+  "question": "Which of the following is hardware-based?",
+  "options": ["Ledger", "Trust Wallet", "MetaMask", "Phantom"],
+  "correct": 0
+},
+{
+  "category": "Crypto Trading",
+  "question": "What does FOMO stand for?",
+  "options": ["Fear of Missing Out", "Funding of Market Options", "Futures on Market Orders", "Free Market Offering"],
+  "correct": 0
+},
+{
+  "category": "DeFi & Yield Farming",
+  "question": "What does 'liquidity mining' refer to?",
+  "options": ["Earning tokens by providing liquidity", "Staking on PoS", "Mining Bitcoin", "Swapping NFTs"],
+  "correct": 0
+},
+{
+  "category": "Ethereum",
+  "question": "Which Ethereum standard is used for NFTs?",
+  "options": ["ERC-721", "ERC-20", "BEP-2", "ERC-1155"],
+  "correct": 0
+},
+{
+  "category": "NFTs & Digital Ownership",
+  "question": "Which platform is known for NFT trading?",
+  "options": ["OpenSea", "Uniswap", "MetaMask", "Coinbase Pro"],
+  "correct": 0
+},
+{
+  "category": "Bitcoin",
+  "question": "When was Bitcoin created?",
+  "options": ["2009", "2005", "2012", "2016"],
+  "correct": 0
+}
 ]
