@@ -14,11 +14,13 @@ async function loadQuestions() {
       const q = questions[currentQuestion];
       questionEl.textContent = q.question;
       optionsEl.innerHTML = '';
+      const correctIndex = Number(q.correct); // Force number type
+
       q.options.forEach((option, index) => {
         const btn = document.createElement('button');
         btn.textContent = option;
         btn.onclick = () => {
-          if (index === q.correct) {
+          if (index === correctIndex) {
             score++;
             resultEl.textContent = '✅ Correct!';
           } else {
@@ -31,7 +33,7 @@ async function loadQuestions() {
             if (currentQuestion < questions.length) {
               displayQuestion();
             } else {
-              questionEl.textContent = '🎉 Quiz completed!';
+              questionEl.textContent = `🎉 Quiz completed! Your score: ${score}/${questions.length}`;
               optionsEl.innerHTML = '';
             }
           }, 1000);
