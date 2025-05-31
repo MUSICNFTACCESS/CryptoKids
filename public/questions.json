@@ -35,4 +35,143 @@
 {"category":"Bridges","question":"What is a cross-chain bridge?","options":["Tool to move assets across blockchains","A wallet type","A mining pool","DeFi protocol"],"correct":0},
 {"category":"Flash Loans","question":"What is a flash loan?","options":["Loan without collateral if repaid instantly","NFT lending","Tokenized bonds","Layer 1 rewards"],"correct":0},
 {"category":"Web3","question":"What is Web3?","options":["Decentralized internet","Old internet protocol","VPN system","Gaming server"],"correct":0}
+,
+  {
+    "category": "ETH",
+    "question": "What is Ethereum primarily known for?",
+    "options": ["Smart contracts", "Private transactions", "Low fees", "Central banking"],
+    "correct": 0
+  },
+  {
+    "category": "Token Types",
+    "question": "What is a governance token?",
+    "options": ["A token used to vote in DAOs", "A token for gaming", "A stablecoin", "A mining reward"],
+    "correct": 0
+  },
+  {
+    "category": "NFTs",
+    "question": "What is the main characteristic of an NFT?",
+    "options": ["Uniqueness", "High supply", "Stability", "Fungibility"],
+    "correct": 0
+  },
+  {
+    "category": "Solana",
+    "question": "What consensus mechanism does Solana use?",
+    "options": ["Proof of History", "Proof of Work", "Proof of Burn", "Proof of Insurance"],
+    "correct": 0
+  },
+  {
+    "category": "Bridges",
+    "question": "Why use a blockchain bridge?",
+    "options": ["To move assets between chains", "To mint NFTs", "To mine faster", "To access cold storage"],
+    "correct": 0
+  },
+  {
+    "category": "Liquidity Pools",
+    "question": "What are liquidity pools used for?",
+    "options": ["Facilitating trades in DeFi", "Mining Bitcoin", "Storing NFTs", "Staking ETH"],
+    "correct": 0
+  },
+  {
+    "category": "Decentralization",
+    "question": "What does decentralization prevent?",
+    "options": ["Single point of failure", "Crypto rewards", "Trading fees", "Proof of Work"],
+    "correct": 0
+  },
+  {
+    "category": "Token Supply",
+    "question": "What is token inflation?",
+    "options": ["Increasing token supply", "Burning tokens", "Staking rewards", "Airdrop release"],
+    "correct": 0
+  },
+  {
+    "category": "Crypto History",
+    "question": "When was Bitcoin created?",
+    "options": ["2009", "2012", "2005", "2017"],
+    "correct": 0
+  },
+  {
+    "category": "DAOs",
+    "question": "How are decisions made in a DAO?",
+    "options": ["Token holder votes", "CEO decisions", "Node operators", "Off-chain polling"],
+    "correct": 0
+  },
+  {
+    "category": "Privacy Coins",
+    "question": "What is the main feature of privacy coins?",
+    "options": ["Anonymity", "Fast transactions", "NFT minting", "Low fees"],
+    "correct": 0
+  },
+  {
+    "category": "Gas Fees",
+    "question": "What causes gas fees to rise?",
+    "options": ["Network congestion", "More validators", "Cold storage", "Market crashes"],
+    "correct": 0
+  },
+  {
+    "category": "Blockchains",
+    "question": "Which blockchain is known for fast finality?",
+    "options": ["Solana", "Bitcoin", "Ethereum", "Dogecoin"],
+    "correct": 0
+  },
+  {
+    "category": "Use Cases",
+    "question": "What is a common use case of NFTs?",
+    "options": ["Digital collectibles", "Cold storage", "Token bridges", "Flash loans"],
+    "correct": 0
+  },
+  {
+    "category": "Wallet Safety",
+    "question": "What should you NEVER share?",
+    "options": ["Seed phrase", "Public address", "Transaction ID", "Wallet balance"],
+    "correct": 0
+  },
+  {
+    "category": "Yield",
+    "question": "What increases staking rewards?",
+    "options": ["More tokens staked", "Higher gas", "Cold wallets", "Exchanges"],
+    "correct": 0
+  },
+  {
+    "category": "Airdrops",
+    "question": "How are most airdrops claimed?",
+    "options": ["Wallet snapshot", "Smart contract call", "Buying tokens", "Minting NFTs"],
+    "correct": 0
+  },
+  {
+    "category": "Security",
+    "question": "What is phishing in crypto?",
+    "options": ["Fake site or link to steal info", "Mining faster", "Price drops", "Chain halts"],
+    "correct": 0
+  },
+  {
+    "category": "Custody",
+    "question": "What is self-custody?",
+    "options": ["Controlling your own keys", "Using a centralized exchange", "Sending to a DAO", "Delegating to miners"],
+    "correct": 0
+  },
+  {
+    "category": "L2 Scaling",
+    "question": "Which of these is a Layer 2 solution?",
+    "options": ["Arbitrum", "Ethereum", "Solana", "Avalanche"],
+    "correct": 0
+  },
+  {
+    "category": "DeFi",
+    "question": "What is impermanent loss?",
+    "options": ["Loss in a liquidity pool due to price divergence", "Wallet hack", "Burned tokens", "DAO proposal rejection"],
+    "correct": 0
+  },
+  {
+    "category": "Smart Contracts",
+    "question": "What triggers a smart contract?",
+    "options": ["Specific conditions", "Mining", "Node approval", "Gas drop"],
+    "correct": 0
+  },
+  {
+    "category": "Layer 1s",
+    "question": "Which of these is NOT a Layer 1 blockchain?",
+    "options": ["Polygon", "Ethereum", "Solana", "Bitcoin"],
+    "correct": 0
+  }
 ]
