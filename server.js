@@ -3,6 +3,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
 require("dotenv").config();
+const path = require("path");
 const OpenAI = require("openai");
 
 const app = express();
@@ -10,10 +11,9 @@ const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static("public"));
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 async function getPrice(symbol) {
   const ids = {
@@ -31,10 +31,8 @@ async function getPrice(symbol) {
   try {
     const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${id}&vs_currencies=usd`);
     const data = await res.json();
-    console.log("CoinGecko response:", data);
     return data[id] && data[id].usd ? `$${data[id].usd}` : null;
-  } catch (err) {
-    console.error("Error fetching price:", err.message);
+  } catch {
     return null;
   }
 }
@@ -55,32 +53,30 @@ app.post("/api/chat", async (req, res) => {
     if (sol) priceResponse = `Solana is currently trading at ${sol}.`;
   }
 
-  if (priceResponse) {
-    return res.json({ reply: priceResponse });
-  }
+  if (priceResponse) return res.json({ reply: priceResponse });
 
   try {
-    const chatCompletion = await openai.chat.completions.create({
+    const chat = await openai.chat.completions.create({
       model: "gpt-4",
       messages: [
         {
           role: "system",
-          content: `You are CrimznBot, a professional crypto strategist. Never say you're an AI or chatbot. Speak confidently and answer directly.`,
+          content: "You are CrimznBot, a professional crypto strategist. Never say you're an AI. Respond with clarity and authority.",
         },
         { role: "user", content: message },
       ],
       temperature: 0.7,
     });
 
-    res.json({ reply: chatCompletion.choices[0].message.content });
+    res.json({ reply: chat.choices[0].message.content });
   } catch (err) {
-    console.error("OpenAI error:", err.message);
     res.status(500).json({ error: "CrimznBot is unavailable" });
   }
 });
 
-app.get("/", (req, res) => {
-  res.send("CrimznBot backend is live.");
+// Fallback to serve index.html
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.listen(port, () => {
