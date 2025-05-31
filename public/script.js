@@ -14,13 +14,21 @@ async function loadQuestions() {
       const q = questions[currentQuestion];
       questionEl.textContent = q.question;
       optionsEl.innerHTML = '';
-      const correctIndex = Number(q.correct); // Force number type
 
-      q.options.forEach((option, index) => {
+      // Prepare shuffled options with correct flag
+      const originalOptions = q.options.map((text, index) => ({
+        text,
+        isCorrect: index === Number(q.correct)
+      }));
+
+      // Shuffle the options
+      const shuffled = originalOptions.sort(() => Math.random() - 0.5);
+
+      shuffled.forEach((option) => {
         const btn = document.createElement('button');
-        btn.textContent = option;
+        btn.textContent = option.text;
         btn.onclick = () => {
-          if (index === correctIndex) {
+          if (option.isCorrect) {
             score++;
             resultEl.textContent = '✅ Correct!';
           } else {
