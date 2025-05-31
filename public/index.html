@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CryptoKids Quiz</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CryptoKids Quiz 🟠</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="splash-screen">
+    <img src="logo.png" alt="CryptoKids Logo" class="logo">
     <h1>CryptoKids 🟠</h1>
-    <p>Are you ready to test your crypto skills?</p>
+    <p>Ready to test your crypto knowledge?</p>
     <button onclick="startQuiz()">Start Quiz</button>
   </div>
 
   <div id="quiz-container" class="hidden">
+    <div id="progress-container">
+      <div id="progress-bar"></div>
+    </div>
     <h2 id="question"></h2>
+    <div id="timer">⏱️ <span id="time-left">15</span>s</div>
     <ul id="options"></ul>
     <button id="next-btn" onclick="nextQuestion()">Next</button>
     <div id="score-container" class="hidden">
-      <h3>Your Score: <span id="score"></span>/100</h3>
+      <h3>Your Score: <span id="score"></span></h3>
+      <button onclick="location.reload()">Play Again</button>
     </div>
   </div>
+
+  <footer>
+    <p>CryptoKids – Empowering young minds with crypto education 🟠</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>

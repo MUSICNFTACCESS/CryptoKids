@@ -15,13 +15,30 @@ body {
   display: none;
 }
 
-#splash-screen {
-  animation: fadeIn 1.5s ease-in-out;
+.logo {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
 }
 
-#quiz-container {
-  max-width: 600px;
+#progress-container {
   width: 100%;
+  background-color: #333;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+#progress-bar {
+  width: 0;
+  height: 10px;
+  background-color: #f7931a;
+  border-radius: 8px;
+  transition: width 0.3s ease;
+}
+
+#timer {
+  font-size: 16px;
+  margin-top: 5px;
 }
 
 button {
@@ -31,7 +48,6 @@ button {
   padding: 10px 20px;
   margin-top: 15px;
   font-weight: bold;
-  font-size: 16px;
   cursor: pointer;
   border-radius: 6px;
 }
@@ -54,11 +70,17 @@ li {
   cursor: pointer;
 }
 
-li:hover {
-  background-color: #333;
+li.correct {
+  background-color: #28a745;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+li.incorrect {
+  background-color: #dc3545;
+}
+
+footer {
+  position: fixed;
+  bottom: 10px;
+  color: #aaa;
+  font-size: 12px;
 }

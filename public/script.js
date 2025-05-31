@@ -1,12 +1,12 @@
 let currentQuestionIndex = 0;
 let score = 0;
 let questions = [];
+let timerInterval;
+const TIME_PER_QUESTION = 15; // seconds
 
-fetch("questions.json")
-  .then((res) => res.json())
-  .then((data) => {
-    questions = shuffle(data);
-  });
+fetch("questions.json").then(res => res.json()).then(data => {
+  questions = shuffle(data);
+});
 
 function startQuiz() {
   document.getElementById("splash-screen").classList.add("hidden");
@@ -15,13 +15,18 @@ function startQuiz() {
 }
 
 function showQuestion() {
+  resetTimer();
+  startTimer();
+
   const questionObj = questions[currentQuestionIndex];
   document.getElementById("question").innerText = questionObj.question;
+
+  updateProgress();
 
   const optionsList = document.getElementById("options");
   optionsList.innerHTML = "";
 
-  shuffle([...questionObj.options]).forEach((option, index) => {
+  shuffle([...questionObj.options]).forEach(option => {
     const li = document.createElement("li");
     li.textContent = option;
     li.onclick = () => checkAnswer(option, questionObj);
@@ -30,19 +35,22 @@ function showQuestion() {
 }
 
 function checkAnswer(selected, questionObj) {
+  clearInterval(timerInterval);
+
   const correctAnswer = questionObj.options[questionObj.correct];
+
+  document.querySelectorAll("li").forEach(el => {
+    el.onclick = null;
+    if (el.textContent === correctAnswer) {
+      el.classList.add("correct");
+    } else if (el.textContent === selected) {
+      el.classList.add("incorrect");
+    }
+  });
+
   if (selected === correctAnswer) {
     score++;
   }
-  document.querySelectorAll("li").forEach((el) => {
-    el.onclick = null;
-    el.style.pointerEvents = "none";
-    if (el.textContent === correctAnswer) {
-      el.style.backgroundColor = "#28a745";
-    } else if (el.textContent === selected) {
-      el.style.backgroundColor = "#dc3545";
-    }
-  });
 }
 
 function nextQuestion() {
@@ -50,9 +58,36 @@ function nextQuestion() {
   if (currentQuestionIndex < questions.length) {
     showQuestion();
   } else {
-    document.getElementById("quiz-container").innerHTML =
-      "<h2>Quiz Completed!</h2><p>Your score: " + score + " / " + questions.length + "</p>";
+    document.getElementById("score-container").classList.remove("hidden");
+    document.getElementById("score").innerText = `${score}/${questions.length}`;
+    document.getElementById("next-btn").classList.add("hidden");
+    document.getElementById("question").classList.add("hidden");
+    document.getElementById("options").classList.add("hidden");
+    document.getElementById("timer").classList.add("hidden");
   }
+}
+
+function updateProgress() {
+  const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+  document.getElementById("progress-bar").style.width = `${progress}%`;
+}
+
+function startTimer() {
+  let timeLeft = TIME_PER_QUESTION;
+  document.getElementById("time-left").textContent = timeLeft;
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    document.getElementById("time-left").textContent = timeLeft;
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      nextQuestion();
+    }
+  }, 1000);
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
 }
 
 function shuffle(arr) {
