@@ -2,9 +2,10 @@ let currentQuestionIndex = 0;
 let score = 0;
 let questions = [];
 let timerInterval;
+
 const TIME_PER_QUESTION = 15; // seconds
 
-fetch("questions.json").then(res => res.json()).then(data => {
+fetch('./questions.json').then(res => res.json()).then(data => {
   questions = shuffle(data);
 });
 
@@ -21,8 +22,6 @@ function showQuestion() {
   const questionObj = questions[currentQuestionIndex];
   document.getElementById("question").innerText = questionObj.question;
 
-  updateProgress();
-
   const optionsList = document.getElementById("options");
   optionsList.innerHTML = "";
 
@@ -32,6 +31,8 @@ function showQuestion() {
     li.onclick = () => checkAnswer(option, questionObj);
     optionsList.appendChild(li);
   });
+
+  updateProgress();
 }
 
 function checkAnswer(selected, questionObj) {
@@ -79,6 +80,7 @@ function startTimer() {
   timerInterval = setInterval(() => {
     timeLeft--;
     document.getElementById("time-left").textContent = timeLeft;
+
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
       nextQuestion();
