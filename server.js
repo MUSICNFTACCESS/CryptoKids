@@ -25,14 +25,16 @@ async function getPrice(symbol) {
     solana: "solana",
   };
 
-    return data[id] && data[id].usd ? `$${data[id].usd}` : null;
+  const id = ids[symbol.toLowerCase()];
   if (!id) return null;
 
   try {
     const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${id}&vs_currencies=usd`);
     const data = await res.json();
-    return data[id]?.usd ? `$${data[id].usd}` : null;
+    console.log("CoinGecko response:", data);
+    return data[id] && data[id].usd ? `$${data[id].usd}` : null;
   } catch (err) {
+    console.error("Error fetching price:", err.message);
     return null;
   }
 }
