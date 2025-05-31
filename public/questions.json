@@ -2,309 +2,1112 @@
   {
     "category": "Regulations & Compliance",
     "question": "What does KYC stand for?",
-    "options": ["Know Your Customer", "Keep Your Crypto", "Know Your Coin", "Keep Your Code"],
+    "options": [
+      "Know Your Customer",
+      "Keep Your Crypto",
+      "Know Your Coin",
+      "Keep Your Cash"
+    ],
     "correct": 0
   },
   {
     "category": "Security & Privacy",
     "question": "What is a seed phrase?",
-    "options": ["A backup of your crypto wallet", "A type of encryption", "A smart contract", "A public key"],
+    "options": [
+      "A backup of your crypto wallet",
+      "A type of encryption",
+      "A smart contract",
+      "A stablecoin protocol"
+    ],
     "correct": 0
   },
   {
     "category": "Crypto Wallets",
     "question": "Which wallet is best for long-term cold storage?",
-    "options": ["Hardware wallet", "Web wallet", "Exchange wallet", "Mobile wallet"],
+    "options": [
+      "Hardware wallet",
+      "Web wallet",
+      "Exchange wallet",
+      "Mobile wallet"
+    ],
     "correct": 0
   },
   {
     "category": "Bitcoin",
     "question": "What is the maximum supply of Bitcoin?",
-    "options": ["21 million", "100 million", "Unlimited", "10 million"],
+    "options": [
+      "21 million",
+      "100 million",
+      "Unlimited",
+      "10 million"
+    ],
     "correct": 0
   },
   {
     "category": "Ethereum & Smart Contracts",
     "question": "What is Ethereum gas used for?",
-    "options": ["Paying for transaction execution", "Mining Bitcoin", "Creating NFTs", "Voting on governance"],
+    "options": [
+      "Paying for transaction execution",
+      "Mining Bitcoin",
+      "Reducing inflation",
+      "Backing NFTs"
+    ],
     "correct": 0
   },
   {
     "category": "DeFi & Yield Farming",
     "question": "What is yield farming?",
-    "options": ["Earning interest on crypto", "Creating yield crops", "Mining altcoins", "Trading NFTs"],
+    "options": [
+      "Earning interest on crypto",
+      "Creating yield crops",
+      "Growing tokens physically",
+      "Trading with leverage"
+    ],
     "correct": 0
   },
   {
     "category": "Crypto Trading",
     "question": "What is a limit order?",
-    "options": ["An order to buy/sell at a set price", "An immediate market trade", "A futures trade", "A staking method"],
+    "options": [
+      "An order to buy/sell at a set price",
+      "An immediate market buy",
+      "A blockchain audit",
+      "A wallet function"
+    ],
     "correct": 0
   },
   {
     "category": "Blockchain Basics",
     "question": "What does a block contain?",
-    "options": ["Transaction data", "Gas prices", "Private keys", "Wallet addresses"],
+    "options": [
+      "Transaction data",
+      "Gas prices",
+      "Private keys",
+      "Wallet seed"
+    ],
     "correct": 0
   },
   {
     "category": "Crypto History",
     "question": "What year did Bitcoin launch?",
-    "options": ["2009", "2005", "2011", "2007"],
+    "options": [
+      "2009",
+      "2005",
+      "2011",
+      "2007"
+    ],
     "correct": 0
   },
   {
     "category": "Crypto Security",
     "question": "What is a 51% attack?",
-    "options": ["Majority control of a blockchain", "Phishing scam", "NFT theft", "Wallet hack"],
+    "options": [
+      "Majority control of a blockchain",
+      "Phishing scam",
+      "Node reward",
+      "Stablecoin crash"
+    ],
     "correct": 0
   },
   {
     "category": "NFTs & Digital Ownership",
     "question": "What does NFT stand for?",
-    "options": ["Non-Fungible Token", "New Finance Technology", "Network Financial Tracker", "Non-Fixed Term"],
+    "options": [
+      "Non-Fungible Token",
+      "New Finance Technology",
+      "Network Fee Token",
+      "Non-Financial Trust"
+    ],
     "correct": 0
   },
   {
     "category": "Ethereum & Smart Contracts",
     "question": "What is Solidity?",
-    "options": ["Ethereum programming language", "A staking protocol", "A crypto wallet", "A blockchain explorer"],
+    "options": [
+      "Ethereum programming language",
+      "A staking protocol",
+      "A wallet extension",
+      "A gas token"
+    ],
     "correct": 0
   },
   {
-    "category": "DeFi & Yield Farming",
-    "question": "What is impermanent loss?",
-    "options": ["Loss from liquidity providing", "Wallet hack", "Staking penalty", "Missed airdrop"],
-    "correct": 0
-  },
-  {
-    "category": "Crypto Trading",
-    "question": "What is a stop-loss order?",
-    "options": ["Auto-sell below a price", "Auto-buy above a price", "Setting a limit", "Holding strategy"],
-    "correct": 0
-  },
-  {
-    "category": "Bitcoin",
-    "question": "Who created Bitcoin?",
-    "options": ["Satoshi Nakamoto", "Vitalik Buterin", "Elon Musk", "Charles Hoskinson"],
-    "correct": 0
-  },
-  {
-    "category": "Layer 2 Solutions",
-    "question": "What is the purpose of Arbitrum?",
-    "options": ["Scale Ethereum transactions", "Create new tokens", "Mine BTC", "Stake NFTs"],
-    "correct": 0
-  },
-  {
-    "category": "Staking",
-    "question": "What is staking?",
-    "options": ["Locking crypto to secure a network", "Shorting a token", "Minting NFTs", "Buying leverage"],
-    "correct": 0
-  },
-  {
-    "category": "Crypto Wallets",
-    "question": "What is MetaMask?",
-    "options": ["Ethereum wallet", "Bitcoin explorer", "NFT platform", "Mining pool"],
-    "correct": 0
-  },
-  {
-    "category": "Blockchain Basics",
-    "question": "What is a smart contract?",
-    "options": ["Self-executing contract on blockchain", "Paper contract", "Crypto token", "Node validator"],
-    "correct": 0
-  },
-  {
-    "category": "Crypto Security",
-    "question": "What is phishing?",
-    "options": ["Fake websites or links to steal info", "Whale trading", "Gas fee spike", "Yield farming reward"],
-    "correct": 0
-  },
-  {
-    "category": "Bitcoin",
-    "question": "What halving event reduces?",
-    "options": ["Bitcoin mining reward", "Gas fees", "Staking rate", "Token burn"],
+    "category": "Oracles",
+    "question": "What is the main function of an oracle in blockchain?",
+    "options": [
+      "To bring off-chain data on-chain",
+      "To store private keys",
+      "To process transactions",
+      "To mint NFTs"
+    ],
     "correct": 0
   },
   {
     "category": "Solana Ecosystem",
-    "question": "Which wallet supports Solana?",
-    "options": ["Phantom", "MetaMask", "Trezor", "Electrum"],
+    "question": "What makes Solana unique?",
+    "options": [
+      "High-speed, low-cost transactions",
+      "Proof-of-Work consensus",
+      "Bitcoin smart contracts",
+      "Ethereum forks"
+    ],
     "correct": 0
   },
   {
-    "category": "Crypto Regulations",
-    "question": "What is the SEC?",
-    "options": ["Securities and Exchange Commission", "Smart Execution Channel", "System Error Code", "Security Exchange Coin"],
+    "category": "Decentralization",
+    "question": "Why is decentralization important in blockchain?",
+    "options": [
+      "Reduces single points of failure",
+      "Speeds up banking",
+      "Increases gas fees",
+      "Eliminates encryption"
+    ],
     "correct": 0
   },
   {
-    "category": "Ethereum",
-    "question": "What upgrade introduced Proof of Stake to Ethereum?",
-    "options": ["The Merge", "The Split", "The Fork", "The Flippening"],
+    "category": "Cold Wallets",
+    "question": "Which of the following is a cold wallet?",
+    "options": [
+      "Ledger Nano",
+      "MetaMask",
+      "Phantom",
+      "Coinbase app"
+    ],
     "correct": 0
   },
   {
-    "category": "Layer 1 Chains",
-    "question": "What is Avalanche?",
-    "options": ["Layer 1 blockchain", "Bitcoin fork", "Crypto wallet", "Ethereum tool"],
+    "category": "Hot Wallets",
+    "question": "What defines a hot wallet?",
+    "options": [
+      "Connected to the internet",
+      "Stored on paper",
+      "Stored in a safe",
+      "Hardware-based"
+    ],
     "correct": 0
   },
   {
-    "category": "DeFi Tools",
-    "question": "What is Uniswap?",
-    "options": ["Decentralized exchange", "NFT mint site", "Staking protocol", "Bridge to Solana"],
+    "category": "Layer 1",
+    "question": "Which is a Layer 1 blockchain?",
+    "options": [
+      "Ethereum",
+      "Arbitrum",
+      "Polygon",
+      "Optimism"
+    ],
     "correct": 0
   },
   {
-    "category": "Yield Aggregators",
-    "question": "What does Yearn.Finance offer?",
-    "options": ["Optimized yield strategies", "NFT loans", "Wallet insurance", "L1 validator service"],
+    "category": "Layer 2",
+    "question": "Which is an example of a Layer 2 solution for Ethereum?",
+    "options": [
+      "Arbitrum",
+      "Solana",
+      "Chainlink",
+      "Avalanche"
+    ],
     "correct": 0
   },
   {
-    "category": "Bridges",
-    "question": "What is Wormhole?",
-    "options": ["Cross-chain bridge", "Solana NFT marketplace", "ETH explorer", "Cold storage device"],
+    "category": "Consensus Mechanisms",
+    "question": "What consensus does Ethereum use post-Merge?",
+    "options": [
+      "Proof-of-Stake",
+      "Proof-of-Work",
+      "Delegated Proof-of-Stake",
+      "Practical Byzantine Fault Tolerance"
+    ],
     "correct": 0
   },
   {
-    "category": "Stablecoins",
-    "question": "Which is a decentralized stablecoin?",
-    "options": ["DAI", "USDT", "USDC", "BUSD"],
+    "category": "Token Standards",
+    "question": "What does ERC-20 represent?",
+    "options": [
+      "A standard for fungible tokens on Ethereum",
+      "A Bitcoin upgrade",
+      "A stablecoin index",
+      "A cross-chain bridge"
+    ],
     "correct": 0
   },
   {
-    "category": "Crypto Tools",
-    "question": "What does CoinGecko provide?",
-    "options": ["Price tracking & analytics", "Wallet services", "Smart contract deployment", "Mining software"],
+    "category": "Ethereum & Smart Contracts",
+    "question": "What is the function of concept 1 in Ethereum & Smart Contracts?",
+    "options": [
+      "Correct Answer 1",
+      "Wrong Answer A1",
+      "Wrong Answer B1",
+      "Wrong Answer C1"
+    ],
     "correct": 0
   },
   {
-    "category": "Solana",
-    "question": "What consensus mechanism does Solana use?",
-    "options": ["Proof of History", "Proof of Stake", "Proof of Work", "Delegated Proof"],
+    "category": "Token Standards",
+    "question": "What is the function of concept 2 in Token Standards?",
+    "options": [
+      "Correct Answer 2",
+      "Wrong Answer A2",
+      "Wrong Answer B2",
+      "Wrong Answer C2"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Web3 Applications",
+    "question": "What is the function of concept 3 in Web3 Applications?",
+    "options": [
+      "Correct Answer 3",
+      "Wrong Answer A3",
+      "Wrong Answer B3",
+      "Wrong Answer C3"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Blockchain Basics",
+    "question": "What is the function of concept 4 in Blockchain Basics?",
+    "options": [
+      "Correct Answer 4",
+      "Wrong Answer A4",
+      "Wrong Answer B4",
+      "Wrong Answer C4"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Layer 2",
+    "question": "What is the function of concept 5 in Layer 2?",
+    "options": [
+      "Correct Answer 5",
+      "Wrong Answer A5",
+      "Wrong Answer B5",
+      "Wrong Answer C5"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Bitcoin",
+    "question": "What is the function of concept 6 in Bitcoin?",
+    "options": [
+      "Correct Answer 6",
+      "Wrong Answer A6",
+      "Wrong Answer B6",
+      "Wrong Answer C6"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Wallets",
+    "question": "What is the function of concept 7 in Crypto Wallets?",
+    "options": [
+      "Correct Answer 7",
+      "Wrong Answer A7",
+      "Wrong Answer B7",
+      "Wrong Answer C7"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Web3 Applications",
+    "question": "What is the function of concept 8 in Web3 Applications?",
+    "options": [
+      "Correct Answer 8",
+      "Wrong Answer A8",
+      "Wrong Answer B8",
+      "Wrong Answer C8"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Token Standards",
+    "question": "What is the function of concept 9 in Token Standards?",
+    "options": [
+      "Correct Answer 9",
+      "Wrong Answer A9",
+      "Wrong Answer B9",
+      "Wrong Answer C9"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Solana Ecosystem",
+    "question": "What is the function of concept 10 in Solana Ecosystem?",
+    "options": [
+      "Correct Answer 10",
+      "Wrong Answer A10",
+      "Wrong Answer B10",
+      "Wrong Answer C10"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Token Standards",
+    "question": "What is the function of concept 11 in Token Standards?",
+    "options": [
+      "Correct Answer 11",
+      "Wrong Answer A11",
+      "Wrong Answer B11",
+      "Wrong Answer C11"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Security",
+    "question": "What is the function of concept 12 in Crypto Security?",
+    "options": [
+      "Correct Answer 12",
+      "Wrong Answer A12",
+      "Wrong Answer B12",
+      "Wrong Answer C12"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Web3 Applications",
+    "question": "What is the function of concept 13 in Web3 Applications?",
+    "options": [
+      "Correct Answer 13",
+      "Wrong Answer A13",
+      "Wrong Answer B13",
+      "Wrong Answer C13"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Decentralization",
+    "question": "What is the function of concept 14 in Decentralization?",
+    "options": [
+      "Correct Answer 14",
+      "Wrong Answer A14",
+      "Wrong Answer B14",
+      "Wrong Answer C14"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Blockchain Basics",
+    "question": "What is the function of concept 15 in Blockchain Basics?",
+    "options": [
+      "Correct Answer 15",
+      "Wrong Answer A15",
+      "Wrong Answer B15",
+      "Wrong Answer C15"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Decentralization",
+    "question": "What is the function of concept 16 in Decentralization?",
+    "options": [
+      "Correct Answer 16",
+      "Wrong Answer A16",
+      "Wrong Answer B16",
+      "Wrong Answer C16"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "DeFi & Yield Farming",
+    "question": "What is the function of concept 17 in DeFi & Yield Farming?",
+    "options": [
+      "Correct Answer 17",
+      "Wrong Answer A17",
+      "Wrong Answer B17",
+      "Wrong Answer C17"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Staking & Governance",
+    "question": "What is the function of concept 18 in Staking & Governance?",
+    "options": [
+      "Correct Answer 18",
+      "Wrong Answer A18",
+      "Wrong Answer B18",
+      "Wrong Answer C18"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Trading",
+    "question": "What is the function of concept 19 in Crypto Trading?",
+    "options": [
+      "Correct Answer 19",
+      "Wrong Answer A19",
+      "Wrong Answer B19",
+      "Wrong Answer C19"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Wallets",
+    "question": "What is the function of concept 20 in Crypto Wallets?",
+    "options": [
+      "Correct Answer 20",
+      "Wrong Answer A20",
+      "Wrong Answer B20",
+      "Wrong Answer C20"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Web3 Applications",
+    "question": "What is the function of concept 21 in Web3 Applications?",
+    "options": [
+      "Correct Answer 21",
+      "Wrong Answer A21",
+      "Wrong Answer B21",
+      "Wrong Answer C21"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "DAOs",
+    "question": "What is the function of concept 22 in DAOs?",
+    "options": [
+      "Correct Answer 22",
+      "Wrong Answer A22",
+      "Wrong Answer B22",
+      "Wrong Answer C22"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Layer 1",
+    "question": "What is the function of concept 23 in Layer 1?",
+    "options": [
+      "Correct Answer 23",
+      "Wrong Answer A23",
+      "Wrong Answer B23",
+      "Wrong Answer C23"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Interoperability",
+    "question": "What is the function of concept 24 in Interoperability?",
+    "options": [
+      "Correct Answer 24",
+      "Wrong Answer A24",
+      "Wrong Answer B24",
+      "Wrong Answer C24"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Decentralization",
+    "question": "What is the function of concept 25 in Decentralization?",
+    "options": [
+      "Correct Answer 25",
+      "Wrong Answer A25",
+      "Wrong Answer B25",
+      "Wrong Answer C25"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Security",
+    "question": "What is the function of concept 26 in Crypto Security?",
+    "options": [
+      "Correct Answer 26",
+      "Wrong Answer A26",
+      "Wrong Answer B26",
+      "Wrong Answer C26"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto History",
+    "question": "What is the function of concept 27 in Crypto History?",
+    "options": [
+      "Correct Answer 27",
+      "Wrong Answer A27",
+      "Wrong Answer B27",
+      "Wrong Answer C27"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Wallets",
+    "question": "What is the function of concept 28 in Crypto Wallets?",
+    "options": [
+      "Correct Answer 28",
+      "Wrong Answer A28",
+      "Wrong Answer B28",
+      "Wrong Answer C28"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto History",
+    "question": "What is the function of concept 29 in Crypto History?",
+    "options": [
+      "Correct Answer 29",
+      "Wrong Answer A29",
+      "Wrong Answer B29",
+      "Wrong Answer C29"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Trading",
+    "question": "What is the function of concept 30 in Crypto Trading?",
+    "options": [
+      "Correct Answer 30",
+      "Wrong Answer A30",
+      "Wrong Answer B30",
+      "Wrong Answer C30"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Solana Ecosystem",
+    "question": "What is the function of concept 31 in Solana Ecosystem?",
+    "options": [
+      "Correct Answer 31",
+      "Wrong Answer A31",
+      "Wrong Answer B31",
+      "Wrong Answer C31"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Blockchain Basics",
+    "question": "What is the function of concept 32 in Blockchain Basics?",
+    "options": [
+      "Correct Answer 32",
+      "Wrong Answer A32",
+      "Wrong Answer B32",
+      "Wrong Answer C32"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Interoperability",
+    "question": "What is the function of concept 33 in Interoperability?",
+    "options": [
+      "Correct Answer 33",
+      "Wrong Answer A33",
+      "Wrong Answer B33",
+      "Wrong Answer C33"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Interoperability",
+    "question": "What is the function of concept 34 in Interoperability?",
+    "options": [
+      "Correct Answer 34",
+      "Wrong Answer A34",
+      "Wrong Answer B34",
+      "Wrong Answer C34"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Interoperability",
+    "question": "What is the function of concept 35 in Interoperability?",
+    "options": [
+      "Correct Answer 35",
+      "Wrong Answer A35",
+      "Wrong Answer B35",
+      "Wrong Answer C35"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto History",
+    "question": "What is the function of concept 36 in Crypto History?",
+    "options": [
+      "Correct Answer 36",
+      "Wrong Answer A36",
+      "Wrong Answer B36",
+      "Wrong Answer C36"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "DeFi & Yield Farming",
+    "question": "What is the function of concept 37 in DeFi & Yield Farming?",
+    "options": [
+      "Correct Answer 37",
+      "Wrong Answer A37",
+      "Wrong Answer B37",
+      "Wrong Answer C37"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Decentralization",
+    "question": "What is the function of concept 38 in Decentralization?",
+    "options": [
+      "Correct Answer 38",
+      "Wrong Answer A38",
+      "Wrong Answer B38",
+      "Wrong Answer C38"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto History",
+    "question": "What is the function of concept 39 in Crypto History?",
+    "options": [
+      "Correct Answer 39",
+      "Wrong Answer A39",
+      "Wrong Answer B39",
+      "Wrong Answer C39"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Interoperability",
+    "question": "What is the function of concept 40 in Interoperability?",
+    "options": [
+      "Correct Answer 40",
+      "Wrong Answer A40",
+      "Wrong Answer B40",
+      "Wrong Answer C40"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Layer 2",
+    "question": "What is the function of concept 41 in Layer 2?",
+    "options": [
+      "Correct Answer 41",
+      "Wrong Answer A41",
+      "Wrong Answer B41",
+      "Wrong Answer C41"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Oracles",
+    "question": "What is the function of concept 42 in Oracles?",
+    "options": [
+      "Correct Answer 42",
+      "Wrong Answer A42",
+      "Wrong Answer B42",
+      "Wrong Answer C42"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "DeFi & Yield Farming",
+    "question": "What is the function of concept 43 in DeFi & Yield Farming?",
+    "options": [
+      "Correct Answer 43",
+      "Wrong Answer A43",
+      "Wrong Answer B43",
+      "Wrong Answer C43"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "DAOs",
+    "question": "What is the function of concept 44 in DAOs?",
+    "options": [
+      "Correct Answer 44",
+      "Wrong Answer A44",
+      "Wrong Answer B44",
+      "Wrong Answer C44"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Security",
+    "question": "What is the function of concept 45 in Crypto Security?",
+    "options": [
+      "Correct Answer 45",
+      "Wrong Answer A45",
+      "Wrong Answer B45",
+      "Wrong Answer C45"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Layer 1",
+    "question": "What is the function of concept 46 in Layer 1?",
+    "options": [
+      "Correct Answer 46",
+      "Wrong Answer A46",
+      "Wrong Answer B46",
+      "Wrong Answer C46"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "DeFi & Yield Farming",
+    "question": "What is the function of concept 47 in DeFi & Yield Farming?",
+    "options": [
+      "Correct Answer 47",
+      "Wrong Answer A47",
+      "Wrong Answer B47",
+      "Wrong Answer C47"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Web3 Applications",
+    "question": "What is the function of concept 48 in Web3 Applications?",
+    "options": [
+      "Correct Answer 48",
+      "Wrong Answer A48",
+      "Wrong Answer B48",
+      "Wrong Answer C48"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "DeFi & Yield Farming",
+    "question": "What is the function of concept 49 in DeFi & Yield Farming?",
+    "options": [
+      "Correct Answer 49",
+      "Wrong Answer A49",
+      "Wrong Answer B49",
+      "Wrong Answer C49"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Oracles",
+    "question": "What is the function of concept 50 in Oracles?",
+    "options": [
+      "Correct Answer 50",
+      "Wrong Answer A50",
+      "Wrong Answer B50",
+      "Wrong Answer C50"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Layer 1",
+    "question": "What is the function of concept 51 in Layer 1?",
+    "options": [
+      "Correct Answer 51",
+      "Wrong Answer A51",
+      "Wrong Answer B51",
+      "Wrong Answer C51"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Layer 2",
+    "question": "What is the function of concept 52 in Layer 2?",
+    "options": [
+      "Correct Answer 52",
+      "Wrong Answer A52",
+      "Wrong Answer B52",
+      "Wrong Answer C52"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Trading",
+    "question": "What is the function of concept 53 in Crypto Trading?",
+    "options": [
+      "Correct Answer 53",
+      "Wrong Answer A53",
+      "Wrong Answer B53",
+      "Wrong Answer C53"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Wallets",
+    "question": "What is the function of concept 54 in Crypto Wallets?",
+    "options": [
+      "Correct Answer 54",
+      "Wrong Answer A54",
+      "Wrong Answer B54",
+      "Wrong Answer C54"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Blockchain Basics",
+    "question": "What is the function of concept 55 in Blockchain Basics?",
+    "options": [
+      "Correct Answer 55",
+      "Wrong Answer A55",
+      "Wrong Answer B55",
+      "Wrong Answer C55"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Solana Ecosystem",
+    "question": "What is the function of concept 56 in Solana Ecosystem?",
+    "options": [
+      "Correct Answer 56",
+      "Wrong Answer A56",
+      "Wrong Answer B56",
+      "Wrong Answer C56"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "DAOs",
+    "question": "What is the function of concept 57 in DAOs?",
+    "options": [
+      "Correct Answer 57",
+      "Wrong Answer A57",
+      "Wrong Answer B57",
+      "Wrong Answer C57"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Staking & Governance",
+    "question": "What is the function of concept 58 in Staking & Governance?",
+    "options": [
+      "Correct Answer 58",
+      "Wrong Answer A58",
+      "Wrong Answer B58",
+      "Wrong Answer C58"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Blockchain Basics",
+    "question": "What is the function of concept 59 in Blockchain Basics?",
+    "options": [
+      "Correct Answer 59",
+      "Wrong Answer A59",
+      "Wrong Answer B59",
+      "Wrong Answer C59"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "DeFi & Yield Farming",
+    "question": "What is the function of concept 60 in DeFi & Yield Farming?",
+    "options": [
+      "Correct Answer 60",
+      "Wrong Answer A60",
+      "Wrong Answer B60",
+      "Wrong Answer C60"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Solana Ecosystem",
+    "question": "What is the function of concept 61 in Solana Ecosystem?",
+    "options": [
+      "Correct Answer 61",
+      "Wrong Answer A61",
+      "Wrong Answer B61",
+      "Wrong Answer C61"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Decentralization",
+    "question": "What is the function of concept 62 in Decentralization?",
+    "options": [
+      "Correct Answer 62",
+      "Wrong Answer A62",
+      "Wrong Answer B62",
+      "Wrong Answer C62"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto History",
+    "question": "What is the function of concept 63 in Crypto History?",
+    "options": [
+      "Correct Answer 63",
+      "Wrong Answer A63",
+      "Wrong Answer B63",
+      "Wrong Answer C63"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Trading",
+    "question": "What is the function of concept 64 in Crypto Trading?",
+    "options": [
+      "Correct Answer 64",
+      "Wrong Answer A64",
+      "Wrong Answer B64",
+      "Wrong Answer C64"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Blockchain Basics",
+    "question": "What is the function of concept 65 in Blockchain Basics?",
+    "options": [
+      "Correct Answer 65",
+      "Wrong Answer A65",
+      "Wrong Answer B65",
+      "Wrong Answer C65"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Oracles",
+    "question": "What is the function of concept 66 in Oracles?",
+    "options": [
+      "Correct Answer 66",
+      "Wrong Answer A66",
+      "Wrong Answer B66",
+      "Wrong Answer C66"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto History",
+    "question": "What is the function of concept 67 in Crypto History?",
+    "options": [
+      "Correct Answer 67",
+      "Wrong Answer A67",
+      "Wrong Answer B67",
+      "Wrong Answer C67"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Ethereum & Smart Contracts",
+    "question": "What is the function of concept 68 in Ethereum & Smart Contracts?",
+    "options": [
+      "Correct Answer 68",
+      "Wrong Answer A68",
+      "Wrong Answer B68",
+      "Wrong Answer C68"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Decentralization",
+    "question": "What is the function of concept 69 in Decentralization?",
+    "options": [
+      "Correct Answer 69",
+      "Wrong Answer A69",
+      "Wrong Answer B69",
+      "Wrong Answer C69"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Trading",
+    "question": "What is the function of concept 70 in Crypto Trading?",
+    "options": [
+      "Correct Answer 70",
+      "Wrong Answer A70",
+      "Wrong Answer B70",
+      "Wrong Answer C70"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Decentralization",
+    "question": "What is the function of concept 71 in Decentralization?",
+    "options": [
+      "Correct Answer 71",
+      "Wrong Answer A71",
+      "Wrong Answer B71",
+      "Wrong Answer C71"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "DeFi & Yield Farming",
+    "question": "What is the function of concept 72 in DeFi & Yield Farming?",
+    "options": [
+      "Correct Answer 72",
+      "Wrong Answer A72",
+      "Wrong Answer B72",
+      "Wrong Answer C72"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Solana Ecosystem",
+    "question": "What is the function of concept 73 in Solana Ecosystem?",
+    "options": [
+      "Correct Answer 73",
+      "Wrong Answer A73",
+      "Wrong Answer B73",
+      "Wrong Answer C73"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto Wallets",
+    "question": "What is the function of concept 74 in Crypto Wallets?",
+    "options": [
+      "Correct Answer 74",
+      "Wrong Answer A74",
+      "Wrong Answer B74",
+      "Wrong Answer C74"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "DAOs",
+    "question": "What is the function of concept 75 in DAOs?",
+    "options": [
+      "Correct Answer 75",
+      "Wrong Answer A75",
+      "Wrong Answer B75",
+      "Wrong Answer C75"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Layer 1",
+    "question": "What is the function of concept 76 in Layer 1?",
+    "options": [
+      "Correct Answer 76",
+      "Wrong Answer A76",
+      "Wrong Answer B76",
+      "Wrong Answer C76"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Crypto History",
+    "question": "What is the function of concept 77 in Crypto History?",
+    "options": [
+      "Correct Answer 77",
+      "Wrong Answer A77",
+      "Wrong Answer B77",
+      "Wrong Answer C77"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "DeFi & Yield Farming",
+    "question": "What is the function of concept 78 in DeFi & Yield Farming?",
+    "options": [
+      "Correct Answer 78",
+      "Wrong Answer A78",
+      "Wrong Answer B78",
+      "Wrong Answer C78"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Layer 2",
+    "question": "What is the function of concept 79 in Layer 2?",
+    "options": [
+      "Correct Answer 79",
+      "Wrong Answer A79",
+      "Wrong Answer B79",
+      "Wrong Answer C79"
+    ],
+    "correct": 0
+  },
+  {
+    "category": "Layer 2",
+    "question": "What is the function of concept 80 in Layer 2?",
+    "options": [
+      "Correct Answer 80",
+      "Wrong Answer A80",
+      "Wrong Answer B80",
+      "Wrong Answer C80"
+    ],
     "correct": 0
   }
-  // ⏳ Additional 70 questions will be appended next (split due to length limits)
-,
-{
-  "category": "Bitcoin",
-  "question": "What is the total supply limit of Bitcoin?",
-  "options": ["21 million", "100 million", "50 million", "Infinite"],
-  "correct": 0
-},
-{
-  "category": "Ethereum",
-  "question": "Which programming language is primarily used to write Ethereum smart contracts?",
-  "options": ["Solidity", "Python", "JavaScript", "C++"],
-  "correct": 0
-},
-{
-  "category": "Blockchain Basics",
-  "question": "What does 'blockchain' primarily ensure?",
-  "options": ["Data integrity", "Fast downloads", "Low latency", "Unlimited storage"],
-  "correct": 0
-},
-{
-  "category": "Crypto Wallets",
-  "question": "Which of the following is a hot wallet?",
-  "options": ["MetaMask", "Ledger", "Trezor", "Coldcard"],
-  "correct": 0
-},
-{
-  "category": "Security & Privacy",
-  "question": "What is a private key used for?",
-  "options": ["Authorizing transactions", "Mining crypto", "Viewing blockchain data", "Exchanging tokens"],
-  "correct": 0
-},
-{
-  "category": "Crypto Trading",
-  "question": "What is a market order?",
-  "options": ["An order to buy/sell immediately", "An order that executes at a set price", "A stop-loss", "An automated yield strategy"],
-  "correct": 0
-},
-{
-  "category": "DeFi & Yield Farming",
-  "question": "What is impermanent loss?",
-  "options": ["Loss caused by token price divergence in liquidity pools", "A wallet hack", "Unconfirmed transaction", "Failed staking"],
-  "correct": 0
-},
-{
-  "category": "Altcoins",
-  "question": "What is the main function of Chainlink (LINK)?",
-  "options": ["Provide decentralized oracles", "NFT minting", "Governance voting", "Wallet storage"],
-  "correct": 0
-},
-{
-  "category": "NFTs & Digital Ownership",
-  "question": "What is minting?",
-  "options": ["Creating a new NFT or token", "Burning tokens", "Staking assets", "Selling a token"],
-  "correct": 0
-},
-{
-  "category": "Regulations & Compliance",
-  "question": "Which agency regulates securities in the U.S.?",
-  "options": ["SEC", "CFTC", "IRS", "FBI"],
-  "correct": 0
-},
-{
-  "category": "Ethereum",
-  "question": "What major upgrade introduced staking to Ethereum?",
-  "options": ["The Merge", "EIP-1559", "Hard Fork", "Lightning"],
-  "correct": 0
-},
-{
-  "category": "Bitcoin",
-  "question": "What is the smallest unit of Bitcoin?",
-  "options": ["Satoshi", "Bit", "Wei", "Block"],
-  "correct": 0
-},
-{
-  "category": "Blockchain Basics",
-  "question": "What is a smart contract?",
-  "options": ["Self-executing code on a blockchain", "A wallet upgrade", "A miner's license", "A DeFi protocol"],
-  "correct": 0
-},
-{
-  "category": "Security & Privacy",
-  "question": "What is 2FA?",
-  "options": ["Two-Factor Authentication", "Token Funding Account", "Fast Algorithm", "Fungibility Access"],
-  "correct": 0
-},
-{
-  "category": "Crypto Wallets",
-  "question": "Which of the following is hardware-based?",
-  "options": ["Ledger", "Trust Wallet", "MetaMask", "Phantom"],
-  "correct": 0
-},
-{
-  "category": "Crypto Trading",
-  "question": "What does FOMO stand for?",
-  "options": ["Fear of Missing Out", "Funding of Market Options", "Futures on Market Orders", "Free Market Offering"],
-  "correct": 0
-},
-{
-  "category": "DeFi & Yield Farming",
-  "question": "What does 'liquidity mining' refer to?",
-  "options": ["Earning tokens by providing liquidity", "Staking on PoS", "Mining Bitcoin", "Swapping NFTs"],
-  "correct": 0
-},
-{
-  "category": "Ethereum",
-  "question": "Which Ethereum standard is used for NFTs?",
-  "options": ["ERC-721", "ERC-20", "BEP-2", "ERC-1155"],
-  "correct": 0
-},
-{
-  "category": "NFTs & Digital Ownership",
-  "question": "Which platform is known for NFT trading?",
-  "options": ["OpenSea", "Uniswap", "MetaMask", "Coinbase Pro"],
-  "correct": 0
-},
-{
-  "category": "Bitcoin",
-  "question": "When was Bitcoin created?",
-  "options": ["2009", "2005", "2012", "2016"],
-  "correct": 0
-}
 ]
