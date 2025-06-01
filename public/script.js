@@ -11,6 +11,7 @@ async function sendMessage() {
   const message = input.value.trim();
   if (!message) return;
 
+  // Append user message
   const userMsg = document.createElement("div");
   userMsg.innerHTML = `<div style="color: orange;"><strong>You:</strong> ${message}</div>`;
   chatBox.appendChild(userMsg);
@@ -33,11 +34,18 @@ async function sendMessage() {
     const botMsg = document.createElement("div");
     botMsg.innerHTML = `<div style="color: green;"><strong>CrimznBot:</strong> ${data.reply}</div>`;
     chatBox.appendChild(botMsg);
+
     questionCount++;
+
+    // Trigger paywall if max hit
+    if (questionCount >= maxQuestions) {
+      input.disabled = true;
+      paymentReminder.style.display = "block";
+    }
   } catch (error) {
-    const errMsg = document.createElement("div");
-    errMsg.innerHTML = `<div style="color: red;">Error reaching CrimznBot server.</div>`;
-    chatBox.appendChild(errMsg);
+    const errorMsg = document.createElement("div");
+    errorMsg.innerHTML = `<div style="color: red;">Error reaching CrimznBot server.</div>`;
+    chatBox.appendChild(errorMsg);
   }
 }
 
@@ -47,7 +55,7 @@ async function updatePrice(id, symbol) {
     const data = await res.json();
     const price = data[symbol]?.usd;
     if (price) document.getElementById(id).textContent = `$${price.toLocaleString()}`;
-  } catch {
+  } catch (e) {
     document.getElementById(id).textContent = "Error";
   }
 }
@@ -59,4 +67,4 @@ function refreshPrices() {
 }
 
 refreshPrices();
-setInterval(refreshPrices, 60000); // refresh every 60s
+setInterval(refreshPrices, 60000); // every 60 sec
