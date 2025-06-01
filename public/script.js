@@ -11,7 +11,10 @@ async function sendMessage() {
   const message = input.value.trim();
   if (!message) return;
 
-  chatBox.innerHTML = `<div style="color: orange;"><strong>You:</strong> ${message}</div>`;
+  // Append user message without clearing previous
+  const userMsg = document.createElement("div");
+  userMsg.innerHTML = `<div style="color: orange;"><strong>You:</strong> ${message}</div>`;
+  chatBox.appendChild(userMsg);
   input.value = "";
 
   if (questionCount >= maxQuestions) {
@@ -28,10 +31,14 @@ async function sendMessage() {
     });
 
     const data = await response.json();
-    chatBox.innerHTML = `<div style="color: green;"><strong>CrimznBot:</strong> ${data.reply}</div>`;
+    const botMsg = document.createElement("div");
+    botMsg.innerHTML = `<div style="color: green;"><strong>CrimznBot:</strong> ${data.reply}</div>`;
+    chatBox.appendChild(botMsg);
     questionCount++;
   } catch (error) {
-    chatBox.innerHTML = `<div style="color: red;">Error reaching CrimznBot server.</div>`;
+    const errorMsg = document.createElement("div");
+    errorMsg.innerHTML = `<div style="color: red;">Error reaching CrimznBot server.</div>`;
+    chatBox.appendChild(errorMsg);
   }
 }
 
