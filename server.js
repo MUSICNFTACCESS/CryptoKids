@@ -2,14 +2,13 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const fetch = require("node-fetch");
-const { Configuration, OpenAIApi } = require("openai");
+const OpenAI = require("openai");
 
 dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
@@ -57,3 +56,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`CrimznBot server running on port ${PORT}`);
 });
+// Redeploy trigger: Sat May 31 23:15:31 EDT 2025
