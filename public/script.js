@@ -1,17 +1,3 @@
-const BACKEND_URL = "https://cryptoconsult-1.onrender.com";
-
-let questionCount = 0;
-const maxQuestions = 3;
-
-async function sendMessage() {
-  const input = document.getElementById("user-input");
-  const chatBox = document.getElementById("chat-box");
-  const paymentReminder = document.getElementById("payment-reminder");
-
-  const message = input.value.trim();
-  if (!message) return;
-
-  chatBox.innerHTML = `<div style="color: orange;"><strong>You:</strong> ${message}</div>`;
   input.value = "";
 
   if (questionCount >= maxQuestions) {
