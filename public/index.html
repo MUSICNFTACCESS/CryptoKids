@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>CryptoConsult by Crimzn</title>
   <style>
     body {
@@ -62,63 +62,78 @@
       color: #f7931a;
       text-decoration: underline;
     }
+    .chat-container {
+      margin-top: 20px;
+      text-align: left;
+    }
+    .bot-message {
+      color: #00ff00;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .user-message {
+      color: #f7931a;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1>CryptoConsult by Crimzn</h1>
 
-<div class="container">
-  <h1>CryptoConsult by Crimzn</h1>
+    <p>
+      <span id="btcPrice">BTC: loading...</span> |
+      <span id="ethPrice">ETH: loading...</span> |
+      <span id="solPrice">SOL: loading...</span>
+    </p>
 
-<p>
-  <span id="btcPrice">BTC: loading...</span> | 
-  <span id="ethPrice">ETH: loading...</span> | 
-  <span id="solPrice">SOL: loading...</span>
-</p>
+    <p>Welcome to <strong>CryptoConsult</strong> – your personalized, AI-powered crypto strategist. Ask CrimznBot anything about crypto, strategy, DeFi, and more.</p>
 
-  <p>Welcome to <strong>CryptoConsult</strong> – your personalized, AI-powered crypto strategist. Ask CrimznBot anything about crypto, strategy, DeFi, and more.</p>
+    <div class="section">
+      <h2>Available Services</h2>
+      <ul>
+        <li>📊 Technical & Fundamental Analysis</li>
+        <li>📁 Portfolio Strategy</li>
+        <li>🔐 Wallet Setup & Education</li>
+        <li>💸 Crypto On-ramping / Off-ramping</li>
+        <li>📞 Consultation Calls</li>
+        <li>🧠 Macro Thesis & Cycle Mapping</li>
+        <li>⚙️ Custom AI Integration Advice</li>
+      </ul>
+    </div>
 
-  <div class="section">
-    <h2>Available Services</h2>
-    <ul>
-      <li>📊 Technical & Fundamental Analysis</li>
-      <li>📁 Portfolio Strategy</li>
-      <li>🔐 Wallet Setup & Education</li>
-      <li>💸 Crypto On-ramping / Off-ramping</li>
-      <li>📞 Consultation Calls</li>
-      <li>🧠 Macro Thesis & Cycle Mapping</li>
-      <li>⚙️ Custom AI Integration Advice</li>
-    </ul>
-  </div>
+    <div class="section">
+      <h2>Support & Payments</h2>
+      <div class="payment-buttons">
+        <button>Pay 99.99 USDC for Services</button>
+        <button>Tip 1 USDC</button>
+        <button>Pay with Solana</button>
+        <button disabled>🔒 Unlock with Solana (coming soon)</button>
+      </div>
+    </div>
 
-  <div class="section">
-    <h2>Support & Payments</h2>
-    <div class="payment-buttons">
-      <button>Pay 99.99 USDC for Services</button>
-      <button>Tip 1 USDC</button>
-      <button>Pay with Solana</button>
-      <button disabled>🔒 Unlock with Solana (coming soon)</button>
+    <div class="section">
+      <h2>Talk to CrimznBot</h2>
+      <input id="userInput" type="text" placeholder="Ask me anything crypto..." />
+      <button id="send-button" onclick="sendMessage()">Send</button>
+      <div id="chatBox" class="chat-container"></div>
+    </div>
+
+    <div class="section">
+      <h2>Contact</h2>
+      <button>Contact Me via Email</button>
+      <button>Telegram</button>
+    </div>
+
+    <div class="section">
+      <h2>ETF Inflows (BTC & ETH)</h2>
+      <p>Tap below to view live ETF inflow data:</p>
+      <button>BTC ETF (Farside)</button>
+      <button>ETH ETF (Nansen)</button>
     </div>
   </div>
 
-  <div class="section">
-    <h2>Talk to CrimznBot</h2>
-    <input type="text" placeholder="Ask me anything crypto..." />
-    <button>Send</button>
-  </div>
-
-  <div class="section">
-    <h2>Contact</h2>
-    <button>Contact Me via Email</button>
-    <button>Telegram</button>
-  </div>
-
-  <div class="section">
-    <h2>ETF Inflows (BTC & ETH)</h2>
-    <p>Tap below to view live ETF inflow data:</p>
-    <button>BTC ETF (Farside)</button>
-    <button>ETH ETF (Nansen)</button>
-  </div>
-</div>
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
