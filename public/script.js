@@ -31,30 +31,32 @@ async function sendMessage() {
     });
 
     const data = await response.json();
+
     const botMsg = document.createElement("div");
-    botMsg.innerHTML = `<div style="color: green;"><strong>CrimznBot:</strong> ${data.reply}</div>`;
+    botMsg.innerHTML = `<div style="color: green;"><strong>CrimznBot:</strong> ${data.reply || "No response."}</div>`;
     chatBox.appendChild(botMsg);
 
     questionCount++;
-
-    // Trigger paywall if max hit
     if (questionCount >= maxQuestions) {
       input.disabled = true;
       paymentReminder.style.display = "block";
     }
+
   } catch (error) {
     const errorMsg = document.createElement("div");
-    errorMsg.innerHTML = `<div style="color: red;">Error reaching CrimznBot server.</div>`;
+    errorMsg.innerHTML = `<div style="color: red;">🛑 CrimznBot couldn't reach the backend. You may have broken the matrix. Try again soon.</div>`;
     chatBox.appendChild(errorMsg);
   }
 }
 
+// Price auto-refresh
 async function updatePrice(id, symbol) {
   try {
     const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${symbol}&vs_currencies=usd`);
     const data = await res.json();
     const price = data[symbol]?.usd;
     if (price) document.getElementById(id).textContent = `$${price.toLocaleString()}`;
+    else document.getElementById(id).textContent = "Error";
   } catch (e) {
     document.getElementById(id).textContent = "Error";
   }
@@ -67,4 +69,4 @@ function refreshPrices() {
 }
 
 refreshPrices();
-setInterval(refreshPrices, 60000); // every 60 sec
+setInterval(refreshPrices, 60000); // every 60 seconds
