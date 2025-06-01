@@ -1,1 +1,66 @@
-404: Not Found
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CryptoConsult by Crimzn</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>CryptoConsult by Crimzn</h1>
+  <p id="prices">BTC: ... | ETH: ... | SOL: ...</p>
+
+  <p>Welcome to <strong>CryptoConsult</strong> – your personalized, AI-powered crypto consultant. Ask CrimznBot anything about the markets, strategy, or DeFi insights.</p>
+
+  <h2>Available Services</h2>
+  <ul>
+    <li>Technical & Fundamental Analysis</li>
+    <li>Portfolio Strategy</li>
+    <li>Wallet Setup & Education</li>
+    <li>Crypto On-ramping / Off-ramping</li>
+    <li>Consultation Calls</li>
+  </ul>
+
+  <h2>Support & Payments</h2>
+  <button onclick="window.open('https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8')">Pay 99.99 USDC for Services</button>
+  <button onclick="window.open('https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b')">Tip 1 USDC</button>
+  <button onclick="window.open('solana:Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF?amount=1&reference=CrimznConsult')">Pay with Solana</button>
+
+  <h2>Talk to CrimznBot</h2>
+  <div id="chatbox" style="max-height:300px;overflow-y:auto;border:1px solid #888;padding:10px;margin-bottom:10px;"></div>
+  <form id="chat-form">
+    <input id="user-input" placeholder="Ask me anything crypto..." />
+    <button type="submit">Send</button>
+  </form>
+
+  <div id="paywall" style="display:none;margin-top:10px;">
+    <p>You've used all free questions.</p>
+    <ul>
+      <li><a href="https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8">Pay 99.99 USDC to unlock full access</a></li>
+      <li><a href="https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b">Tip 1 USDC to unlock 5 more questions</a></li>
+      <li><a href="https://t.me/Crimznbot">Message me on Telegram</a></li>
+    </ul>
+  </div>
+
+  <h2>Contact</h2>
+  <button onclick="window.location.href='mailto:crimzncipriano@gmail.com'">Contact Me via Email</button>
+  <button onclick="window.open('https://t.me/Crimznbot')">Contact Me via Telegram</button>
+
+  <h2>ETF Inflows (BTC & ETH)</h2>
+  <p>Tap below to view real-time ETF inflow data:</p>
+  <button onclick="window.open('https://www.farside.co.uk/cryptocurrency_etc')">View BTC ETF Flows (Farside)</button>
+  <button onclick="window.open('https://pro.nansen.ai/etf-flows')">View ETH ETF Flows (Nansen)</button>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="autoplay.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="script.js"></script>
+  <script>
+    document.body.addEventListener('click', () => {
+      const audio = document.getElementById('bg-music');
+      if (audio && audio.paused) audio.play();
+    }, { once: true });
+  </script>
+</body>
+</html>
