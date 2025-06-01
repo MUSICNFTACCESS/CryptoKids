@@ -20,7 +20,7 @@ document.getElementById("askBtn").addEventListener("click", async () => {
   askBtn.innerText = "Thinking...";
 
   try {
-    const response = await fetch("https://cryptoconsult.onrender.com/api/chat", {
+    const response = await fetch("https://cryptoconsult-1.onrender.com/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: question }),
