@@ -1,1 +1,76 @@
-404: Not Found
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CryptoConsult by Crimzn</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>CryptoConsult by Crimzn</h1>
+  <p class="intro">
+    BTC: <span id="btc-price">...</span> | ETH: <span id="eth-price">...</span> | SOL: <span id="sol-price">...</span>
+  </p>
+
+  <p class="welcome">Welcome to <strong>CryptoConsult</strong> – your personalized, AI-powered crypto strategist. Ask CrimznBot anything about crypto, strategy, DeFi, and more.</p>
+
+  <section>
+    <h2>Available Services</h2>
+    <ul>
+      <li>Technical & Fundamental Analysis</li>
+      <li>Portfolio Strategy</li>
+      <li>Wallet Setup & Education</li>
+      <li>Crypto On-ramping / Off-ramping</li>
+      <li>Consultation Calls</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Support & Payments</h2>
+    <button onclick="window.open('https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8', '_blank')">Pay 99.99 USDC for Services</button>
+    <button onclick="window.open('https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b', '_blank')">Tip 1 USDC</button>
+    <button onclick="window.open('https://explorer.solana.com/address/Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF?cluster=mainnet-beta', '_blank')">Pay with Solana</button>
+    <div id="solana-unlock" style="margin-top: 10px;">
+      <button disabled>🔓 Unlock with Solana (coming soon)</button>
+      <img id="solana-qr" src="solana-qr.png" alt="Solana Pay QR Code" style="display:none; margin-top:10px; width:150px;">
+    </div>
+  </section>
+
+  <section>
+    <h2>Talk to CrimznBot</h2>
+    <div id="chat-box"></div>
+    <input type="text" id="user-input" placeholder="Ask me anything crypto...">
+    <button onclick="sendMessage()">Send</button>
+    <div id="payment-reminder" style="display:none;">
+      <p><strong>You’ve reached your free limit.</strong> Please support the project:</p>
+      <button onclick="window.open('https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8', '_blank')">Pay $99.99 for Services Rendered</button>
+      <button onclick="window.open('https://t.me/Crimznbot', '_blank')">Contact Me on Telegram</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <button onclick="window.location.href='mailto:crimzncipriano@gmail.com'">Contact Me via Email</button>
+    <button onclick="window.open('https://t.me/Crimznbot', '_blank')">Telegram</button>
+  </section>
+
+  <section>
+    <h2>ETF Inflows (BTC & ETH)</h2>
+    <p>Tap below to view live ETF inflow data:</p>
+    <button onclick="window.open('https://farside.co.uk/etf/btc', '_blank')">BTC ETF (Farside)</button>
+    <button onclick="window.open('https://pro.nansen.ai/spot-etfs', '_blank')">ETH ETF (Nansen)</button>
+  </section>
+
+  <audio id="bg-music" src="autoplay.mp3" autoplay loop></audio>
+
+  <script src="script.js"></script>
+  <script>
+    document.body.addEventListener('click', () => {
+      const audio = document.getElementById('bg-music');
+      if (audio && audio.paused) {
+        audio.play().catch(() => {});
+      }
+    }, { once: true });
+  </script>
+</body>
+</html>
