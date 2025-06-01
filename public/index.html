@@ -1,1 +1,67 @@
-404: Not Found
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CryptoConsult by Crimzn</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <audio id="bg-music" src="autoplay.mp3" preload="auto"></audio>
+
+  <h1>CryptoConsult by Crimzn</h1>
+
+  <div id="price-bar">
+    <span id="btc-price">BTC: Loading...</span> |
+    <span id="eth-price">ETH: Loading...</span> |
+    <span id="sol-price">SOL: Loading...</span>
+  </div>
+
+  <p>Welcome to <strong>CryptoConsult</strong> – your personalized, AI-powered crypto strategist. Ask CrimznBot anything about crypto, strategy, DeFi, and more.</p>
+
+  <h2>Available Services</h2>
+  <ul>
+    <li>📊 Technical & Fundamental Analysis</li>
+    <li>📁 Portfolio Strategy</li>
+    <li>🔐 Wallet Setup & Education</li>
+    <li>💸 Crypto On-ramping / Off-ramping</li>
+    <li>📞 Consultation Calls</li>
+    <li>🧠 Macro Thesis & Cycle Mapping</li>
+    <li>⚙️ Custom AI Integration Advice</li>
+  </ul>
+
+  <h2>Support & Payments</h2>
+  <button onclick="window.open('https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8', '_blank')">Pay 99.99 USDC for Services</button>
+  <button onclick="window.open('https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b', '_blank')">Tip 1 USDC</button>
+  <button onclick="window.open('https://solana.com/pay', '_blank')">Pay with Solana</button>
+  <button disabled>🔒 Unlock with Solana (coming soon)</button>
+
+  <h2>Talk to CrimznBot</h2>
+  <div id="chat-box">
+    <div id="chat-log"></div>
+    <input type="text" id="chat-input" placeholder="Ask me anything crypto...">
+    <button onclick="sendMessage()">Send</button>
+    <div id="payment-reminder" style="display:none;">
+      <p>🛑 You've reached the free limit. To unlock more questions, please pay above or contact:</p>
+      <button onclick="window.open('https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8', '_blank')">Pay 99.99 USDC</button>
+      <button onclick="window.open('https://t.me/Crimznbot', '_blank')">Contact via Telegram</button>
+    </div>
+  </div>
+
+  <h2>Contact</h2>
+  <button onclick="window.location.href='mailto:crimzncipriano@gmail.com'">Contact Me via Email</button>
+  <button onclick="window.open('https://t.me/Crimznbot', '_blank')">Telegram</button>
+
+  <h2>ETF Inflows (BTC & ETH)</h2>
+  <p>Tap below to view live ETF inflow data:</p>
+  <button onclick="window.open('https://www.farside.co.uk', '_blank')">BTC ETF (Farside)</button>
+  <button onclick="window.open('https://pro.nansen.ai', '_blank')">ETH ETF (Nansen)</button>
+
+  <script src="script.js"></script>
+  <script>
+    document.body.addEventListener('click', function playMusicOnce() {
+      document.getElementById('bg-music').play().catch(() => {});
+      document.body.removeEventListener('click', playMusicOnce);
+    });
+  </script>
+</body>
+</html>
