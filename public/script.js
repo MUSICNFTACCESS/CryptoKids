@@ -1,3 +1,4 @@
+const BACKEND_URL = "https://cryptoconsult-1.onrender.com";
   input.value = "";
 
   if (questionCount >= maxQuestions) {
