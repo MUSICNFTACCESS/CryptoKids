@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   const input = document.querySelector("input[type='text']");
-  const sendBtn = document.querySelector("input[type='text'] + button");
+  const allButtons = document.querySelectorAll("button");
+  const sendBtn = allButtons[3]; // Adjust this if needed
   const section = document.querySelector(".section:nth-of-type(3)");
 
-  // Create container for chat messages
   const chatBox = document.createElement("div");
   chatBox.className = "chat-container";
   section.appendChild(chatBox);
@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const message = input.value.trim();
     if (!message) return;
 
-    // Show user message
     const userMsg = document.createElement("div");
     userMsg.className = "user-message";
     userMsg.innerText = message;
