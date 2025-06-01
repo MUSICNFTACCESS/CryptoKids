@@ -1,72 +1,43 @@
-const BACKEND_URL = "https://cryptoconsult-1.onrender.com/api/chat";
+document.addEventListener("DOMContentLoaded", function () {
+  const input = document.querySelector("input[type='text']");
+  const button = document.querySelector("button");
+  const chatSection = document.querySelector(".section h2:contains('Talk to CrimznBot')")?.parentElement;
 
-let questionCount = 0;
-const maxQuestions = 3;
+  const output = document.createElement("div");
+  output.classList.add("chat-container");
+  chatSection?.appendChild(output);
 
-async function sendMessage() {
-  const input = document.getElementById("chat-input");
-  const chatBox = document.getElementById("chat-box");
-  const paymentReminder = document.getElementById("payment-gate");
+  button.addEventListener("click", async () => {
+    const question = input.value.trim();
+    if (!question) return;
 
-  const message = input.value.trim();
-  if (!message) return;
+    // Show user message
+    const userDiv = document.createElement("div");
+    userDiv.className = "user-message";
+    userDiv.innerText = question;
+    output.appendChild(userDiv);
 
-  // Append user message
-  const userMsg = document.createElement("div");
-  userMsg.innerHTML = `<div style="color: orange;"><strong>You:</strong> ${message}</div>`;
-  chatBox.appendChild(userMsg);
-  input.value = "";
+    input.value = "";
 
-  if (questionCount >= maxQuestions) {
-    input.disabled = true;
-    paymentReminder.style.display = "block";
-    return;
-  }
+    try {
+      const res = await fetch("https://cryptoconsult.onrender.com/ask", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: question }),
+      });
 
-  try {
-    const response = await fetch(BACKEND_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message })
-    });
-
-    const data = await response.json();
-
-    const botMsg = document.createElement("div");
-    botMsg.innerHTML = `<div style="color: green;"><strong>CrimznBot:</strong> ${data.reply || "No response."}</div>`;
-    chatBox.appendChild(botMsg);
-
-    questionCount++;
-    if (questionCount >= maxQuestions) {
-      input.disabled = true;
-      paymentReminder.style.display = "block";
+      const data = await res.json();
+      const botDiv = document.createElement("div");
+      botDiv.className = "bot-message";
+      botDiv.innerText = data.answer || "⚠️ CrimznBot didn’t reply. Backend may be down.";
+      output.appendChild(botDiv);
+    } catch (err) {
+      const failDiv = document.createElement("div");
+      failDiv.className = "bot-message";
+      failDiv.innerText = "🛑 CrimznBot couldn’t reach the backend. Matrix glitch?";
+      output.appendChild(failDiv);
     }
-
-  } catch (error) {
-    const errorMsg = document.createElement("div");
-    errorMsg.innerHTML = `<div style="color: red;">🛑 CrimznBot couldn't reach the backend. You may have broken the matrix. Try again soon.</div>`;
-    chatBox.appendChild(errorMsg);
-  }
-}
-
-// Price auto-refresh
-async function updatePrice(id, symbol) {
-  try {
-    const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${symbol}&vs_currencies=usd`);
-    const data = await res.json();
-    const price = data[symbol]?.usd;
-    if (price) document.getElementById(id).textContent = `$${price.toLocaleString()}`;
-    else document.getElementById(id).textContent = "Error";
-  } catch (e) {
-    document.getElementById(id).textContent = "Error";
-  }
-}
-
-function refreshPrices() {
-  updatePrice("btc-price", "bitcoin");
-  updatePrice("eth-price", "ethereum");
-  updatePrice("sol-price", "solana");
-}
-
-refreshPrices();
-setInterval(refreshPrices, 60000); // every 60 seconds
+  });
+});
