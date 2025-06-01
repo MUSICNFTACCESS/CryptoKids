@@ -38,40 +38,67 @@ async function getPrice(symbol) {
 }
 
 app.post("/api/chat", async (req, res) => {
+
   const { message } = req.body;
-  const lowered = message.toLowerCase();
-  let priceResponse = "";
 
-  if (lowered.includes("price of btc") || lowered.includes("btc price")) {
-    const btc = await getPrice("btc");
-    if (btc) priceResponse = `Bitcoin is currently trading at ${btc}.`;
-  } else if (lowered.includes("price of eth") || lowered.includes("eth price")) {
-    const eth = await getPrice("eth");
-    if (eth) priceResponse = `Ethereum is currently trading at ${eth}.`;
-  } else if (lowered.includes("price of sol") || lowered.includes("sol price")) {
-    const sol = await getPrice("sol");
-    if (sol) priceResponse = `Solana is currently trading at ${sol}.`;
+  if (!message) return res.status(400).json({ reply: "Please enter a question." });
+
+
+
+  if (message.toLowerCase().includes("price of")) {
+
+    try {
+
+      const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
+
+      const data = await response.json();
+
+      const id = message.toLowerCase().includes("sol") ? "solana" : message.toLowerCase().includes("eth") ? "ethereum" : "bitcoin";
+
+      return res.json({ reply: `Bitcoin is currently trading at $${data[id].usd}.` });
+
+    } catch {
+
+      return res.json({ reply: "Sorry, I couldn’t fetch the live price of BTC right now." });
+
+    }
+
+  } else {
+
+    try {
+
+      const completion = await openai.createChatCompletion({
+
+        model: "gpt-4",
+
+        messages: [
+
+          {
+
+            role: "system",
+
+            content: "You are CrimznBot — a no-fluff, professional crypto strategist who delivers insights, TA, and market opinions in a clear and sharp tone. Respond concisely and only with helpful, insightful info."
+
+          },
+
+          { role: "user", content: message }
+
+        ]
+
+      });
+
+      const reply = completion.data.choices[0].message.content;
+
+      return res.json({ reply });
+
+    } catch (error) {
+
+      return res.status(500).json({ reply: "CrimznBot is unavailable right now." });
+
+    }
+
   }
 
-  if (priceResponse) return res.json({ reply: priceResponse });
-
-  try {
-    const chat = await openai.chat.completions.create({
-      model: "gpt-4",
-      messages: [
-        {
-          role: "system",
-          content: "You are CrimznBot, a professional crypto strategist. Never say you're an AI. Respond with clarity and authority.",
-        },
-        { role: "user", content: message },
-      ],
-      temperature: 0.7,
-    });
-
-    res.json({ reply: chat.choices[0].message.content });
-  } catch (err) {
-    res.status(500).json({ error: "CrimznBot is unavailable" });
-  }
 });
 
 // Fallback to serve index.html
