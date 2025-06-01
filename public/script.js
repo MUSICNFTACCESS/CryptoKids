@@ -39,3 +39,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+async function updatePrices() {
+  try {
+    const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
+    const data = await res.json();
+
+    document.getElementById("btcPrice").innerText = `BTC: $${data.bitcoin.usd.toLocaleString()}`;
+    document.getElementById("ethPrice").innerText = `ETH: $${data.ethereum.usd.toLocaleString()}`;
+    document.getElementById("solPrice").innerText = `SOL: $${data.solana.usd.toLocaleString()}`;
+  } catch (err) {
+    document.getElementById("btcPrice").innerText = "BTC: error";
+    document.getElementById("ethPrice").innerText = "ETH: error";
+    document.getElementById("solPrice").innerText = "SOL: error";
+  }
+}
+
+updatePrices();
+setInterval(updatePrices, 60000); // Update every 60 seconds
