@@ -1,3 +1,5 @@
+const BACKEND_URL = "https://cryptoconsult-1.onrender.com";
+
 document.querySelector('form').addEventListener('submit', async function(e) {
   e.preventDefault();
   const input = document.querySelector('input');
