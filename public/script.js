@@ -1,4 +1,4 @@
-const BACKEND_URL = "https://cryptoconsult-1.onrender.com";
+const BACKEND_URL = "https://cryptoconsult-1.onrender.com/api/chat";
 
 let questionCount = 0;
 const maxQuestions = 3;
@@ -21,14 +21,14 @@ async function sendMessage() {
   }
 
   try {
-    const response = await fetch(`${BACKEND_URL}/ask`, {
+    const response = await fetch(BACKEND_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question: message })
+      body: JSON.stringify({ message })
     });
 
     const data = await response.json();
-    chatBox.innerHTML = `<div style="color: green;"><strong>CrimznBot:</strong> ${data.answer}</div>`;
+    chatBox.innerHTML = `<div style="color: green;"><strong>CrimznBot:</strong> ${data.reply}</div>`;
     questionCount++;
   } catch (error) {
     chatBox.innerHTML = `<div style="color: red;">Error reaching CrimznBot server.</div>`;
