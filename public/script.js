@@ -1,43 +1,42 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const input = document.querySelector("input[type='text']");
-  const button = document.querySelector("button");
-  const chatSection = document.querySelector(".section h2:contains('Talk to CrimznBot')")?.parentElement;
+  const sendBtn = document.querySelector("input[type='text'] + button");
+  const section = document.querySelector(".section:nth-of-type(3)");
 
-  const output = document.createElement("div");
-  output.classList.add("chat-container");
-  chatSection?.appendChild(output);
+  // Create container for chat messages
+  const chatBox = document.createElement("div");
+  chatBox.className = "chat-container";
+  section.appendChild(chatBox);
 
-  button.addEventListener("click", async () => {
-    const question = input.value.trim();
-    if (!question) return;
+  sendBtn.addEventListener("click", async () => {
+    const message = input.value.trim();
+    if (!message) return;
 
     // Show user message
-    const userDiv = document.createElement("div");
-    userDiv.className = "user-message";
-    userDiv.innerText = question;
-    output.appendChild(userDiv);
+    const userMsg = document.createElement("div");
+    userMsg.className = "user-message";
+    userMsg.innerText = message;
+    chatBox.appendChild(userMsg);
 
     input.value = "";
 
     try {
       const res = await fetch("https://cryptoconsult.onrender.com/ask", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: question }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
       });
 
       const data = await res.json();
-      const botDiv = document.createElement("div");
-      botDiv.className = "bot-message";
-      botDiv.innerText = data.answer || "⚠️ CrimznBot didn’t reply. Backend may be down.";
-      output.appendChild(botDiv);
+      const botMsg = document.createElement("div");
+      botMsg.className = "bot-message";
+      botMsg.innerText = data.answer || "⚠️ CrimznBot replied with no data.";
+      chatBox.appendChild(botMsg);
     } catch (err) {
-      const failDiv = document.createElement("div");
-      failDiv.className = "bot-message";
-      failDiv.innerText = "🛑 CrimznBot couldn’t reach the backend. Matrix glitch?";
-      output.appendChild(failDiv);
+      const errorMsg = document.createElement("div");
+      errorMsg.className = "bot-message";
+      errorMsg.innerText = "🛑 CrimznBot couldn’t reach the backend. Matrix glitch?";
+      chatBox.appendChild(errorMsg);
     }
   });
 });
