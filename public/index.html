@@ -2,128 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CryptoConsult by Crimzn</title>
-  <style>
-    body {
-      background-color: #000;
-      color: #f7931a;
-      font-family: 'Courier New', Courier, monospace;
-      margin: 0;
-      padding: 0;
-    }
-    h1, h2 {
-      text-align: center;
-    }
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 20px;
-      text-align: center;
-    }
-    .section {
-      margin-top: 40px;
-      padding-top: 16px;
-      border-top: 1px solid #f7931a33;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
-      margin-bottom: 10px;
-    }
-    input, textarea {
-      background-color: #111;
-      color: #f7931a;
-      border: 1px solid #f7931a;
-      padding: 8px;
-    }
-    input[type="text"] {
-      width: 90%;
-      max-width: 400px;
-    }
-    button {
-      background-color: #111;
-      color: #f7931a;
-      border: 1px solid #f7931a;
-      padding: 10px 16px;
-      margin: 5px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    button:hover {
-      background-color: #222;
-    }
-    .chat-container {
-      margin-top: 20px;
-      text-align: left;
-    }
-    .bot-message {
-      color: #00ff00;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-    .user-message {
-      color: #f7931a;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div class="container">
-    <h1>CryptoConsult by Crimzn</h1>
+<body onclick="playMusicOnce()">
+  <h1>CryptoConsult by Crimzn</h1>
+  <p>Professional crypto strategy. Powered by CrimznBot.</p>
+  <h2>Live Prices</h2>
+  <ul id="prices"></ul>
 
-    <p>
-      <span id="btcPrice">BTC: loading...</span> |
-      <span id="ethPrice">ETH: loading...</span> |
-      <span id="solPrice">SOL: loading...</span>
-    </p>
+  <h2>Available Services</h2>
+  <ul>
+    <li>✔ Technical Analysis</li>
+    <li>✔ Wallet Setup & Security</li>
+    <li>✔ Fundamental Research</li>
+    <li>✔ Portfolio Optimization</li>
+    <li>✔ Yield Strategy Planning</li>
+  </ul>
 
-    <p>Welcome to <strong>CryptoConsult</strong> – your personalized, AI-powered crypto strategist. Ask CrimznBot anything about crypto, strategy, DeFi, and more.</p>
+  <h2>Support & Payments</h2>
+  <button onclick="window.open('https://commerce.coinbase.com/checkout/0193a8a5-c86f-407d-b5d7-6f89664fbdf8')">Pay $99.99 for Services Rendered</button>
+  <button onclick="window.open('https://www.paypal.me/crimzn')">Pay with PayPal</button>
+  <button onclick="window.open('https://commerce.coinbase.com/checkout/1d7cd946-d6ec-4278-b7ea-ee742b86982b')">Send Tip (1 USDC)</button>
+  <button onclick="window.open('solana:Co6bkf4NpatyTCbzjhoaTS63w93iK1DmzuooCSmHSAjF?amount=1')">Pay with Solana</button>
 
-    <div class="section">
-      <h2>Available Services</h2>
-      <ul>
-        <li>📊 Technical & Fundamental Analysis</li>
-        <li>📁 Portfolio Strategy</li>
-        <li>🔐 Wallet Setup & Education</li>
-        <li>💸 Crypto On-ramping / Off-ramping</li>
-        <li>📞 Consultation Calls</li>
-        <li>🧠 Macro Thesis & Cycle Mapping</li>
-        <li>⚙️ Custom AI Integration Advice</li>
-      </ul>
-    </div>
+  <h2>Talk to CrimznBot</h2>
+  <div id="chat-box"></div>
+  <input id="user-input" placeholder="Ask me anything crypto..." />
+  <button id="send-button" onclick="sendMessage()">Send</button>
 
-    <div class="section">
-      <h2>Support & Payments</h2>
-      <button>Pay 99.99 USDC for Services</button>
-      <button>Tip 1 USDC</button>
-      <button>Pay with Solana</button>
-      <button disabled>🔒 Unlock with Solana (coming soon)</button>
-    </div>
-
-    <div class="section">
-      <h2>Talk to CrimznBot</h2>
-      <input id="userInput" type="text" placeholder="Ask me anything crypto..." />
-      <button id="send-button" onclick="sendMessage()">Send</button>
-      <div id="chatBox" class="chat-container"></div>
-    </div>
-
-    <div class="section">
-      <h2>Contact</h2>
-      <button>Contact Me via Email</button>
-      <button>Telegram</button>
-    </div>
-
-    <div class="section">
-      <h2>ETF Inflows (BTC & ETH)</h2>
-      <p>Tap below to view live ETF inflow data:</p>
-      <button>BTC ETF (Farside)</button>
-      <button>ETH ETF (Nansen)</button>
-    </div>
-  </div>
-
+  <audio id="background-audio" src="autoplay.mp3" preload="auto"></audio>
   <script src="script.js"></script>
 </body>
 </html>
