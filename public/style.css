@@ -1,1 +1,76 @@
-404: Not Found
+body {
+  background-color: #000000;
+  color: #f7931a;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  color: #f7931a;
+  text-align: center;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li::before {
+  content: '✔️ ';
+  margin-right: 8px;
+}
+
+button {
+  background-color: #f7931a;
+  color: black;
+  border: none;
+  padding: 10px 14px;
+  margin: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #ffa940;
+}
+
+input[type="text"] {
+  padding: 10px;
+  width: 60%;
+  margin-right: 10px;
+  border: 2px solid #f7931a;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.chatbox {
+  margin-top: 20px;
+}
+
+#chat-output {
+  margin-bottom: 10px;
+  min-height: 100px;
+  background: #111;
+  padding: 10px;
+  border-radius: 6px;
+  overflow-y: auto;
+  max-height: 300px;
+  color: #00ffcc;
+  font-family: monospace;
+  text-align: left;
+}
+
+.footer {
+  margin-top: 40px;
+  font-size: 0.9em;
+  color: #888;
+}
