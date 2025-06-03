@@ -7,7 +7,6 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Enable CORS
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static("public"));
@@ -18,12 +17,12 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-// Root check
+// Root route
 app.get("/", (req, res) => {
   res.send("CrimznBot backend is live.");
 });
 
-// Price route
+// Price endpoint (CoinGecko)
 app.get("/price", async (req, res) => {
   const symbol = req.query.symbol || "bitcoin";
   try {
@@ -35,32 +34,29 @@ app.get("/price", async (req, res) => {
   }
 });
 
-// CrimznBot chat route
+// CrimznBot endpoint
 app.post("/chat", async (req, res) => {
   const userMessage = req.body.message;
-  if (!userMessage) {
-    return res.status(400).json({ error: "No message provided" });
-  }
+  if (!userMessage) return res.status(400).json({ error: "No message provided" });
 
   try {
     const response = await openai.createChatCompletion({
       model: "gpt-4",
       messages: [
-        { role: "system", content: "You are CrimznBot, an expert in cryptocurrency with a confident, professional, degen-savvy tone. Always give clear, helpful, real-time answers." },
+        { role: "system", content: "You are CrimznBot, a bold and brilliant crypto consultant with deep insight into markets, macro, and degen moves. Always be direct, data-backed, and helpful." },
         { role: "user", content: userMessage }
       ],
-      max_tokens: 200,
+      max_tokens: 300,
     });
 
     const reply = response.data.choices[0].message.content;
     res.json({ reply });
   } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ error: "Failed to get response from CrimznBot" });
+    console.error("OpenAI error:", err.message);
+    res.status(500).json({ error: "Failed to get CrimznBot response" });
   }
 });
 
-// Start server
 app.listen(port, () => {
   console.log(`CrimznBot server running on port ${port}`);
 });
