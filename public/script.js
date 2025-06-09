@@ -125,9 +125,9 @@ async function connectWallet() {
       status.style.color = "#00ff00";
     } catch (err) {
       alert("Wallet connection failed.");
-      console.error(err);
+      console.error("Phantom connection error:", err);
     }
   } else {
-    alert("Phantom Wallet not detected.");
+    alert("Phantom Wallet not detected. Please open this page in the Phantom browser.");
   }
 }
