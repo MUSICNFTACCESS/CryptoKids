@@ -10,6 +10,9 @@ fetch("/questions.json")
   .then(data => {
     questions = shuffle(data);
     showQuestion();
+  })
+  .catch(err => {
+    console.error("Failed to load questions.json:", err);
   });
 
 function startQuiz() {
