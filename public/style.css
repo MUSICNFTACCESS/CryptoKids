@@ -1,1 +1,63 @@
-404: Not Found
+body {
+  background-color: #000;
+  color: #f7931a;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+button, .link-button {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f7931a;
+  color: black;
+  cursor: pointer;
+}
+
+.option-btn {
+  background-color: #111;
+  color: #f7931a;
+  border: 1px solid #f7931a;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 6px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.option-btn.correct {
+  background-color: green;
+  color: white;
+}
+
+.option-btn.incorrect {
+  background-color: red;
+  color: white;
+}
+
+#progress {
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+#score-container {
+  margin-top: 40px;
+}
+
+#wallet-status {
+  margin-top: 10px;
+  font-size: 14px;
+}
