@@ -24,16 +24,17 @@ function startQuiz() {
 function showQuestion() {
   clearInterval(timer);
   timeLeft = TIME_PER_QUESTION;
+
   const q = questions[currentQuestion];
   document.getElementById('question').innerText = q.question;
-  document.getElementById('progress').innerText = `Question ${currentQuestion + 1} / ${questions.length}`;
-
+  document.getElementById('progress').innerText = `Question ${currentQuestion + 1} of ${questions.length}`;
+  
   const opts = document.getElementById('options');
   opts.innerHTML = '';
-  q.options.forEach((o,i) => {
+  q.answers.forEach((a, i) => {
     const btn = document.createElement('button');
     btn.classList.add('option-btn');
-    btn.innerText = o;
+    btn.innerText = a;
     btn.onclick = () => selectAnswer(i === q.correct, btn, i);
     opts.appendChild(btn);
   });
@@ -48,14 +49,14 @@ function showQuestion() {
 function selectAnswer(correct, btn, idx) {
   clearInterval(timer);
   document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
-  
+
   if (correct) {
     score++;
     if (btn) btn.style.background = 'green';
   } else {
     if (btn) btn.style.background = 'red';
     const q = questions[currentQuestion];
-    document.querySelectorAll('.option-btn')[q.correct]?.style.background = 'green';
+    document.querySelectorAll('.option-btn')[q.correct]?.style.setProperty('background', '#4caf50');
   }
 
   setTimeout(() => {
@@ -94,20 +95,11 @@ async function connectWallet() {
   try {
     const resp = await window.solana.connect();
     window.connectedWallet = resp.publicKey.toString();
-    document.getElementById('wallet-status').innerText = 'Connected: ' + window.connectedWallet;
+    document.getElementById('wallet-status').innerText = `Connected: ${window.connectedWallet}`;
   } catch (err) {
     console.error('Wallet connect failed', err);
   }
 }
 
-document.getElementById('splash-screen').querySelector('button').disabled = true;
-document.getElementById('splash-screen').querySelector('button').onclick = startQuiz;
-document.getElementById('quiz-container').querySelector('button').onclick = () => {
-  clearInterval(timer);
-  currentQuestion++;
-  if (currentQuestion < questions.length) showQuestion();
-  else endQuiz();
-};
-document.getElementById('splash-screen').querySelectorAll('button')[1].onclick = connectWallet;
-
+document.getElementById('startBtn').addEventListener('click', startQuiz);
 window.onload = loadQuestions;
