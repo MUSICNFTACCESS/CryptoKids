@@ -6,12 +6,12 @@ const TIME_PER_QUESTION = 15;
 
 async function loadQuestions() {
   try {
-    const res = await fetch('/questions.json');
+    const res = await fetch("/questions.json");
     questions = await res.json();
     if (!questions.length) throw new Error("Empty question set");
-    document.getElementById('start-btn').disabled = false;
+    document.querySelector("button[onclick='startQuiz()']").disabled = false;
   } catch (err) {
-    console.error('Error loading questions:', err);
+    console.error("Error loading questions:", err);
     document.getElementById("question").innerText = "Failed to load questions.";
   }
 }
@@ -19,7 +19,7 @@ async function loadQuestions() {
 function startQuiz() {
   currentQuestionIndex = 0;
   score = 0;
-  document.getElementById("start-screen").classList.add("hidden");
+  document.getElementById("splash-screen").classList.add("hidden");
   document.getElementById("quiz-container").classList.remove("hidden");
   showQuestion();
 }
@@ -46,19 +46,19 @@ function showQuestion() {
     optionsContainer.appendChild(btn);
   });
 
-  document.getElementById("next-btn").classList.add("hidden");
   updateProgress();
   startTimer();
 }
 
 function selectAnswer(correct) {
   if (correct) score++;
-  document.getElementById("next-btn").classList.remove("hidden");
+  document.querySelector("button[onclick='nextQuestion()']").classList.remove("hidden");
 }
 
 function nextQuestion() {
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
+    document.querySelector("button[onclick='nextQuestion()']").classList.add("hidden");
     showQuestion();
   } else {
     endQuiz();
@@ -68,29 +68,29 @@ function nextQuestion() {
 function endQuiz() {
   clearInterval(timerInterval);
   document.getElementById("quiz-container").classList.add("hidden");
-  document.getElementById("result-screen").classList.remove("hidden");
-  document.getElementById("score").innerText = `You scored ${score} out of ${questions.length}`;
+  document.getElementById("score-container").classList.remove("hidden");
+  document.getElementById("score").innerText = score;
 
-  const prev = parseInt(localStorage.getItem("cryptokids_points") || "0");
-  const total = prev + score;
-  localStorage.setItem("cryptokids_points", total);
-  document.getElementById("total-points").innerText = `Total Points: ${total}`;
-}
+  let prev = parseInt(localStorage.getItem("cryptokids_points") || "0");
+  localStorage.setItem("cryptokids_points", prev + score);
 
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+  if (window.connectedWallet) {
+    fetch("/save-points", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ wallet: window.connectedWallet, points: score })
+    }).then(res => res.json())
+      .then(data => console.log("Saved:", data))
+      .catch(err => console.error("Failed to save points:", err));
   }
-  return array;
 }
 
 function startTimer() {
   let timeLeft = TIME_PER_QUESTION;
-  document.getElementById("timer").innerText = `⏳ ${timeLeft}s`;
+  document.getElementById("progress").innerText = `⏱ ${timeLeft}s`;
   timerInterval = setInterval(() => {
     timeLeft--;
-    document.getElementById("timer").innerText = `⏳ ${timeLeft}s`;
+    document.getElementById("progress").innerText = `⏱ ${timeLeft}s`;
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
       nextQuestion();
@@ -100,38 +100,31 @@ function startTimer() {
 
 function resetTimer() {
   clearInterval(timerInterval);
-  document.getElementById("timer").innerText = "";
+  document.getElementById("progress").innerText = "";
 }
 
-// Handle wallet form submission
-document.addEventListener("DOMContentLoaded", () => {
-  loadQuestions();
-  document.getElementById("start-btn").addEventListener("click", startQuiz);
-  document.getElementById("next-btn").addEventListener("click", nextQuestion);
-
-  const form = document.getElementById("wallet-form");
-  if (form) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const wallet = document.getElementById("wallet").value;
-      const points = parseInt(localStorage.getItem("cryptokids_points") || "0");
-
-      try {
-        const res = await fetch("/save-points", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ wallet, points }),
-        });
-        const data = await res.json();
-        if (data.status === "ok") {
-          alert("✅ Points saved! You’ll be eligible for future rewards.");
-        } else {
-          alert("❌ Failed to save points.");
-        }
-      } catch (err) {
-        console.error("Error saving points:", err);
-        alert("❌ Server error.");
-      }
-    });
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
-});
+  return arr;
+}
+
+async function connectWallet() {
+  if (!window.solana || !window.solana.isPhantom) {
+    alert("Phantom wallet not found. Please install it.");
+    return;
+  }
+
+  try {
+    const resp = await window.solana.connect();
+    const wallet = resp.publicKey.toString();
+    window.connectedWallet = wallet;
+    document.getElementById("wallet-status").innerText = `🔐 Connected: ${wallet}`;
+  } catch (err) {
+    console.error("Wallet connection failed:", err);
+  }
+}
+
+window.onload = loadQuestions;
