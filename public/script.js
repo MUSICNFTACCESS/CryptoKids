@@ -5,7 +5,7 @@ let timerInterval;
 
 const TIME_PER_QUESTION = 15; // seconds
 
-fetch("questions.json")
+fetch("/questions.json")
   .then(res => res.json())
   .then(data => {
     questions = shuffle(data);
