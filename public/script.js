@@ -12,7 +12,7 @@ async function loadQuestions() {
     document.getElementById('start-btn').disabled = false;
   } catch (err) {
     console.error('Error loading questions:', err);
-    document.getElementById("question").innerText = "Failed to load quiz.";
+    document.getElementById("question").innerText = "Failed to load questions.";
   }
 }
 
@@ -46,6 +46,7 @@ function showQuestion() {
     optionsContainer.appendChild(btn);
   });
 
+  document.getElementById("next-btn").classList.add("hidden");
   updateProgress();
   startTimer();
 }
@@ -71,38 +72,25 @@ function endQuiz() {
   document.getElementById("score").innerText = `You scored ${score} out of ${questions.length}`;
 
   const prev = parseInt(localStorage.getItem("cryptokids_points") || "0");
-  localStorage.setItem("cryptokids_points", prev + score);
-
-  const wallet = localStorage.getItem("walletAddress");
-  if (wallet) {
-    fetch("/save-points", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ wallet, points: score })
-    }).then(res => res.json()).then(data => {
-      console.log("Points saved:", data);
-    });
-  }
-
-  document.getElementById("next-btn").classList.add("hidden");
-  document.getElementById("question").classList.add("hidden");
-  document.getElementById("options").classList.add("hidden");
-  document.getElementById("timer").classList.add("hidden");
+  const total = prev + score;
+  localStorage.setItem("cryptokids_points", total);
+  document.getElementById("total-points").innerText = `Total Points: ${total}`;
 }
 
-function updateProgress() {
-  const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
-  const progressBar = document.getElementById("progress-bar");
-  if (progressBar) progressBar.style.width = `${progress}%`;
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
 
 function startTimer() {
   let timeLeft = TIME_PER_QUESTION;
-  document.getElementById("time-left").textContent = timeLeft;
-
+  document.getElementById("timer").innerText = `⏳ ${timeLeft}s`;
   timerInterval = setInterval(() => {
     timeLeft--;
-    document.getElementById("time-left").textContent = timeLeft;
+    document.getElementById("timer").innerText = `⏳ ${timeLeft}s`;
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
       nextQuestion();
@@ -112,31 +100,38 @@ function startTimer() {
 
 function resetTimer() {
   clearInterval(timerInterval);
+  document.getElementById("timer").innerText = "";
 }
 
-function shuffle(arr) {
-  return arr.sort(() => Math.random() - 0.5);
-}
+// Handle wallet form submission
+document.addEventListener("DOMContentLoaded", () => {
+  loadQuestions();
+  document.getElementById("start-btn").addEventListener("click", startQuiz);
+  document.getElementById("next-btn").addEventListener("click", nextQuestion);
 
-async function connectWallet() {
-  if (window.solana && window.solana.isPhantom) {
-    try {
-      const resp = await window.solana.connect({ onlyIfTrusted: false });
-      const walletAddress = resp.publicKey.toString();
-      localStorage.setItem("walletAddress", walletAddress);
-      const status = document.getElementById("wallet-status");
-      if (status) {
-        status.innerText = `✅ Points saved to wallet: ${walletAddress}`;
-        status.style.color = "#00ff00";
+  const form = document.getElementById("wallet-form");
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const wallet = document.getElementById("wallet").value;
+      const points = parseInt(localStorage.getItem("cryptokids_points") || "0");
+
+      try {
+        const res = await fetch("/save-points", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ wallet, points }),
+        });
+        const data = await res.json();
+        if (data.status === "ok") {
+          alert("✅ Points saved! You’ll be eligible for future rewards.");
+        } else {
+          alert("❌ Failed to save points.");
+        }
+      } catch (err) {
+        console.error("Error saving points:", err);
+        alert("❌ Server error.");
       }
-    } catch (err) {
-      alert("Wallet connection failed.");
-      console.error("Phantom connection error:", err);
-    }
-  } else {
-    alert("Phantom Wallet not detected. Please open this page in the Phantom browser.");
+    });
   }
-}
-
-// Call loader when DOM ready
-document.addEventListener("DOMContentLoaded", loadQuestions);
+});
