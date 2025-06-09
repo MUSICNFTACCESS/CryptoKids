@@ -26,13 +26,14 @@ app.post("/save-points", (req, res) => {
   }
 
   const entry = `${new Date().toISOString()} - Wallet: ${wallet}, Points: ${points}\n`;
-  fs.appendFile("points-log.txt", entry, (err) => {
-    if (err) {
-      console.error("Error saving points:", err);
-      return res.status(500).json({ error: "Failed to save points" });
-    }
+
+  try {
+    fs.appendFileSync("points-log.txt", entry, { flag: "a" });
     res.json({ status: "ok" });
-  });
+  } catch (err) {
+    console.error("Error saving points:", err);
+    res.status(500).json({ error: "Failed to save points" });
+  }
 });
 
 app.listen(PORT, () => {
