@@ -1,55 +1,39 @@
-<!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CryptoKids Quiz 🟠</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <div id="splash-screen" style="text-align: center;">
-    <img src="file_00000000e8446243abe0c3108b52524e.png" alt="CryptoKid" style="max-width: 200px; margin-top: 20px;">
+    <img src="file_00000000e8446243abe0c3108b52524e.png" alt="CryptoKids Logo" />
     <h1>CryptoKids 🟠</h1>
     <p>Ready to test your crypto knowledge?</p>
-
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px;">
-      <button onclick="startQuiz()" style="padding: 12px 20px; background-color: orange; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">
-        ▶️ Start Quiz
-      </button>
-
-      <a href="https://crypto-consult.onrender.com" target="_blank" style="text-decoration: none; background-color: black; color: orange; padding: 10px 20px; border-radius: 8px; font-size: 16px;">
-        💬 Ask CrimznBot on CryptoConsult
-      </a>
-
-      <a href="../CryptoKids-CryptoQuiz-Whitepaper.md" download style="text-decoration: none; background-color: #333; color: white; padding: 10px 20px; border-radius: 8px; font-size: 16px;">
-        📄 View Whitepaper
-      </a>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <button onclick="startQuiz()" style="padding: 12px 20px; background-color: orange; color: black; font-weight: bold;">▶️ Start Quiz</button>
     </div>
+    <a href="https://crypto-consult.onrender.com" target="_blank">💬 Ask CrimznBot on CryptoConsult</a><br />
+    <a href="./CryptoKids-CryptoQuiz-Whitepaper.md" download style="color:white;">📄 View Whitepaper</a>
   </div>
 
   <div id="quiz-container" class="hidden">
-    <div id="progress-container">
-      <div id="progress-bar"></div>
-    </div>
-
+    <div id="progress-container"><div id="progress-bar"></div></div>
     <h2 id="question"></h2>
     <ul id="options" class="btn-grid"></ul>
-
-    <div id="timer">
-      <span id="time-left">15</span>s
-    </div>
-
+    <div id="timer"><span id="time-left">15</span>s</div>
     <button id="next-btn" onclick="nextQuestion()">Next</button>
 
     <div id="score-container" class="hidden">
       <h3>Your Score: <span id="score"></span></h3>
       <button onclick="location.reload()">Play Again</button>
+      <button onclick="connectWallet()">Connect Wallet to Save Points</button>
+      <p id="wallet-status" style="margin-top: 10px;"></p>
     </div>
-    <button onclick="connectWallet()">Connect Wallet to Save Points</bu>
-  <footer> 
- </div>
+  </div>
 
+  <footer>
     <p>CryptoKids – Empowering young minds with crypto education 🟠</p>
   </footer>
 

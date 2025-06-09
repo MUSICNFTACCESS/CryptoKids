@@ -3,12 +3,14 @@ let score = 0;
 let questions = [];
 let timerInterval;
 
-const TIME_PER_QUESTION = 15; // seconds
+const TIME_PER_QUESTION = 15;
 
-fetch("questions.json").then(res => res.json()).then(data => {
-  questions = shuffle(data);
-  showQuestion();
-});
+fetch("questions.json")
+  .then(res => res.json())
+  .then(data => {
+    questions = shuffle(data);
+    showQuestion();
+  });
 
 function startQuiz() {
   document.getElementById("splash-screen").classList.add("hidden");
@@ -38,7 +40,6 @@ function showQuestion() {
 
 function checkAnswer(selected, questionObj) {
   clearInterval(timerInterval);
-
   const correctAnswer = questionObj.options[questionObj.correct];
 
   document.querySelectorAll("li").forEach(el => {
@@ -63,18 +64,18 @@ function nextQuestion() {
     document.getElementById("score-container").classList.remove("hidden");
     document.getElementById("score").innerText = `${score}/${questions.length} (${score} points earned)`;
 
-    // Save to localStorage
     const prev = parseInt(localStorage.getItem("cryptokids_points")) || 0;
     localStorage.setItem("cryptokids_points", prev + score);
 
-    // Send points to backend if wallet is connected
     const wallet = localStorage.getItem("walletAddress");
     if (wallet) {
       fetch("/save-points", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ wallet, points: score })
-      }).then(res => res.json()).then(data => {
+      })
+      .then(res => res.json())
+      .then(data => {
         console.log("Points saved:", data);
       });
     }
@@ -113,21 +114,23 @@ function shuffle(arr) {
   return arr.sort(() => Math.random() - 0.5);
 }
 
-***async function connectWallet() {
+async function connectWallet() {
   if (window.solana && window.solana.isPhantom) {
     try {
-      const resp = await window.solana.connect();
+      const resp = await window.solana.connect({ onlyIfTrusted: false });
       const walletAddress = resp.publicKey.toString();
       localStorage.setItem("walletAddress", walletAddress);
 
       const status = document.getElementById("wallet-status");
-      status.innerText = `✅ Points saved to wallet: ${walletAddress}`;
-      status.style.color = "#00ff00";
+      if (status) {
+        status.innerText = `✅ Points saved to wallet: ${walletAddress}`;
+        status.style.color = "#00ff00";
+      }
     } catch (err) {
       alert("Wallet connection failed.");
       console.error("Phantom connection error:", err);
     }
   } else {
-    alert("Phantom Wallet not detected. Please open this page in the Phantom browser.");
+    alert("Phantom Wallet not detected. Please open this page in the Phantom wallet browser.");
   }
 }
