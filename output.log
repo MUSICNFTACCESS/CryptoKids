@@ -1,11 +1,2 @@
 nohup: ignoring input
-Server running on http://localhost:3000
-/data/data/com.termux/files/home/CryptoKids/server.js:27
-                questions.questions.forEach(q => {
-                                    ^
-
-TypeError: Cannot read properties of undefined (reading 'forEach')
-    at /data/data/com.termux/files/home/CryptoKids/server.js:27:37
-    at FSReqCallback.readFileAfterClose [as oncomplete] (node:internal/fs/read/context:68:3)
-
-Node.js v23.6.1
+✅ CryptoKids server running at http://localhost:3000
