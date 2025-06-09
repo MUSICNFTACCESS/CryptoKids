@@ -113,14 +113,16 @@ function shuffle(arr) {
   return arr.sort(() => Math.random() - 0.5);
 }
 
-// ✅ ADD THIS BLOCK TO MAKE THE CONNECT BUTTON WORK
 async function connectWallet() {
   if (window.solana && window.solana.isPhantom) {
     try {
       const resp = await window.solana.connect();
       const walletAddress = resp.publicKey.toString();
       localStorage.setItem("walletAddress", walletAddress);
-      alert("Wallet connected: " + walletAddress);
+
+      const status = document.getElementById("wallet-status");
+      status.innerText = `✅ Points saved to wallet: ${walletAddress}`;
+      status.style.color = "#00ff00";
     } catch (err) {
       alert("Wallet connection failed.");
       console.error(err);
