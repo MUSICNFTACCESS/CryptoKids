@@ -113,7 +113,7 @@ function shuffle(arr) {
   return arr.sort(() => Math.random() - 0.5);
 }
 
-async function connectWallet() {
+***async function connectWallet() {
   if (window.solana && window.solana.isPhantom) {
     try {
       const resp = await window.solana.connect();
