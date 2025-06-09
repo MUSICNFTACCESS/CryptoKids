@@ -7,6 +7,7 @@ const TIME_PER_QUESTION = 15; // seconds
 
 fetch("questions.json").then(res => res.json()).then(data => {
   questions = shuffle(data);
+  showQuestion();
 });
 
 function startQuiz() {
@@ -22,8 +23,6 @@ function showQuestion() {
   const questionObj = questions[currentQuestionIndex];
   document.getElementById("question").innerText = questionObj.question;
 
-  updateProgress();
-
   const optionsList = document.getElementById("options");
   optionsList.innerHTML = "";
 
@@ -33,6 +32,8 @@ function showQuestion() {
     li.onclick = () => checkAnswer(option, questionObj);
     optionsList.appendChild(li);
   });
+
+  updateProgress();
 }
 
 function checkAnswer(selected, questionObj) {
@@ -63,8 +64,20 @@ function nextQuestion() {
     document.getElementById("score").innerText = `${score}/${questions.length} (${score} points earned)`;
 
     // Save to localStorage
-    const prev = parseInt(localStorage.getItem("cryptokids_points") || 0);
+    const prev = parseInt(localStorage.getItem("cryptokids_points")) || 0;
     localStorage.setItem("cryptokids_points", prev + score);
+
+    // Send points to backend if wallet is connected
+    const wallet = localStorage.getItem("walletAddress");
+    if (wallet) {
+      fetch("/save-points", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ wallet, points: score })
+      }).then(res => res.json()).then(data => {
+        console.log("Points saved:", data);
+      });
+    }
 
     document.getElementById("next-btn").classList.add("hidden");
     document.getElementById("question").classList.add("hidden");
@@ -98,4 +111,21 @@ function resetTimer() {
 
 function shuffle(arr) {
   return arr.sort(() => Math.random() - 0.5);
+}
+
+// ✅ ADD THIS BLOCK TO MAKE THE CONNECT BUTTON WORK
+async function connectWallet() {
+  if (window.solana && window.solana.isPhantom) {
+    try {
+      const resp = await window.solana.connect();
+      const walletAddress = resp.publicKey.toString();
+      localStorage.setItem("walletAddress", walletAddress);
+      alert("Wallet connected: " + walletAddress);
+    } catch (err) {
+      alert("Wallet connection failed.");
+      console.error(err);
+    }
+  } else {
+    alert("Phantom Wallet not detected.");
+  }
 }
