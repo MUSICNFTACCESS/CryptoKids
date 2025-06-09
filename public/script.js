@@ -103,3 +103,4 @@ async function connectWallet() {
 
 document.getElementById('startBtn').addEventListener('click', startQuiz);
 window.onload = loadQuestions;
+// 🔁 Cache-buster
