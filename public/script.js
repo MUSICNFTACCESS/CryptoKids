@@ -3,12 +3,13 @@ let score = 0;
 let questions = [];
 let timerInterval;
 
-const TIME_PER_QUESTION = 15;
+const TIME_PER_QUESTION = 15; // seconds
 
 fetch("questions.json")
   .then(res => res.json())
   .then(data => {
     questions = shuffle(data);
+    showQuestion();
   });
 
 function startQuiz() {
@@ -39,6 +40,7 @@ function showQuestion() {
 
 function checkAnswer(selected, questionObj) {
   clearInterval(timerInterval);
+
   const correctAnswer = questionObj.options[questionObj.correct];
 
   document.querySelectorAll("li").forEach(el => {
@@ -61,7 +63,7 @@ function nextQuestion() {
     showQuestion();
   } else {
     document.getElementById("score-container").classList.remove("hidden");
-    document.getElementById("score").innerText = `${score}/${questions.length} (${score} points earned)`;
+    document.getElementById("score").innerText = `${score}/${questions.length}`;
 
     const prev = parseInt(localStorage.getItem("cryptokids_points")) || 0;
     localStorage.setItem("cryptokids_points", prev + score);
@@ -73,10 +75,10 @@ function nextQuestion() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ wallet, points: score })
       })
-      .then(res => res.json())
-      .then(data => {
-        console.log("Points saved:", data);
-      });
+        .then(res => res.json())
+        .then(data => {
+          console.log("Points saved:", data);
+        });
     }
 
     document.getElementById("next-btn").classList.add("hidden");
@@ -88,7 +90,10 @@ function nextQuestion() {
 
 function updateProgress() {
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
-  document.getElementById("progress-bar").style.width = `${progress}%`;
+  const progressBar = document.getElementById("progress-bar");
+  if (progressBar) {
+    progressBar.style.width = `${progress}%`;
+  }
 }
 
 function startTimer() {
