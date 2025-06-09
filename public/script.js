@@ -1,61 +1,61 @@
 let questions = [];
 let currentQuestion = 0;
 let score = 0;
-let timer;
-let timeLeft = 15;
+let timer, timeLeft;
+const TIME_PER_QUESTION = 15;
 
-// Load questions and start quiz
-async function startQuiz() {
+async function loadQuestions() {
   try {
-    const res = await fetch("questions.json");
+    const res = await fetch('/questions.json');
     questions = await res.json();
-    currentQuestion = 0;
-    score = 0;
-    showQuestion();
+    document.getElementById('splash-screen').querySelector('button').disabled = false;
   } catch (err) {
-    document.getElementById("quiz").innerHTML = "❌ Failed to load questions.";
-    console.error(err);
+    console.error('Failed loading questions', err);
+    alert('Error loading questions.');
   }
 }
 
-// Show a question
+function startQuiz() {
+  document.getElementById('splash-screen').classList.add('hidden');
+  document.getElementById('quiz-container').classList.remove('hidden');
+  showQuestion();
+}
+
 function showQuestion() {
   clearInterval(timer);
-  timeLeft = 15;
-
+  timeLeft = TIME_PER_QUESTION;
   const q = questions[currentQuestion];
-  const container = document.getElementById("quiz");
-  container.innerHTML = `
-    <h2>${q.question}</h2>
-    <div id="timer">Time left: ${timeLeft}s</div>
-    ${q.answers.map((a, i) => `
-      <button class="answer" onclick="selectAnswer(${i}, this)">${a}</button>
-    `).join("")}
-  `;
+  document.getElementById('question').innerText = q.question;
+  document.getElementById('progress').innerText = `Question ${currentQuestion + 1} / ${questions.length}`;
+
+  const opts = document.getElementById('options');
+  opts.innerHTML = '';
+  q.options.forEach((o,i) => {
+    const btn = document.createElement('button');
+    btn.classList.add('option-btn');
+    btn.innerText = o;
+    btn.onclick = () => selectAnswer(i === q.correct, btn, i);
+    opts.appendChild(btn);
+  });
 
   timer = setInterval(() => {
     timeLeft--;
-    document.getElementById("timer").innerText = `Time left: ${timeLeft}s`;
-    if (timeLeft === 0) {
-      clearInterval(timer);
-      selectAnswer(-1); // auto-submit as incorrect
-    }
+    document.getElementById('progress').innerText = `Time: ${timeLeft}s`;
+    if (timeLeft <= 0) selectAnswer(false, null, -1);
   }, 1000);
 }
 
-// Handle answer
-function selectAnswer(index, btn = null) {
+function selectAnswer(correct, btn, idx) {
   clearInterval(timer);
-  const buttons = document.querySelectorAll(".answer");
-  buttons.forEach(b => b.disabled = true);
-
-  const q = questions[currentQuestion];
-  if (index === q.correct) {
+  document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+  
+  if (correct) {
     score++;
-    if (btn) btn.style.backgroundColor = "#4caf50"; // Green
+    if (btn) btn.style.background = 'green';
   } else {
-    if (btn) btn.style.backgroundColor = "#f44336"; // Red
-    if (buttons[q.correct]) buttons[q.correct].style.backgroundColor = "#4caf50";
+    if (btn) btn.style.background = 'red';
+    const q = questions[currentQuestion];
+    document.querySelectorAll('.option-btn')[q.correct]?.style.background = 'green';
   }
 
   setTimeout(() => {
@@ -63,45 +63,51 @@ function selectAnswer(index, btn = null) {
     if (currentQuestion < questions.length) {
       showQuestion();
     } else {
-      showResult();
+      endQuiz();
     }
   }, 1000);
 }
 
-// Show result
-function showResult() {
-  const container = document.getElementById("quiz");
-  container.innerHTML = `
-    <h2>🎉 Quiz Complete!</h2>
-    <p>Your score: ${score} out of ${questions.length}</p>
-    <input type="text" id="walletInput" placeholder="Enter your wallet">
-    <button onclick="submitScore()">Submit Score</button>
-  `;
+function endQuiz() {
+  clearInterval(timer);
+  document.getElementById('quiz-container').classList.add('hidden');
+  document.getElementById('score-container').classList.remove('hidden');
+  document.getElementById('score').innerText = `You scored ${score} / ${questions.length}`;
+
+  let prev = parseInt(localStorage.getItem('cryptokids_points') || '0');
+  localStorage.setItem('cryptokids_points', prev + score);
+
+  if (window.connectedWallet) {
+    fetch('/save-points', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ wallet: window.connectedWallet, points: score })
+    }).then(console.log).catch(console.error);
+  }
 }
 
-// Submit score to backend
-async function submitScore() {
-  const wallet = document.getElementById("walletInput").value.trim();
-  if (!wallet) {
-    alert("Please enter a wallet.");
+async function connectWallet() {
+  if (!window.solana?.isPhantom) {
+    alert('Please install Phantom wallet.');
     return;
   }
-
   try {
-    const res = await fetch("/save-points", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ wallet, points: score })
-    });
-
-    const data = await res.json();
-    if (data.status === "ok") {
-      document.getElementById("quiz").innerHTML = "<h2>✅ Score saved. Thank you!</h2>";
-    } else {
-      throw new Error("Save failed");
-    }
+    const resp = await window.solana.connect();
+    window.connectedWallet = resp.publicKey.toString();
+    document.getElementById('wallet-status').innerText = 'Connected: ' + window.connectedWallet;
   } catch (err) {
-    console.error(err);
-    alert("❌ Failed to save score.");
+    console.error('Wallet connect failed', err);
   }
 }
+
+document.getElementById('splash-screen').querySelector('button').disabled = true;
+document.getElementById('splash-screen').querySelector('button').onclick = startQuiz;
+document.getElementById('quiz-container').querySelector('button').onclick = () => {
+  clearInterval(timer);
+  currentQuestion++;
+  if (currentQuestion < questions.length) showQuestion();
+  else endQuiz();
+};
+document.getElementById('splash-screen').querySelectorAll('button')[1].onclick = connectWallet;
+
+window.onload = loadQuestions;
