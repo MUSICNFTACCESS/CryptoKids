@@ -1,51 +1,242 @@
-[{"question":"What does BTC stand for?","options":["Litecoin","Ethereum","Solana","Bitcoin"],"correct":3},
-{"question":"What is Ethereum's native token?","options":["ETH","ETC","SOL","ERC"],"correct":0},
-{"question":"Which crypto is known for its fast transactions and low fees?","options":["Ripple","Solana","Ethereum","Bitcoin"],"correct":1},
-{"question":"What is a private key used for?","options":["Viewing charts","Public verification","Proving ownership of funds","Buying NFTs"],"correct":2},
-{"question":"Which network uses the SOL token?","options":["Solana","Bitcoin","Ethereum","Cardano"],"correct":0},
-{"question":"What is the purpose of a blockchain explorer?","options":["Buying coins","Gaming","Tracking transactions","Mining"],"correct":2},
-{"question":"What does DeFi stand for?","options":["Defined Finance","DeFi Coin","Decentralized Finance","Digital Funds"],"correct":2},
-{"question":"Which is NOT a stablecoin?","options":["USDT","DAI","SOL","USDC"],"correct":2},
-{"question":"What is a smart contract?","options":["A legal document","A crypto wallet","Code that runs on blockchain","An investment"],"correct":2},
-{"question":"What does HODL mean?","options":["Sell quickly","Hold crypto long-term","Short the market","Buy high sell low"],"correct":1},
-{"question":"Which symbol represents Bitcoin?","options":["Ξ","BTC","SOL","BNB"],"correct":1},
-{"question":"What is gas in Ethereum?","options":["Fuel","Transaction fee","Profit","NFT name"],"correct":1},
-{"question":"What is the smallest unit of Bitcoin?","options":["Wei","Gwei","Satoshi","Lambo"],"correct":2},
-{"question":"Which blockchain introduced smart contracts?","options":["Ethereum","Bitcoin","Litecoin","Dogecoin"],"correct":0},
-{"question":"Which of the following is a Layer 2 solution?","options":["Polygon","Solana","Cardano","Bitcoin"],"correct":0},
-{"question":"Which of these is a cold wallet?","options":["MetaMask","Phantom","Ledger","Trust Wallet"],"correct":2},
-{"question":"What is a DAO?","options":["Digital Autonomous Operation","Decentralized Autonomous Organization","DeFi Account Option","Dogecoin Alliance Order"],"correct":1},
-{"question":"Which crypto uses proof of work?","options":["Ethereum","Bitcoin","Solana","Cardano"],"correct":1},
-{"question":"What is a rug pull?","options":["Price pump","Scam where developers run away with funds","Successful project","Airdrop"],"correct":1},
-{"question":"Which is a decentralized exchange?","options":["Coinbase","Kraken","Uniswap","Gemini"],"correct":2},
-{"question":"What is staking?","options":["Selling tokens","Locking tokens to earn rewards","Mining coins","Buying NFTs"],"correct":1},
-{"question":"Which crypto is focused on privacy?","options":["Monero","Chainlink","Ripple","Bitcoin"],"correct":0},
-{"question":"What does FOMO stand for?","options":["Fun On Market Option","Fear Of Missing Out","Fast Open Market Operation","Funds Or Money Only"],"correct":1},
-{"question":"Which token runs on Ethereum?","options":["ETH","USDC (ERC-20)","SOL","BNB"],"correct":1},
-{"question":"What is a whitelist in NFTs?","options":["List of banned wallets","Priority access to mint","Blacklist","Trending tokens"],"correct":1},
-{"question":"What is yield farming?","options":["Growing crops","Lending and borrowing for high APY","Trading coins","NFT collection"],"correct":1},
-{"question":"Which platform is best known for NFT trading?","options":["Coinbase","Uniswap","OpenSea","Kraken"],"correct":2},
-{"question":"What’s a meme coin?","options":["A coin based on strong fundamentals","A humorous or viral token","A stablecoin","An institutional token"],"correct":1},
-{"question":"What is TVL?","options":["Total Volume Lost","Total Value Locked","Token Value Liquidity","Transaction Volume Ledger"],"correct":1},
-{"question":"Which blockchain is known for low fees and high speed?","options":["Ethereum","Bitcoin","Solana","Polygon"],"correct":2},
-{"question":"Which token is used for governance on Uniswap?","options":["UNI","SOL","LINK","BNB"],"correct":0},
-{"question":"Which company created MetaMask?","options":["Meta","Solana Labs","ConsenSys","Google"],"correct":2},
-{"question":"Which protocol allows BTC on Ethereum?","options":["wBTC","ETHBTC","BridgeBTC","eBTC"],"correct":0},
-{"question":"What is the function of a crypto bridge?","options":["Burn tokens","Move tokens between chains","Pump price","Mint NFTs"],"correct":1},
-{"question":"Which is NOT an NFT marketplace?","options":["Magic Eden","Rarible","Binance","Uniswap"],"correct":3},
-{"question":"Which blockchain uses gas fees called 'gwei'?","options":["Ethereum","Bitcoin","Solana","Cardano"],"correct":0},
-{"question":"Which layer is Ethereum mainnet?","options":["Layer 1","Layer 2","Layer 3","Testnet"],"correct":0},
-{"question":"Which term means verifying a blockchain transaction?","options":["Hashing","Signing","Mining","Minting"],"correct":2},
-{"question":"Which of these is a real Ethereum wallet?","options":["Sollet","MetaMask","TrustPad","Phantom"],"correct":1},
-{"question":"Which is NOT a blockchain consensus mechanism?","options":["Proof of Burn","Proof of Stake","Proof of Work","Proof of Trade"],"correct":3},
-{"question":"Which type of attack targets smart contracts?","options":["Phishing","Front-running","Reentrancy","Dusting"],"correct":2},
-{"question":"What’s a hot wallet?","options":["Offline hardware wallet","Exchange listing","Online wallet","Mining software"],"correct":2},
-{"question":"What happens during a token airdrop?","options":["Users pay to get tokens","Tokens are randomly bought","Free tokens are distributed","Tokens are locked"],"correct":2},
-{"question":"Which crypto is known for its oracle services?","options":["Chainlink","Ethereum","Cardano","Solana"],"correct":0},
-{"question":"Which coin is issued by Binance?","options":["SOL","UNI","BNB","DOGE"],"correct":2},
-{"question":"What is a DApp?","options":["Decentralized App","Database App","Digital Account","Downloadable App"],"correct":0},
-{"question":"Which term refers to the total coin supply available now?","options":["Market Cap","Circulating Supply","TVL","Liquidity"],"correct":1},
-{"question":"Which wallet is browser-based?","options":["Ledger","MetaMask","Trezor","SafePal"],"correct":1},
-{"question":"Which of these is a decentralized identity protocol?","options":["ENS","ETH","BTC","DEX"],"correct":0}]
-
- 
+[
+  {
+    "question": "What does BTC stand for?",
+    "answers": ["Litecoin", "Ethereum", "Bitcoin", "Dogecoin"],
+    "correctIndex": 2
+  },
+  {
+    "question": "What is Ethereum's native token?",
+    "answers": ["ETH", "ETC", "SOL", "BNB"],
+    "correctIndex": 0
+  },
+  {
+    "question": "Which crypto is known for fast transactions and low fees?",
+    "answers": ["Bitcoin", "Ethereum", "Solana", "Litecoin"],
+    "correctIndex": 2
+  },
+  {
+    "question": "What is a private key used for?",
+    "answers": ["Sharing memes", "Receiving funds", "Viewing charts", "Accessing your wallet securely"],
+    "correctIndex": 3
+  },
+  {
+    "question": "Which network uses the SOL token?",
+    "answers": ["Ethereum", "Binance", "Solana", "Polygon"],
+    "correctIndex": 2
+  },
+  {
+    "question": "What is the purpose of a blockchain explorer?",
+    "answers": ["Play games", "Send emails", "View transactions", "Store tokens"],
+    "correctIndex": 2
+  },
+  {
+    "question": "What does DeFi stand for?",
+    "answers": ["Defined Finance", "Decentralized Finance", "Deferred Funds", "Defensive Finance"],
+    "correctIndex": 1
+  },
+  {
+    "question": "Which is NOT a stablecoin?",
+    "answers": ["USDT", "DAI", "SOL", "USDC"],
+    "correctIndex": 2
+  },
+  {
+    "question": "What is a smart contract?",
+    "answers": ["A legal contract", "A digital agreement on blockchain", "A chat app", "A hardware wallet"],
+    "correctIndex": 1
+  },
+  {
+    "question": "What does HODL mean?",
+    "answers": ["Sell quickly", "Hold crypto long-term", "A new token", "Hack of DeFi Ledger"],
+    "correctIndex": 1
+  },
+  {
+    "question": "Which symbol represents Bitcoin?",
+    "answers": ["Ξ", "$", "₿", "#"],
+    "correctIndex": 2
+  },
+  {
+    "question": "What is gas in Ethereum?",
+    "answers": ["Air", "Fuel", "Transaction fee", "NFT token"],
+    "correctIndex": 2
+  },
+  {
+    "question": "What is the smallest unit of Bitcoin?",
+    "answers": ["Wei", "Ether", "Satoshi", "Nano"],
+    "correctIndex": 2
+  },
+  {
+    "question": "Which blockchain introduced smart contracts?",
+    "answers": ["Bitcoin", "Ethereum", "Solana", "Tron"],
+    "correctIndex": 1
+  },
+  {
+    "question": "Which of the following is a Layer 2 solution?",
+    "answers": ["Polygon", "Solana", "Litecoin", "Cardano"],
+    "correctIndex": 0
+  },
+  {
+    "question": "Which of these is a cold wallet?",
+    "answers": ["MetaMask", "Ledger", "Phantom", "Trust Wallet"],
+    "correctIndex": 1
+  },
+  {
+    "question": "What is a DAO?",
+    "answers": ["Digital Asset Only", "Decentralized Autonomous Organization", "Data Access Option", "Direct Allocation Order"],
+    "correctIndex": 1
+  },
+  {
+    "question": "Which crypto uses proof of work?",
+    "answers": ["ETH", "SOL", "BTC", "AVAX"],
+    "correctIndex": 2
+  },
+  {
+    "question": "What is a rug pull?",
+    "answers": ["Price pump", "Token burn", "Scam where devs drain liquidity", "Exchange halt"],
+    "correctIndex": 2
+  },
+  {
+    "question": "Which is a decentralized exchange?",
+    "answers": ["Coinbase", "Binance", "Uniswap", "Crypto.com"],
+    "correctIndex": 2
+  },
+  {
+    "question": "What is staking?",
+    "answers": ["Locking tokens to earn rewards", "Buying NFTs", "Trading futures", "Sending airdrops"],
+    "correctIndex": 0
+  },
+  {
+    "question": "Which blockchain is focused on privacy?",
+    "answers": ["Monero", "Ethereum", "Solana", "Dogecoin"],
+    "correctIndex": 0
+  },
+  {
+    "question": "What does FOMO stand for?",
+    "answers": ["Fear of Missing Out", "Funds of Market Order", "Focus on My Options", "Future of Monetary Output"],
+    "correctIndex": 0
+  },
+  {
+    "question": "Which token runs on Ethereum?",
+    "answers": ["ETH", "USDC", "BTC", "SOL"],
+    "correctIndex": 1
+  },
+  {
+    "question": "What is yield farming?",
+    "answers": ["Growing crops", "Lending tokens for interest", "Mining BTC", "Cold storage"],
+    "correctIndex": 1
+  },
+  {
+    "question": "Which platform is best known for NFT trading?",
+    "answers": ["Uniswap", "Coinbase", "Magic Eden", "OpenSea"],
+    "correctIndex": 3
+  },
+  {
+    "question": "What’s a meme coin?",
+    "answers": ["A coin based on strong fundamentals", "A coin with utility", "A joke coin that gains popularity", "A wrapped token"],
+    "correctIndex": 2
+  },
+  {
+    "question": "What is TVL?",
+    "answers": ["Total Volume Locked", "Token Volume Ledger", "Transaction Verification Level", "Time Value Loss"],
+    "correctIndex": 0
+  },
+  {
+    "question": "Which blockchain is known for low fees and high speed?",
+    "answers": ["Bitcoin", "Ethereum", "Solana", "Dogecoin"],
+    "correctIndex": 2
+  },
+  {
+    "question": "Which token is used for governance on Uniswap?",
+    "answers": ["UNI", "USDT", "ETH", "DAI"],
+    "correctIndex": 0
+  },
+  {
+    "question": "Which company created MetaMask?",
+    "answers": ["Coinbase", "Trust", "Consensys", "Binance"],
+    "correctIndex": 2
+  },
+  {
+    "question": "Which protocol allows BTC on Ethereum?",
+    "answers": ["WBTC", "SOL", "BNB", "UNI"],
+    "correctIndex": 0
+  },
+  {
+    "question": "What is the function of a crypto bridge?",
+    "answers": ["Gaming", "NFT minting", "Transfer tokens between blockchains", "Set gas prices"],
+    "correctIndex": 2
+  },
+  {
+    "question": "Which is NOT an NFT marketplace?",
+    "answers": ["Magic Eden", "Rarible", "OpenSea", "Uniswap"],
+    "correctIndex": 3
+  },
+  {
+    "question": "Which blockchain uses gas fees called 'gwei'?",
+    "answers": ["Solana", "Cardano", "Ethereum", "Dogecoin"],
+    "correctIndex": 2
+  },
+  {
+    "question": "Which layer is Ethereum mainnet?",
+    "answers": ["Layer 1", "Layer 2", "Sidechain", "Beacon"],
+    "correctIndex": 0
+  },
+  {
+    "question": "Which term means verifying a blockchain transaction?",
+    "answers": ["Minting", "Mining", "Hashing", "Validating"],
+    "correctIndex": 3
+  },
+  {
+    "question": "Which of these is a real Ethereum wallet?",
+    "answers": ["Phantom", "MetaMask", "Trustless", "BitWallet"],
+    "correctIndex": 1
+  },
+  {
+    "question": "Which is NOT a blockchain consensus mechanism?",
+    "answers": ["Proof of Work", "Proof of Stake", "Proof of Truth", "Delegated Proof of Stake"],
+    "correctIndex": 2
+  },
+  {
+    "question": "Which type of attack targets smart contracts?",
+    "answers": ["51% attack", "Phishing", "Flash loan attack", "Sybil attack"],
+    "correctIndex": 2
+  },
+  {
+    "question": "What’s a hot wallet?",
+    "answers": ["Cold storage", "Offline hardware wallet", "Online connected wallet", "Paper backup"],
+    "correctIndex": 2
+  },
+  {
+    "question": "What happens during a token airdrop?",
+    "answers": ["Tokens are burned", "Free tokens distributed to users", "Tokens staked", "Fees increased"],
+    "correctIndex": 1
+  },
+  {
+    "question": "Which crypto is known for its oracle services?",
+    "answers": ["Bitcoin", "Chainlink", "Solana", "Avalanche"],
+    "correctIndex": 1
+  },
+  {
+    "question": "Which coin is issued by Binance?",
+    "answers": ["SOL", "UNI", "BNB", "AVAX"],
+    "correctIndex": 2
+  },
+  {
+    "question": "What is a DApp?",
+    "answers": ["Decentralized App", "Database Application", "Digital App", "Dynamic Allocation"],
+    "correctIndex": 0
+  },
+  {
+    "question": "Which term refers to the total coin supply available now?",
+    "answers": ["Circulating Supply", "Total Supply", "Max Supply", "Locked Value"],
+    "correctIndex": 0
+  },
+  {
+    "question": "Which wallet is browser-based?",
+    "answers": ["Ledger", "MetaMask", "Trezor", "SafePal"],
+    "correctIndex": 1
+  },
+  {
+    "question": "Which of these is a decentralized identity protocol?",
+    "answers": ["Civic", "Tether", "Cardano", "Loopring"],
+    "correctIndex": 0
+  }
+]
