@@ -1,95 +1,108 @@
-let questions = [];
-let currentQuestion = 0;
+let currentQuestionIndex = 0;
 let score = 0;
-let walletConnected = false;
+let quizData = [];
 
-async function fetchQuestions() {
-  const res = await fetch("questions.json");
-  questions = await res.json();
-  updateProgressBar();
+async function startQuiz() {
+  try {
+    const res = await fetch("questions.json");
+    quizData = await res.json();
+    currentQuestionIndex = 0;
+    score = 0;
+
+    document.getElementById("quiz").style.display = "block";
+    document.getElementById("result").innerHTML = "";
+    showQuestion();
+  } catch (error) {
+    console.error("Failed to load quiz data:", error);
+  }
 }
 
-function startQuiz() {
-  currentQuestion = 0;
-  score = 0;
-  document.getElementById("splash-screen").style.display = "none";
-  document.getElementById("quiz").style.display = "block";
-  displayQuestion();
+function showQuestion() {
+  const question = quizData[currentQuestionIndex];
+  const answers = [...question.answers];
+  const correctAnswer = answers[question.correctIndex];
+  shuffleArray(answers);
+  const randomizedCorrectIndex = answers.indexOf(correctAnswer);
+  question.shuffledAnswers = answers;
+  question.shuffledCorrectIndex = randomizedCorrectIndex;
+
+  document.getElementById("question").innerHTML = question.question;
+  const answersDiv = document.getElementById("answers");
+  answersDiv.innerHTML = "";
+
+  answers.forEach((answer, index) => {
+    const btn = document.createElement("button");
+    btn.textContent = answer;
+    btn.onclick = () => selectAnswer(index);
+    answersDiv.appendChild(btn);
+  });
 }
 
-function displayQuestion() {
-  const question = questions[currentQuestion];
-  const quizContainer = document.getElementById("quiz");
-  const options = question.options
-    .map((option, index) =>
-      `<button class="option-btn" onclick="checkAnswer(${index})">${option}</button>`
-    )
-    .join("");
-
-  quizContainer.innerHTML = `
-    <h2>${question.question}</h2>
-    <div>${options}</div>
-    <div id="progressBar" class="section"></div>
-    <div id="wallet-status" class="section"></div>
-    <button onclick="disconnectWallet()">Disconnect Wallet</button>
-  `;
-  updateProgressBar();
-}
-
-function checkAnswer(selected) {
-  if (!walletConnected) {
-    alert("Please connect your wallet to answer.");
+function selectAnswer(index) {
+  const wallet = window.solana?.publicKey?.toString();
+  if (!wallet) {
+    alert("Please connect your wallet first.");
     return;
   }
 
-  const correct = questions[currentQuestion].answer;
-  if (selected === correct) {
-    score++;
-  }
+  const question = quizData[currentQuestionIndex];
+  const isCorrect = index === question.shuffledCorrectIndex;
+  if (isCorrect) score++;
 
-  logPoints();
-  currentQuestion++;
-  if (currentQuestion < questions.length) {
-    setTimeout(displayQuestion, 300);
+  currentQuestionIndex++;
+  if (currentQuestionIndex < quizData.length) {
+    showQuestion();
   } else {
-    showResults();
+    endQuiz(wallet);
   }
 }
 
-function showResults() {
-  document.getElementById("quiz").innerHTML = `
-    <h2>Quiz Completed!</h2>
-    <p>Your Score: ${score} / ${questions.length}</p>
-    <button onclick="window.location.reload()">Play Again</button>
-  `;
-  updateProgressBar();
+function endQuiz(wallet) {
+  document.getElementById("quiz").style.display = "none";
+  document.getElementById("result").innerHTML = `You scored ${score} out of ${quizData.length}`;
+
+  fetch("/save-points", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ wallet, points: score }),
+  })
+    .then(res => res.json())
+    .then(data => console.log("Points saved:", data));
 }
 
-function updateProgressBar() {
-  const percent = ((currentQuestion / questions.length) * 100).toFixed(0);
-  const progressBar = document.getElementById("progressBar");
-  if (progressBar) {
-    progressBar.style.width = `${percent}%`;
-    progressBar.innerText = `${percent}%`;
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
 }
 
-function connectWallet() {
-  walletConnected = true;
-  document.getElementById("wallet-status").innerText = "Wallet Connected ✅";
+// Wallet Connect logic
+async function connectWallet() {
+  if (window.solana && window.solana.isPhantom) {
+    try {
+      const response = await window.solana.connect();
+      document.getElementById("wallet-address").innerText = `Wallet: ${response.publicKey}`;
+      document.getElementById("connect-wallet").style.display = "none";
+      document.getElementById("disconnect-wallet").style.display = "inline-block";
+    } catch (err) {
+      console.error("Wallet connection failed:", err);
+    }
+  } else {
+    alert("Phantom Wallet not detected.");
+  }
 }
 
 function disconnectWallet() {
-  walletConnected = false;
-  document.getElementById("wallet-status").innerText = "Wallet Disconnected ❌";
+  if (window.solana?.isPhantom) {
+    window.solana.disconnect();
+    document.getElementById("wallet-address").innerText = "";
+    document.getElementById("connect-wallet").style.display = "inline-block";
+    document.getElementById("disconnect-wallet").style.display = "none";
+  }
 }
 
-function logPoints() {
-  fetch("/log-points", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ score }),
-  }).then(res => res.json()).catch(console.error);
-}
-
-window.onload = fetchQuestions;
+window.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("connect-wallet").onclick = connectWallet;
+  document.getElementById("disconnect-wallet").onclick = disconnectWallet;
+});
