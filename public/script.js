@@ -106,3 +106,11 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("connect-wallet").onclick = connectWallet;
   document.getElementById("disconnect-wallet").onclick = disconnectWallet;
 });
+
+document.getElementById("startBtn").addEventListener("click", () => {
+  document.getElementById("splash-screen").style.display = "none";
+  document.getElementById("quiz-container").classList.remove("hidden");
+  displayQuestion();
+});
+
+window.onload = fetchQuestions;
