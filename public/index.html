@@ -2,116 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CryptoKids - CryptoQuiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CryptoKids Quiz</title>
   <style>
     body {
-      background-color: #000;
-      color: #f7931a;
-      font-family: 'Courier New', Courier, monospace;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    h1, h2 {
-      color: #f7931a;
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    li {
       background-color: #111;
-      padding: 10px;
-      margin: 8px 0;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 1px solid #f7931a;
+      color: #f7931a;
+      font-family: Courier, monospace;
+      text-align: center;
+      padding: 2rem;
     }
-
-    li.correct {
-      background-color: green;
-    }
-
-    li.incorrect {
-      background-color: red;
-    }
-
-    button, .link-button {
+    button {
+      background-color: #f7931a;
+      color: black;
+      border: none;
       padding: 10px 20px;
       margin: 10px;
       font-size: 16px;
-      border: none;
       border-radius: 8px;
-      background-color: #f7931a;
-      color: black;
       cursor: pointer;
     }
-
-    #wallet-status {
-      font-size: 14px;
-      margin-top: 10px;
-    }
-
-    .section {
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid #f7931a;
-    }
-
-    #progress {
-      margin-top: 20px;
-      font-weight: bold;
-    }
-
-    #score-container {
-      margin-top: 30px;
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div id="splash-screen">
-      <h1>🌸 CryptoKids CryptoQuiz</h1>
-      <p>Test your crypto knowledge & earn points!</p>
-      <button id="startBtn">Start Quiz</button>
-      <br />
 
-      <a href="./CryptoKids-CryptoQuiz-Whitepaper.md" target="_blank" rel="noopener noreferrer">
-        <button class="link-button">📄 View Whitepaper</button>
-      </a>
-      <br />
+  <h1>CryptoKids CryptoQuiz</h1>
 
-      <button id="connect-wallet">🔌 Connect Wallet</button>
-      <button id="disconnect-wallet" class="hidden">❌ Disconnect Wallet</button>
-      <div id="wallet-status"></div>
-    </div>
+  <button onclick="startQuiz()">Start Quiz</button>
 
-    <div id="quiz-container" class="hidden">
-      <h2 id="question">Question goes here</h2>
-      <div id="answers"></div>
-      <div id="progress"></div>
-    </div>
+  <div id="quiz-container" class="hidden">
+    <p id="question">Question goes here</p>
+    <div id="answers"></div>
+    <p id="progress"></p>
+  </div>
 
-    <div id="score-container" class="hidden">
-      <h2>🎉 Quiz Complete!</h2>
-      <p>Your score: <span id="score"></span></p>
-      <p>Thanks for playing!</p>
-      <button onclick="window.location.reload()">Play Again</button>
-    </div>
+  <div id="score-container" class="hidden">
+    <p id="final-score"></p>
   </div>
 
   <script src="script.js"></script>
