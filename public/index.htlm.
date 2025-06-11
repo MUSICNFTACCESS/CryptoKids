@@ -143,3 +143,4 @@ async function connectWallet() {
 
 // Load questions on page load
 window.onload = loadQuestions;
+<!-- Force redeploy -->
