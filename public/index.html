@@ -85,17 +85,18 @@
 <body>
   <div class="container">
     <div id="splash-screen">
-      <h1>👾 CryptoKids CryptoQuiz</h1>
+      <h1>🌸 CryptoKids CryptoQuiz</h1>
       <p>Test your crypto knowledge & earn points!</p>
       <button id="startBtn">Start Quiz</button>
-      <br/>
+      <br />
 
       <a href="./CryptoKids-CryptoQuiz-Whitepaper.md" target="_blank" rel="noopener noreferrer">
-        <button class="link-button">📝 View Whitepaper</button>
+        <button class="link-button">📄 View Whitepaper</button>
       </a>
-      <br/>
+      <br />
 
-      <button onclick="connectWallet()">🔌 Connect Wallet</button>
+      <button id="connect-wallet">🔌 Connect Wallet</button>
+      <button id="disconnect-wallet" class="hidden">❌ Disconnect Wallet</button>
       <div id="wallet-status"></div>
     </div>
 
@@ -113,6 +114,6 @@
     </div>
   </div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

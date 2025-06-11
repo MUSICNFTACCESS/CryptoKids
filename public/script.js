@@ -21,15 +21,16 @@ function showQuestion() {
   const question = quizData[currentQuestionIndex];
   const answers = [...question.answers];
   const correctAnswer = answers[question.correctIndex];
+
   shuffleArray(answers);
   const randomizedCorrectIndex = answers.indexOf(correctAnswer);
   question.shuffledAnswers = answers;
   question.shuffledCorrectIndex = randomizedCorrectIndex;
 
   document.getElementById("question").innerHTML = question.question;
-  const answersDiv = document.getElementById("answers");
-  answersDiv.innerHTML = "";
 
+  const answersDiv = document.getElementById("options");
+  answersDiv.innerHTML = "";
   answers.forEach((answer, index) => {
     const btn = document.createElement("button");
     btn.textContent = answer;
@@ -77,6 +78,8 @@ function shuffleArray(array) {
   }
 }
 
+// --------------------- Wallet Connect/Disconnect ----------------------
+
 async function connectWallet() {
   if (window.solana && window.solana.isPhantom) {
     try {
@@ -101,9 +104,18 @@ function disconnectWallet() {
   }
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  const walletBtn = document.getElementById("walletBtn");
-  walletBtn.onclick = connectWallet;
+// ------------------------ Startup Events ------------------------
 
-  document.getElementById("startBtn").addEventListener("click", startQuiz);
+document.addEventListener("DOMContentLoaded", () => {
+  const walletBtn = document.getElementById("walletBtn");
+  if (walletBtn) walletBtn.onclick = connectWallet;
+
+  const startBtn = document.getElementById("startBtn");
+  if (startBtn) {
+    startBtn.addEventListener("click", () => {
+      document.getElementById("splash-screen").style.display = "none";
+      document.getElementById("quiz-container").classList.remove("hidden");
+      startQuiz();
+    });
+  }
 });
