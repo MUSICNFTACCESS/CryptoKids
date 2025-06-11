@@ -77,40 +77,33 @@ function shuffleArray(array) {
   }
 }
 
-// Wallet Connect logic
 async function connectWallet() {
   if (window.solana && window.solana.isPhantom) {
     try {
-      const response = await window.solana.connect();
-      document.getElementById("wallet-address").innerText = `Wallet: ${response.publicKey}`;
-      document.getElementById("connect-wallet").style.display = "none";
-      document.getElementById("disconnect-wallet").style.display = "inline-block";
+      const resp = await window.solana.connect();
+      const walletBtn = document.getElementById("walletBtn");
+      walletBtn.innerText = `Connected: ${resp.publicKey.toString().slice(0, 6)}...`;
+      walletBtn.onclick = disconnectWallet;
     } catch (err) {
-      console.error("Wallet connection failed:", err);
+      console.error("Wallet connection error:", err);
     }
   } else {
-    alert("Phantom Wallet not detected.");
+    alert("Phantom wallet not detected!");
   }
 }
 
 function disconnectWallet() {
-  if (window.solana?.isPhantom) {
+  if (window.solana?.disconnect) {
     window.solana.disconnect();
-    document.getElementById("wallet-address").innerText = "";
-    document.getElementById("connect-wallet").style.display = "inline-block";
-    document.getElementById("disconnect-wallet").style.display = "none";
+    const walletBtn = document.getElementById("walletBtn");
+    walletBtn.innerText = "Connect Wallet";
+    walletBtn.onclick = connectWallet;
   }
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("connect-wallet").onclick = connectWallet;
-  document.getElementById("disconnect-wallet").onclick = disconnectWallet;
-});
+  const walletBtn = document.getElementById("walletBtn");
+  walletBtn.onclick = connectWallet;
 
-document.getElementById("startBtn").addEventListener("click", () => {
-  document.getElementById("splash-screen").style.display = "none";
-  document.getElementById("quiz-container").classList.remove("hidden");
-  displayQuestion();
+  document.getElementById("startBtn").addEventListener("click", startQuiz);
 });
-
-window.onload = fetchQuestions;
