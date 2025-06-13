@@ -13,17 +13,21 @@
       flex-direction: column;
       align-items: center;
     }
+    h1 {
+      margin: 1rem 0 0.5rem;
+    }
     iframe {
-      width: 100vw;
-      height: 90vh;
+      width: 100%;
+      height: 70vh;
       border: none;
+      background-color: #222;
     }
     .fallback {
       margin-top: 1rem;
     }
     a.button {
       display: inline-block;
-      margin: 1rem;
+      margin: 0.5rem;
       padding: 10px 20px;
       background-color: #f7931a;
       color: #0d0d0d;
@@ -34,8 +38,9 @@
   </style>
 </head>
 <body>
-  <iframe src="whitepaper.pdf" title="CryptoKids Whitepaper">
-    <p>Your browser does not support PDF embedding. <a href="whitepaper.pdf">Download the PDF</a>.</p>
+  <h1>CryptoKids Whitepaper</h1>
+  <iframe src="whitepaper.pdf">
+    <p>Your browser does not support inline PDFs. Please download it below.</p>
   </iframe>
   <div class="fallback">
     <a class="button" href="whitepaper.pdf" download>📥 Download Whitepaper</a>
